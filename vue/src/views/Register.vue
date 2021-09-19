@@ -17,7 +17,7 @@
       />
       <label for="email" class="sr-only">Email Address</label>
       <input 
-        type="text"
+        type="email"
         id="email"
         class="form-control"
         placeholder="Email"
@@ -33,10 +33,10 @@
         placeholder="Password"
         v-model="user.password"
         required
-        pattern="(?=.*\*\d)(?=.*[A-Z]).{8,}"
-
-
+        pattern="(?=.*\d)(?=.*[A-Z]).{8,}"
+        
       />
+
       <input
         type="password"
         id="confirmPassword"

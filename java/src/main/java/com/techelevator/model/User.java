@@ -14,6 +14,7 @@ public class User {
    private String password;
    @JsonIgnore
    private boolean activated;
+   private String email;
    private Set<Authority> authorities = new HashSet<>();
 
    public User() { }
@@ -23,6 +24,16 @@ public class User {
       this.username = username;
       this.password = password;
       this.activated = true;
+   }
+
+   //added email getter/setter (KS)
+
+   public String getEmail() {
+      return email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
    }
 
    public Long getId() {
