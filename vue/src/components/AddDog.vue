@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import petService from "@/services/PetService.js";
+import petService from "@/services/PetService";
 
 export default {
     data() {

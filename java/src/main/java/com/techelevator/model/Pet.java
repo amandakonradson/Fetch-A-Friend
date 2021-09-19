@@ -8,15 +8,20 @@ public class Pet {
     private int birthYear;
     private String gender;
     private String temperament;
+    private String size;
+    private String spayedNeutered;
 
     public Pet() {}
 
-    public Pet(String name, String breed, int birthYear, String gender, String temperament) {
+    public Pet(long petId, String name, String breed, int birthYear, String gender, String temperament, String size, String spayedNeutered) {
+        this.petId = petId;
         this.name = name;
         this.breed = breed;
         this.birthYear = birthYear;
         this.gender = gender;
         this.temperament = temperament;
+        this.size = size;
+        this.spayedNeutered = spayedNeutered;
     }
 
     public long getPetId() {
@@ -67,6 +72,22 @@ public class Pet {
         this.temperament = temperament;
     }
 
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getSpayedNeutered() {
+        return spayedNeutered;
+    }
+
+    public void setSpayedNeutered(String spayedNeutered) {
+        this.spayedNeutered = spayedNeutered;
+    }
+
     @Override
     public String toString() {
         return "Pet{" +
@@ -76,6 +97,8 @@ public class Pet {
                 ", birthYear=" + birthYear +
                 ", gender='" + gender + '\'' +
                 ", temperament='" + temperament + '\'' +
+                ", size='" + size + '\'' +
+                ", spayedNeutered='" + spayedNeutered + '\'' +
                 '}';
     }
 }

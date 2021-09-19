@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>You must be authenticated to see this</p>
+    <router-link v-bind:to="{name:'add-pet'}">Add a Pet</router-link>
   </div>
 </template>
 
