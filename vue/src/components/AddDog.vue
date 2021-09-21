@@ -50,8 +50,12 @@
     <option value="curious">Curious: These dogs will follow their noses wherever they lead! </option>
     <option value="laidBack">Laid Back: These pups are content to lounge around and soak in the sun! </option>
     <option value="submissive">Submissive: These dogs are happy to take others take the lead. They're just along for the ride. </option>
-
 </select>
+<br> <br>
+<input id="vaccination" type="checkbox" required/>
+<label for ="vaccination">By checking this box, you certify that your pet is up to date on all legally required vaccinations</label>
+
+<br> <br>
 <button class="button-submit">Submit</button>
 <button class="button-cancel">Cancel</button>
 </form>

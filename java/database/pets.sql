@@ -9,7 +9,7 @@ CREATE TABLE "pets" (
   "gender" varchar(10),
   "temperament" varchar(1000),
   "size" varchar(100),
-  "spayed_neutered" varchar(5)
+  "spayed_neutered" varchar(5),
   PRIMARY KEY ("pet_id")
 );
 
@@ -22,8 +22,8 @@ CREATE TABLE "user_pet" (
       REFERENCES "users"("user_id"),
   CONSTRAINT "FK_user_pet.pet_id"
     FOREIGN KEY ("pet_id")
-      REFERENCES "pets"("pet_id")
+      REFERENCES "pets"("pet_id"));
 
 ALTER TABLE "users" ADD "email" varchar(320) UNIQUE;
-);
+
 
