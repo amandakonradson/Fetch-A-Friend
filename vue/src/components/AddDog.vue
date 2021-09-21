@@ -52,6 +52,8 @@
     <option value="submissive">Submissive: These dogs are happy to take others take the lead. They're just along for the ride. </option>
 </select>
 <br> <br>
+<input type="file" @change>
+<button @click ="onUpload">Upload</button>
 <input id="vaccination" type="checkbox" required/>
 <label for ="vaccination">By checking this box, you certify that your pet is up to date on all legally required vaccinations</label>
 
@@ -68,6 +70,7 @@ import petService from "@/services/PetService";
 export default {
     data() {
         return {
+            selectedFile: null,
             dog: {
                 name: "",
                 breed: "",
@@ -80,6 +83,27 @@ export default {
         }
     },
     methods: {
+        onFileSelected(event) {
+            this.selectedFile= event.target.files[0]
+        },
+        onUpload() {
+            const fd= new FormData();
+            fd.append('image', this.selectedFile, this.selectedFile.name)
+            axios.post('', fd
+            .then((respsone) => {
+                if(response.status === 201) {
+                    this.$router.push("/") //need to update once landing page is created
+                }
+            }).catch((error) => {
+                if(error.response) {
+                    window.alert('Bad Request');
+                }
+                else if (error.request) {
+                    window.alert('Could not reach service');
+                }
+            })
+            }
+        },
         saveDog() {
             const newDog = {
                 name: this.dog.name,
@@ -109,6 +133,5 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
 </style>
