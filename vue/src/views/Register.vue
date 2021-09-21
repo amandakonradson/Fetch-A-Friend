@@ -5,7 +5,8 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
-      <label for="username" class="sr-only">Username</label>
+      <div class="form"> 
+      <label for="username" class="sr-only">Username </label>
       <input
         type="text"
         id="username"
@@ -14,9 +15,9 @@
         v-model="user.username"
         required
         autofocus
-      />
-      <label for="email" class="sr-only">Email Address</label>
-      <input 
+      /><br />
+      <label for="email" class="sr-only">Email Address </label>
+      <input
         type="email"
         id="email"
         class="form-control"
@@ -24,66 +25,70 @@
         v-model="user.email"
         required
         autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
+      /><br />
+      
+      <label for="password" class="sr-only">Password </label>
       <input
         type="password"
         id="password"
-        class="form-control"
+        class="password"
         placeholder="Password"
         v-model="user.password"
         required
         pattern="(?=.*\d)(?=.*[A-Z]).{8,}"
-        
       />
-
       <input
         type="password"
         id="confirmPassword"
-        class="form-control"
+        class="password"
         placeholder="Confirm Password"
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <p id="password-guide">
+        *Must contain at least 8 characters, 1 number, and 1 uppercase
+        letter.
+      </p><br /><br>
+      <router-link class="sr-only" :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Create Account
+      Create Account
       </button>
+      </div>
     </form>
   </div>
 </template>
 
 <script>
-import authService from '../services/AuthService';
+import authService from "../services/AuthService";
 
 export default {
-  name: 'register',
+  name: "register",
   data() {
     return {
       user: {
-        username: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
-        role: 'user',
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        role: "user",
       },
       registrationErrors: false,
-      registrationErrorMsg: 'There were problems registering this user.',
+      registrationErrorMsg: "There were problems registering this user.",
     };
   },
   methods: {
     register() {
       if (this.user.password != this.user.confirmPassword) {
         this.registrationErrors = true;
-        this.registrationErrorMsg = 'Password & Confirm Password do not match.';
+        this.registrationErrorMsg = "Password & Confirm Password do not match.";
       } else {
         authService
           .register(this.user)
           .then((response) => {
             if (response.status == 201) {
               this.$router.push({
-                path: '/login',
-                query: { registration: 'success' },
+                path: "/login",
+                query: { registration: "success" },
               });
             }
           })
@@ -91,17 +96,35 @@ export default {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = 'Bad Request: Validation Errors';
+              this.registrationErrorMsg = "Bad Request: Validation Errors";
             }
           });
       }
     },
     clearErrors() {
       this.registrationErrors = false;
-      this.registrationErrorMsg = 'There were problems registering this user.';
+      this.registrationErrorMsg = "There were problems registering this user.";
     },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.form-control{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+form{
+  font-size: 20px;
+}
+button{
+  margin-left: 20px;
+}
+#password-guide{
+  margin-bottom: 10px;
+}
+.password{
+  margin-top:10px;
+  
+}
+</style>

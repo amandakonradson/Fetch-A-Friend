@@ -3,26 +3,26 @@
 <h1>Add Your Pet</h1>
 <form v-on:submit.prevent="saveDog">
 <label for="name">Enter your pet's name: </label>  
-<input type="text" id="name" v-model="dog.name" /> 
+<input type="text" id="name" v-model="dog.name" required/> 
 <br /> <br />
 
 <label for="breed">Enter your pet's breed: </label> 
-<input type="text" id="breed" v-model="dog.breed" /> 
+<input type="text" id="breed" v-model="dog.breed" required /> 
 <br /> <br />
 
 <label for="birthYear">Enter your pet's birth year: </label>
-<input type="number" min="2000" max=current step="1" id="birthYear" v-model="dog.birthYear" /> 
+<input type="number" min="2000" max=current step="1" id="birthYear" v-model="dog.birthYear" required /> 
 <br /> <br />
 
 <label for="gender">Enter your pet's gender: </label>
-<select id="dogGender" v-model="dog.gender"> 
+<select id="dogGender" v-model="dog.gender" required> 
           <option value="Male" selected>Male</option>
           <option value="Female">Female</option>
         </select> 
         <br /> <br />
 
 <label for="size">Select your pet's size: </label>
-<select id="dogSize" v-model="dog.size"> 
+<select id="dogSize" v-model="dog.size" required> 
           <option value="extraSmall" selected>Extra Small (for example: Chihuahua, Maltese, Yorkshire Terrier)</option>
           <option value="small" selected>Small (for example: Beagle, French Bulldog, Boston Terrier)</option>
           <option value="medium" selected>Medium (for example: Border Collie, Corgi, Spaniel)</option>
@@ -33,7 +33,7 @@
         <br /> <br />
 
 <label for="spayedNeutered">Is your dog spayed or neutered? </label>
-<select id="spayedNeuteredSelection" v-model="dog.spayedNeutered"> 
+<select id="spayedNeuteredSelection" v-model="dog.spayedNeutered" required> 
           <option value="yes" selected>Yes </option>
           <option value="no" selected>No </option>
 
@@ -41,7 +41,7 @@
         <br /> <br />        
 
 <label for="temperament">What is your dog's temperament? (select the most applicable option): </label>
-<select name="temperaments" id="temperaments" v-model="dog.temperament"> 
+<select name="temperaments" id="temperaments" v-model="dog.temperament" required> 
     <option value="highEnergy">High Energy: These dogs never tire and can chase a ball for hours! </option>
     <option value="timid">Timid: These pups take a little longer to warm up to new company but once they feel comfortable they make great playmates! </option>
     <option value="friendly">Friendly: These dogs love everyone they encounter and have never met a stranger!</option>
@@ -117,7 +117,7 @@ export default {
             petService.createPet(newDog)
             .then((response) => {
                 if(response.status === 201) {
-                    this.$router.push("/") //need to update once landing page is created
+                   window.alert('Bow-wow! Your dog has been added!')
                 }
             }).catch((error) => {
                 if(error.response) {

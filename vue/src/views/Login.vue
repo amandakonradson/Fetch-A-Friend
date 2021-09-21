@@ -3,16 +3,17 @@
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
-        class="alert alert-danger"
+        class="alert-alert-danger"
         role="alert"
         v-if="invalidCredentials"
       >Login Failed: Invalid username and password!</div>
       <div
-        class="alert alert-success"
+        class="alert-alert-success"
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
-      <label for="username" class="sr-only">Username</label>
+      <div id="log-in">
+      <label for="username" class="sr-only">Username   </label>
       <input
         type="text"
         id="username"
@@ -21,8 +22,8 @@
         v-model="user.username"
         required
         autofocus
-      />
-      <label for="password" class="sr-only">Password</label>
+      /><br>
+      <label for="password" class="sr-only">Password   </label>
       <input
         type="password"
         id="password"
@@ -30,9 +31,10 @@
         placeholder="Password"
         v-model="user.password"
         required
-      />
+      /><br>
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <button id= "button" type="submit">Sign in</button>
+      </div>
     </form>
   </div>
 </template>
@@ -74,3 +76,22 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.form-control{
+  margin-top: 10px;
+  margin-bottom: 10Px;
+}
+button{
+  margin-left: 10px;
+}
+#log-in{
+  font-size:20px;
+}
+.alert-alert-success{
+  font-size: 20px;
+}
+.alert-alert-danger{
+  font-size: 20px;
+}
+</style>
