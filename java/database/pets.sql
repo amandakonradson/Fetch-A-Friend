@@ -26,4 +26,5 @@ CREATE TABLE "user_pet" (
 
 ALTER TABLE "users" ADD "email" varchar(320) UNIQUE;
 
+ 
 
