@@ -14,15 +14,12 @@ CREATE TABLE "pets" (
 );
 
 CREATE TABLE "user_pet" (
-  "pet_id" int,
-  "user_id" int,
-  PRIMARY KEY ("pet_id", "user_id"),
-  CONSTRAINT "FK_user_pet.user_id"
-    FOREIGN KEY ("user_id")
-      REFERENCES "users"("user_id"),
-  CONSTRAINT "FK_user_pet.pet_id"
-    FOREIGN KEY ("pet_id")
-      REFERENCES "pets"("pet_id"));
+  "pet_id" int NOT NULL,
+  "user_id" int NOT NULL,
+  CONSTRAINT "PK_user_pet" PRIMARY KEY ("pet_id", "user_id"),
+  CONSTRAINT "FK_user_pet_user" FOREIGN KEY ("user_id") REFERENCES "users" ("user_id"),
+  CONSTRAINT "FK_user_pet_pets" FOREIGN KEY ("pet_id") REFERENCES "pets" ("pet_id")
+  );
 
 ALTER TABLE "users" ADD "email" varchar(320) UNIQUE;
 

@@ -103,7 +103,7 @@ export default {
         //     //     }
         //     // })
         //     // }
-        },
+        
         saveDog() {
             const newDog = {
                 name: this.dog.name,
@@ -129,6 +129,7 @@ export default {
             })
         }
     }
+}
 
 
 </script>
