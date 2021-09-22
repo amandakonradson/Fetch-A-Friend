@@ -100,8 +100,13 @@ button{
     text-decoration: none; color: inherit;
 }
 #login {
+    display: flex;
     background-color: rgb(27, 76, 119);
     color: white;
     height: 100vh;
+    border: 10px, white, dotted;
+    align-items: center;
+    justify-content: center;
+
 }
 </style>

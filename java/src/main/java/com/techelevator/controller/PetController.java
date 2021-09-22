@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @PreAuthorize("isAuthenticated()")
 @RestController
 @CrossOrigin
@@ -18,8 +20,8 @@ public class PetController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/addPuppy")
-    public void createPet(@RequestBody Pet newDog){
-        petDao.createPet(newDog);
+    public void createPet(Principal principal, @RequestBody Pet newDog){
+        petDao.createPet(newDog, principal);
     }
 
 
