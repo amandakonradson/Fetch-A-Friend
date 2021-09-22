@@ -1,5 +1,10 @@
 DROP TABLE IF EXISTS "user_pet"; 
+DROP TABLE IF EXISTS "play_date_statuses"; 
+DROP TABLE IF EXISTS "location"; 
+DROP TABLE IF EXISTS "requests";
+DROP TABLE IF EXISTS "play_dates";
 DROP TABLE IF EXISTS "pets";
+
 
 CREATE TABLE "pets" (
   "pet_id" serial,
@@ -22,6 +27,64 @@ CREATE TABLE "user_pet" (
   );
 
 ALTER TABLE "users" ADD "email" varchar(320) UNIQUE;
+
+CREATE TABLE "play_date_statuses" (
+  "status_id" serial,
+  "status" varchar(20),
+  PRIMARY KEY ("status_id")
+);
+
+CREATE TABLE "location" (
+  "location_id" serial,
+  "description" varchar (100),
+  "zipcode" int,
+  PRIMARY KEY ("location_id")
+);
+
+CREATE TABLE "play_dates" (
+  "play_date_id" serial,
+  "host_pet_id" int,
+  "mate_pet_id" int,
+  "location_id" int,
+  "date" date,
+  "start_time" time,
+  "duration" int,
+  "mate_description" varchar(100),
+  "mate_size" varchar (20),
+  "status_id" int,
+  PRIMARY KEY ("play_date_id"),
+  CONSTRAINT "FK_play_dates.status_id"
+    FOREIGN KEY ("status_id")
+      REFERENCES "play_date_statuses"("status_id"),
+  CONSTRAINT "FK_play_dates.location_id"
+    FOREIGN KEY ("location_id")
+      REFERENCES "location"("location_id"),
+  CONSTRAINT "FK_play_dates.mate_pet_id"
+    FOREIGN KEY ("mate_pet_id")
+      REFERENCES "pets"("pet_id"),
+  CONSTRAINT "FK_play_dates.host_pet_id"
+    FOREIGN KEY ("host_pet_id")
+      REFERENCES "pets"("pet_id")
+);
+
+CREATE TABLE "request" (
+  "request_id" serial,
+  "play_date_id" int,
+  "status_id" int,
+  "mate_id" int,
+  PRIMARY KEY ("request_id"),
+  CONSTRAINT "FK_request.play_date_id"
+    FOREIGN KEY ("play_date_id")
+      REFERENCES "play_dates"("play_date_id"),
+  CONSTRAINT "FK_request.status_id"
+    FOREIGN KEY ("status_id")
+      REFERENCES "play_date_statuses"("status_id"),
+  CONSTRAINT "FK_request.mate_id"
+    FOREIGN KEY ("mate_id")
+      REFERENCES "pets"("pet_id")
+);
+
+
 
  
 
