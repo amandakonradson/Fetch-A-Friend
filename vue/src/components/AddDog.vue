@@ -1,27 +1,27 @@
 <template>
   <div id="main">
-<h1>Add Your Pet</h1>
+<h1>Tell Us About Your Dog:</h1>
 <form v-on:submit.prevent="saveDog">
-<label for="name">Enter your pet's name: </label>  
+<label for="name">Name: </label>  
 <input type="text" id="name" v-model="dog.name" required/> 
 <br /> <br />
 
-<label for="breed">Enter your pet's breed: </label> 
+<label for="breed">Breed: </label> 
 <input type="text" id="breed" v-model="dog.breed" required /> 
 <br /> <br />
 
-<label for="birthYear">Enter your pet's birth year: </label>
+<label for="birthYear">Year of Birth: </label>
 <input type="number" min="2000" max=current step="1" id="birthYear" v-model="dog.birthYear" required /> 
 <br /> <br />
 
-<label for="gender">Enter your pet's gender: </label>
+<label for="gender">Gender: </label>
 <select id="dogGender" v-model="dog.gender" required> 
           <option value="Male" selected>Male</option>
           <option value="Female">Female</option>
         </select> 
         <br /> <br />
 
-<label for="size">Select your pet's size: </label>
+<label for="size">Approximate size: </label>
 <select id="dogSize" v-model="dog.size" required> 
           <option value="extraSmall" selected>Extra Small (for example: Chihuahua, Maltese, Yorkshire Terrier)</option>
           <option value="small" selected>Small (for example: Beagle, French Bulldog, Boston Terrier)</option>
@@ -32,7 +32,7 @@
         </select> 
         <br /> <br />
 
-<label for="spayedNeutered">Is your dog spayed or neutered? </label>
+<label for="spayedNeutered">Spayed/Neutered? </label>
 <select id="spayedNeuteredSelection" v-model="dog.spayedNeutered" required> 
           <option value="yes" selected>Yes </option>
           <option value="no" selected>No </option>
@@ -40,7 +40,7 @@
         </select> 
         <br /> <br />        
 
-<label for="temperament">What is your dog's temperament? (select the most applicable option): </label>
+<label for="temperament">Temperament? (select the most applicable option): </label>
 <select name="temperaments" id="temperaments" v-model="dog.temperament" required> 
     <option value="highEnergy">High Energy: These dogs never tire and can chase a ball for hours! </option>
     <option value="timid">Timid: These pups take a little longer to warm up to new company but once they feel comfortable they make great playmates! </option>
@@ -49,7 +49,7 @@
     <option value="dominant">Dominant: These are the leaders of the pack and like to be in charge!</option>
     <option value="curious">Curious: These dogs will follow their noses wherever they lead! </option>
     <option value="laidBack">Laid Back: These pups are content to lounge around and soak in the sun! </option>
-    <option value="submissive">Submissive: These dogs are happy to take others take the lead. They're just along for the ride. </option>
+    <option value="submissive">Submissive: These dogs are happy to let others take the lead. They're just along for the ride. </option>
 </select>
 <br> <br>
 <!-- <input type="file" @change>
@@ -135,4 +135,9 @@ export default {
 </script>
 
 <style scoped>
+#main {
+    background-color: rgb(27, 76, 119);
+    color: white;
+    height: 100vh;
+}
 </style>

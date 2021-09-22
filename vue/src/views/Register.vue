@@ -49,7 +49,7 @@
         *Must contain at least 8 characters, 1 number, and 1 uppercase
         letter.
       </p><br /><br>
-      <router-link class="sr-only" :to="{ name: 'login' }">Have an account?</router-link>
+      <router-link id="button" class="sr-only" :to="{ name: 'login' }">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
       Create Account
       </button>
@@ -73,7 +73,7 @@ export default {
         role: "user",
       },
       registrationErrors: false,
-      registrationErrorMsg: "There were problems registering this user.",
+      registrationErrorMsg: "An account with this email address already exists. Please log in.",         //"There were problems registering this user.",
     };
   },
   methods: {
@@ -96,7 +96,7 @@ export default {
             const response = error.response;
             this.registrationErrors = true;
             if (response.status === 400) {
-              this.registrationErrorMsg = "Bad Request: Validation Errors";
+              this.registrationErrorMsg = "An account with that username already exists.";        //"Bad Request: Validation Errors";
             }
           });
       }
@@ -126,5 +126,14 @@ button{
 .password{
   margin-top:10px;
   
+}
+#button {
+    color: white;
+    text-decoration: none; color: inherit;
+}
+#register {
+    background-color: rgb(27, 76, 119);
+    color: white;
+    height: 100vh;
 }
 </style>

@@ -32,7 +32,7 @@
         v-model="user.password"
         required
       /><br>
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <router-link id="accountBtn" :to="{ name: 'register' }">Need an account?</router-link>
       <button id= "button" type="submit">Sign in</button>
       </div>
     </form>
@@ -87,11 +87,21 @@ button{
 }
 #log-in{
   font-size:20px;
+  
 }
 .alert-alert-success{
   font-size: 20px;
 }
 .alert-alert-danger{
   font-size: 20px;
+}
+#accountBtn {
+    color: white;
+    text-decoration: none; color: inherit;
+}
+#login {
+    background-color: rgb(27, 76, 119);
+    color: white;
+    height: 100vh;
 }
 </style>

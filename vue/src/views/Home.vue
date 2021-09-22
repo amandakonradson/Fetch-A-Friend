@@ -22,7 +22,9 @@ export default {
     "aside main sidebar"
     "footer footer footer"
     ;
-  
+    background-color: rgb(27, 76, 119);
+    color: white;
+    height: 100vh;
   }
 
   #title {
@@ -32,6 +34,7 @@ export default {
   }
   aside {
     grid-area: aside;
+    color: white;
   }
   main {
     grid-area: main;
