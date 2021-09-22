@@ -7,7 +7,9 @@
 <br /> <br />
 
 <label for="breed">Breed: </label> 
-<input type="text" id="breed" v-model="dog.breed" required /> 
+<select  id="breed" v-for="breed in breeds" v-bind:key="breed" v-model="dog.breed" required > 
+    <option v-bind:value='breed' selected>{{breed}}</option>
+    </select>
 <br /> <br />
 
 <label for="birthYear">Year of Birth: </label>
@@ -17,7 +19,7 @@
 <label for="gender">Gender: </label>
 <select id="dogGender" v-model="dog.gender" required> 
           <option value="Male" selected>Male</option>
-          <option value="Female">Female</option>
+          <option value="Female" selected>Female</option>
         </select> 
         <br /> <br />
 
@@ -81,6 +83,9 @@ export default {
                 temperament: "",
             },
         }
+    },
+    created(){
+            const breeds = this.$store.state.breed
     },
     methods: {
         // onFileSelected(event) {
