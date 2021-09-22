@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.List;
 
 @PreAuthorize("isAuthenticated()")
 @RestController
@@ -24,6 +25,20 @@ public class PetController {
         petDao.createPet(newDog, principal);
     }
 
+    @GetMapping("/allPets")
+    public List<Pet> getAllPets(){
+        return petDao.getAllPets();
+    }
+
+    @GetMapping("/userPets/{id}")
+    public List<Pet> getPetsByUser(@PathVariable long userId){
+        return petDao.getPetsByUserId(userId);
+    }
+
+    @GetMapping("/{id}")
+    public Pet getPetById(@PathVariable long petId){
+        return petDao.getPetById(petId);
+    }
 
 
 
