@@ -7,8 +7,8 @@
 <br /> <br />
 
 <label for="breed">Breed: </label> 
-<select  id="breed" v-for="breed in breeds" v-bind:key="breed" v-model="dog.breed" required > 
-    <option v-bind:value='breed' selected>{{breed}}</option>
+<select  id="breed"  v-model="dog.breed" required > 
+    <option v-for="breed in this.$store.state.breeds" v-bind:key="breed" v-bind:breed='breed' v-bind:value='breed' selected>{{breed}}</option>
     </select>
 <br /> <br />
 
@@ -84,9 +84,9 @@ export default {
             },
         }
     },
-    created(){
-            const breeds = this.$store.state.breed
-    },
+    //created(){
+         //   const breeds = this.$store.state.breeds
+   // },
     methods: {
         // onFileSelected(event) {
         //     this.selectedFile= event.target.files[0]
