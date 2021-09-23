@@ -9,6 +9,7 @@ public interface PlayDateDao {
 
     List<PlayDate> getAllPlayDates();
     List<PlayDate> getPlayDatesByZipcode(long zipcode);
+    void createPlayDate(PlayDate playDate);
 
 
 }

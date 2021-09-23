@@ -98,7 +98,6 @@ export default new Vuex.Store({
     'Newfoundland',
     'Norwegian Elkhound',
     'Old English Sheepdog',
-    'Other',
     'Papillon',
     'Pekinese',
     'Pembroke Welsh Corgi',
@@ -128,7 +127,9 @@ export default new Vuex.Store({
     'West Highland Terrier',
     'Whippet',
     'Wirehaired Pointing Griffon',
-    'Yorkshire Terrier']
+    'Yorkshire Terrier',
+    'Other'
+  ]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {

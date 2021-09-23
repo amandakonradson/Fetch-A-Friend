@@ -5,10 +5,12 @@ import com.techelevator.model.PlayDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcPlayDateDao implements PlayDateDao{
 
     @Autowired
@@ -39,6 +41,12 @@ public class JdbcPlayDateDao implements PlayDateDao{
                 playDateList.add(mapToRowSet(results));
             }
             return playDateList;
+    }
+
+    @Override
+    public void createPlayDate(PlayDate playDate) {
+        String sql = "INSERT INTO play_dates (host_pet_id, mate_pet_id, location_id, date, start_time, duration, mate_description, mate_size, status_id) VALUES(?,?,?,?,?,?,?,?,?)";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, playDate.getHostPetId(), playDate.getMatePetId(), playDate.getLocationId(), playDate.getDate(), playDate.getStartTime(), playDate.getDuration(), playDate.getMateDescription(), playDate.getMateSize(),playDate.getStatusId());
     }
 
     private PlayDate mapToRowSet(SqlRowSet results) {

@@ -1,7 +1,11 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.LocationDao;
 import com.techelevator.dao.PetDao;
+import com.techelevator.dao.PlayDateDao;
+import com.techelevator.model.Location;
 import com.techelevator.model.Pet;
+import com.techelevator.model.PlayDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,6 +22,10 @@ public class PetController {
 
     @Autowired
     private PetDao petDao;
+    @Autowired
+    private PlayDateDao playDateDao;
+    @Autowired
+    private LocationDao locationDao;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/addPuppy")
@@ -40,6 +48,11 @@ public class PetController {
         return petDao.getPetById(petId);
     }
 
+    @PostMapping("/createPlayDate")
+    public void createPlayDate(@RequestBody PlayDate playDate, Location location){
+        locationDao.addLocation(location);
+        playDateDao.createPlayDate(playDate);
+    }
 
 
 }
