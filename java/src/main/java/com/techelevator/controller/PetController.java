@@ -39,8 +39,8 @@ public class PetController {
     }
 
     @GetMapping("/userPets/{id}")
-    public List<Pet> getPetsByUser(@PathVariable long userId){
-        return petDao.getPetsByUserId(userId);
+    public List<Pet> getPetsByUser(@PathVariable long id){
+        return petDao.getPetsByUserId(id);
     }
 
     @GetMapping("/{id}")

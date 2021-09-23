@@ -21,7 +21,7 @@
       />
       <br />
       <label for="date">Date:     </label>
-      <input class = 'form' type="date" v-model="playDate.date" required /> 
+      <input class = 'form' id="datefield" type="date" v-model="playDate.date" min-date="today" required /> 
       <br />
       <label   for="start-time">Start Time:     </label>
       <input class = 'form' type="time" min="06:00" max="20:00" step="600" v-model="playDate.startTime" required />
@@ -36,7 +36,7 @@
         required
       />
       <br />
-      <label  for="description">Perferred Playmate Temperament:     </label>
+      <label  for="description">Preferred Playmate Temperament:     </label>
       <select class = 'form'
         name="description"
         id="description"
@@ -74,7 +74,7 @@
         </option>
       </select>
       <br />
-      <label  for="mate-size">Perferred Playmate Size:     </label>
+      <label  for="mate-size">Preferred Playmate Size:     </label>
       <select class = 'form'
         name="mate-size"
         id="mate-size"
@@ -112,15 +112,12 @@ import petService from "@/services/PetService";
 
 export default {
   data() {
-    const now = new Date()
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-    const minDate = new Date(today)
+  
   return {
-      min: minDate,
-
+     
       dogsByUserId: [],
 
-      userId: -1,
+      id: -1,
 
       playDate: {
         hostPetId: "",
@@ -168,15 +165,31 @@ export default {
     }
   },
   created() {
-    this.userId = this.$route.params.user;
     
-    petService.listUserPets(this.userId)
+    this.id = this.$store.state.user.id;
+    console.log(this.id)
+    
+    petService.listUserPets(this.id)
     .then((dogData) => {
-      this.dogsByUserId = dogData.data.dog;
+      this.dogsByUserId = dogData.data;
     })
     .catch((err) => {
       console.error(err + " nothing returned");
     });
+
+    var today = new Date()
+  
+    var yyyy = today.getFullYear()
+    var mm = (today.getMonth()) +1
+    var dd = today.getDate()
+    if (mm < 10) {
+      mm = "0" + mm;
+    }
+    if (dd < 10) {
+      dd = "0" + dd;
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("datefield").setAttribute("min", today)
   }
 };
 </script>
