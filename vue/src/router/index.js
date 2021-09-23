@@ -65,7 +65,7 @@ const router = new Router({
       }
     },
     {
-      path: "/play-date/add",
+      path: "/play-date/add/:user",
       name: "play-date-view",
       component: PlayDateView,
       meta: {

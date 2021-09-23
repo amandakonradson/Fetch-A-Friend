@@ -48,6 +48,7 @@ public class PetController {
         return petDao.getPetById(petId);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/createPlayDate")
     public void createPlayDate(@RequestBody PlayDate playDate, Location location){
         locationDao.addLocation(location);

@@ -1,12 +1,12 @@
 <template>
   <div id="body">
-    <form  id="create-play-date" v-on:submit.prevent="">
+    <form  id="create-play-date" v-on:submit.prevent="savePlayDate">
         <h1 id="title">Create Your Play Date:</h1>
       <label  for="host-pet-id"
         >Which Of Your Pets Is Looking For A Playmate:     </label
       >
-      <select class = 'form' id="host-pet-id" v-model="playDate.hostPetId" >
-        <option value="Male" selected></option>
+      <select class ='form' v-model="playDate.hostPetId" >
+        <option v-for="dog in dogsByUserId" v-bind:key="dog.id" v-bind:hostPetId='hostPetId' v-bind:value='dog' selected> {{ dog.name }} </option>
       </select>
       <br />
       <label  for="location">Location Description:     </label>
@@ -21,7 +21,7 @@
       />
       <br />
       <label for="date">Date:     </label>
-      <input class = 'form'  type="date" v-model="playDate.date" required />
+      <input class = 'form' type="date" v-model="playDate.date" required /> 
       <br />
       <label   for="start-time">Start Time:     </label>
       <input class = 'form' type="time" min="06:00" max="20:00" step="600" v-model="playDate.startTime" required />
@@ -107,9 +107,21 @@
 </template>
 
 <script>
+import playDateService from "@/services/PlayDateService";
+import petService from "@/services/PetService";
+
 export default {
   data() {
-    return {
+    const now = new Date()
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    const minDate = new Date(today)
+  return {
+      min: minDate,
+
+      dogsByUserId: [],
+
+      userId: -1,
+
       playDate: {
         hostPetId: "",
         date: "",
@@ -124,6 +136,48 @@ export default {
       },
     };
   },
+  methods: {
+    savePlayDate() {
+      const newPlayDate = {
+        hostPetId: this.playDate.hostPetId,
+        date: this.playDate.date,
+        startTime: this.playDate.startTime,
+        duration: this.playDate.duration,
+        description: this.playDate.description,
+        mateSize: this.playDate.mateSize
+      }
+      const newLocation = {
+        zipCode: this.location.zipCode,
+        description: this.location.description
+      }
+      playDateService.createPlayDate(newPlayDate, newLocation)
+      .then((response) => {
+        if (response.status === 201) {
+          window.alert("Play Date Added!");
+        }
+      })
+      .catch((err) => {
+        if (err.response) {
+          window.alert("Bad Request")
+        }
+        else if (err.request) {
+          window.alert("Could not reach service");
+        }
+      });
+
+    }
+  },
+  created() {
+    this.userId = this.$route.params.user;
+    
+    petService.listUserPets(this.userId)
+    .then((dogData) => {
+      this.dogsByUserId = dogData.data.dog;
+    })
+    .catch((err) => {
+      console.error(err + " nothing returned");
+    });
+  }
 };
 </script>
 
