@@ -45,8 +45,8 @@ public class JdbcPlayDateDao implements PlayDateDao{
 
     @Override
     public void createPlayDate(PlayDate playDate) {
-        String sql = "INSERT INTO play_dates (host_pet_id, mate_pet_id, location_id, date, start_time, duration, mate_description, mate_size, status_id) VALUES(?,?,?,?,?,?,?,?,?)";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, playDate.getHostPetId(), playDate.getMatePetId(), playDate.getLocationId(), playDate.getDate(), playDate.getStartTime(), playDate.getDuration(), playDate.getMateDescription(), playDate.getMateSize(),playDate.getStatusId());
+        String sql = "INSERT INTO play_dates (host_pet_id, location_id, date, start_time, duration, mate_description, mate_size, status_id) VALUES((SELECT pet_id FROM pets WHERE pet_id = ?),(SELECT location_id FROM location WHERE description = ?),?,?,?,?,?,?)";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, playDate.getHostPetId(), playDate.getLocationId(), playDate.getDate(), playDate.getStartTime(), playDate.getDuration(), playDate.getMateDescription(), playDate.getMateSize(), 1);
     }
 
     private PlayDate mapToRowSet(SqlRowSet results) {

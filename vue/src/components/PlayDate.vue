@@ -3,13 +3,12 @@
     <form  id="create-play-date" v-on:submit.prevent="savePlayDate">
         <h1 id="title">Create Your Play Date:</h1>
       <label  for="host-pet-id"
-        >Which Of Your Pets Is Looking For A Playmate:     </label
-      >
+        >Which Of Your Pets Is Looking For A Playmate:     </label>
       <select class ='form' v-model="playDate.hostPetId" >
-        <option v-for="dog in dogsByUserId" v-bind:key="dog.id" v-bind:hostPetId='hostPetId' v-bind:value='dog' selected> {{ dog.name }} </option>
+        <option v-for="dog in dogsByUserId" v-bind:key="dog.petId" v-bind:hostPetId='hostPetId' v-bind:value='dog.petId' required selected> {{ dog.name }} </option>
       </select>
       <br />
-      <label  for="location">Location Description:     </label>
+      <label  for="location">Location Address:     </label>
       <input class = 'form'  type="text" v-model="location.description" required />
       <br />
       <label  for="location">Location Zip Code:     </label>
@@ -36,51 +35,62 @@
         required
       />
       <br />
-      <label  for="description">Preferred Playmate Temperament:     </label>
-      <select class = 'form'
-        name="description"
+      <label id="temperament" for="description">Preferred Playmate Temperament(s):     </label>
+      <br>
+      <input class = 'form' type=checkbox
+        name="high-energy"
         id="description"
         v-model="playDate.description"
-        required
-      >
-        <option value="highEnergy">
-          High Energy: These dogs never tire and can chase a ball for hours!
-        </option>
-        <option value="timid">
-          Timid: These pups take a little longer to warm up to new company but
-          once they feel comfortable they make great playmates!
-        </option>
-        <option value="friendly">
-          Friendly: These dogs love everyone they encounter and have never met a
-          stranger!
-        </option>
-        <option value="protective">
-          Protective: These are the dogs devoted to their humans and may prefer
-          to socialize from a distance!
-        </option>
-        <option value="dominant">
-          Dominant: These are the leaders of the pack and like to be in charge!
-        </option>
-        <option value="curious">
-          Curious: These dogs will follow their noses wherever they lead!
-        </option>
-        <option value="laidBack">
-          Laid Back: These pups are content to lounge around and soak in the
-          sun!
-        </option>
-        <option value="submissive">
-          Submissive: These dogs are happy to let others take the lead. They're
-          just along for the ride.
-        </option>
-      </select>
+        required multiple/> <label class="checkbox" for="high-energy">High Energy: These dogs never tire and can chase a ball for hours!</label>
+      <br>
+      <input class = 'form' type=checkbox
+        name="timid"
+        id="description"
+        v-model="playDate.description"
+        required multiple/> <label class="checkbox" for="timid">Timid: These pups take a little longer to warm up to new company but once they feel comfortable they make great playmates!</label>
+      <br>
+      <input class = 'form' type=checkbox
+        name="friendly"
+        id="description"
+        v-model="playDate.description"
+        required multiple/> <label class="checkbox" for="friendly">Friendly: These dogs love everyone they encounter and have never met a stranger!</label>
+      <br>
+      <input class = 'form' type=checkbox
+        name="protective"
+        id="description"
+        v-model="playDate.description"
+        required multiple/> <label class="checkbox" for="protective">Protective: These are the dogs devoted to their humans and may prefer to socialize from a distance!</label>
+      <br> 
+      <input class = 'form' type=checkbox
+        name="dominant"
+        id="description"
+        v-model="playDate.description"
+        required multiple/> <label class="checkbox" for="dominant">Dominant: These are the leaders of the pack and like to be in charge!</label>
+      <br>  
+      <input class = 'form' type=checkbox
+        name="curious"
+        id="description"
+        v-model="playDate.description"
+        required multiple/> <label class="checkbox" for="curious">Curious: These dogs will follow their noses wherever they lead!</label>
+      <br>  
+      <input class = 'form' type=checkbox
+        name="laid-back"
+        id="description"
+        v-model="playDate.description"
+        required multiple/> <label class="checkbox" for="laid-back">Laid Back: These pups are content to lounge around and soak in the sun!</label>
+      <br>  
+      <input class = 'form' type=checkbox
+        name="submissive"
+        id="description"
+        v-model="playDate.description"
+        required multiple/> <label class="checkbox" for="submissive">Submissive: These dogs are happy to let others take the lead. They're just along for the ride.</label>
       <br />
       <label  for="mate-size">Preferred Playmate Size:     </label>
       <select class = 'form'
         name="mate-size"
         id="mate-size"
         v-model="playDate.mateSize"
-        required
-      >
+        required>
         <option value="extraSmall" selected>
           Extra Small (for example: Chihuahua, Maltese, Yorkshire Terrier)
         </option>
@@ -141,8 +151,10 @@ export default {
         startTime: this.playDate.startTime,
         duration: this.playDate.duration,
         description: this.playDate.description,
-        mateSize: this.playDate.mateSize
+        mateSize: this.playDate.mateSize,
       }
+      
+
       const newLocation = {
         zipCode: this.location.zipCode,
         description: this.location.description
@@ -150,7 +162,7 @@ export default {
       playDateService.createPlayDate(newPlayDate, newLocation)
       .then((response) => {
         if (response.status === 201) {
-          window.alert("Play Date Added!");
+          window.alert("Play Date Added!");   //change to landing page once established
         }
       })
       .catch((err) => {
@@ -177,7 +189,7 @@ export default {
       console.error(err + " nothing returned");
     });
 
-    var today = new Date()
+  var today = new Date()
   
     var yyyy = today.getFullYear()
     var mm = (today.getMonth()) +1
@@ -190,6 +202,7 @@ export default {
     }
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("datefield").setAttribute("min", today)
+    
   }
 };
 </script>
@@ -211,5 +224,11 @@ export default {
 #title{
     font-size: 36px;
     font-weight: bold;
+}
+.checkbox{
+  font-size: 18px;
+}
+#temperament{
+  margin-bottom: 10px;
 }
 </style>

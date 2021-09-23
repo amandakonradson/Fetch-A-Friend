@@ -12,6 +12,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @PreAuthorize("isAuthenticated()")
@@ -50,10 +54,14 @@ public class PetController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/createPlayDate")
-    public void createPlayDate(@RequestBody PlayDate playDate, Location location){
+    public void createPlayDate(@RequestBody PlayDate playDate, Location location) throws ParseException {
+
+//        new SimpleDateFormat("MM/dd/yyyy").parse(playDate.getDate().toString()).compareTo(new Date());
+
         locationDao.addLocation(location);
         playDateDao.createPlayDate(playDate);
     }
+
 
 
 }

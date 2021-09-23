@@ -47,7 +47,7 @@ public class JdbcPetDao implements PetDao {
     @Override
     public List<Pet> getPetsByUserId(long userId) {
         List<Pet> petsByUserId = new ArrayList<>();
-        String sql= "SELECT name, breed, birth_year, gender, temperament, size, spayed_neutered FROM pets WHERE pet_id IN (SELECT pet_id FROM user_pet WHERE user_id= ?) ";
+        String sql= "SELECT pet_id, name, breed, birth_year, gender, temperament, size, spayed_neutered FROM pets WHERE pet_id IN (SELECT pet_id FROM user_pet WHERE user_id= ?) ";
         SqlRowSet results= jdbcTemplate.queryForRowSet(sql,userId);
         while (results.next()){
             petsByUserId.add(mapRowtoPet(results));
@@ -69,6 +69,7 @@ public class JdbcPetDao implements PetDao {
 
     private Pet mapRowtoPet(SqlRowSet results){
         Pet pet = new Pet();
+        pet.setPetId(results.getLong("pet_id"));
         pet.setName(results.getString("name"));
         pet.setBreed(results.getString("breed"));
         pet.setBirthYear(results.getInt("birth_year"));
