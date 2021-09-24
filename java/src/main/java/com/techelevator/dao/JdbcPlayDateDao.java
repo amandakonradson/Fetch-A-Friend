@@ -76,9 +76,9 @@ public class JdbcPlayDateDao implements PlayDateDao{
         playDate.setMatePetId(results.getLong("mate_pet_id"));
         playDate.setLocationId(results.getLong("location_id"));
         playDate.setMeetingDate(results.getDate("meeting_date"));
-        playDate.setStartTime(results.getTime("time"));
+        playDate.setStartTime(results.getTime("time").toLocalTime());
         playDate.setDuration(results.getLong("duration"));
-        playDate.setMateDescription(results.getString("mate_description"));
+        playDate.setMateDescription(results.getString("mate_description").split(","));
         playDate.setMateSize(results.getString("mate_size"));
         playDate.setStatusId(results.getLong("status_id"));
 

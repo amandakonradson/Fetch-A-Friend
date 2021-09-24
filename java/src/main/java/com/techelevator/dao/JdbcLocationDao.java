@@ -18,7 +18,7 @@ public class JdbcLocationDao implements LocationDao{
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
     @Override
-    public List<Location> getLocationByZipCode(long zipcode) {
+    public List<Location> getLocationByZipCode(int zipcode) {
         List<Location> locationList = new ArrayList<>();
         String sql = "SELECT description FROM location WHERE zipcode = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, zipcode);
@@ -29,15 +29,15 @@ public class JdbcLocationDao implements LocationDao{
     }
 
     @Override
-    public void addLocation(Location location) {
+    public void addLocation(String description, int zipcode) {
         String sql = "INSERT INTO location (description, zipcode) VALUES (?,?)";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, location.getDescription(), location.getZipcode());
+        jdbcTemplate.update(sql, description, zipcode);
     }
 
     private Location mapRowToLocation(SqlRowSet results) {
         Location location = new Location();
         location.setDescription(results.getString("description"));
-        location.setZipcode(results.getLong("zipcode"));
+        location.setZipcode(results.getInt("zipcode"));
 
         return location;
     }

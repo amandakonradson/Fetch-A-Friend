@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class PlayDate {
@@ -10,9 +11,9 @@ public class PlayDate {
     private long matePetId;
     private long locationId;
     private Date meetingDate;
-    private Time startTime;
+    private LocalTime startTime;
     private long duration;
-    private String mateDescription;
+    private String[] mateDescription;
     private String mateSize;
     private long statusId;
 
@@ -20,7 +21,7 @@ public class PlayDate {
 
     }
 
-    public PlayDate(long playDateId, long hostPetId, long matePetId, long locationId, Date meetingDate, Time startTime, long duration, String mateDescription, String mateSize, long statusId) {
+    public PlayDate(long playDateId, long hostPetId, long matePetId, long locationId, Date meetingDate, LocalTime startTime, long duration, String[] mateDescription, String mateSize, long statusId) {
         this.playDateId = playDateId;
         this.hostPetId = hostPetId;
         this.matePetId = matePetId;
@@ -73,11 +74,11 @@ public class PlayDate {
         this.meetingDate = meetingDate;
     }
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
@@ -89,11 +90,11 @@ public class PlayDate {
         this.duration = duration;
     }
 
-    public String getMateDescription() {
+    public String[] getMateDescription() {
         return mateDescription;
     }
 
-    public void setMateDescription(String mateDescription) {
+    public void setMateDescription(String[] mateDescription) {
         this.mateDescription = mateDescription;
     }
 

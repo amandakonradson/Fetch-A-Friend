@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LocationDao {
 
-    List<Location> getLocationByZipCode(long zipcode);
+    List<Location> getLocationByZipCode(int zipcode);
 
-    void addLocation(Location location);
+    void addLocation(String description, int zipcode);
 }

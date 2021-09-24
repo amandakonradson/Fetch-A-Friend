@@ -60,9 +60,14 @@ public class PetController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/createPlayDate")
-    public void createPlayDate(@RequestBody PlayDate playDate, Location location){
-        locationDao.addLocation(location);
+    public void createPlayDate(@RequestBody PlayDate playDate){
         playDateDao.createPlayDate(playDate);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/createPlayDate/location")
+    public void createPlayDateLocation(@RequestBody Location location){
+        locationDao.addLocation(location.getDescription(), location.getZipcode());
     }
 
     @GetMapping("/allPlayDates/")
@@ -76,7 +81,7 @@ public class PetController {
     }
 
     @GetMapping("/allPlayDates/{zipcode}")
-    public List<PlayDate> getPlayDatesByZip (@PathVariable long zipcode){
+    public List<PlayDate> getPlayDatesByZip (@PathVariable int zipcode){
         return playDateDao.getPlayDatesByZipcode(zipcode);
     }
 

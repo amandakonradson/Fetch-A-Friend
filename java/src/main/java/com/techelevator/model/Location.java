@@ -4,13 +4,18 @@ public class Location {
 
     private long locationId;
     private String description;
-    private long zipcode;
+    private int zipcode;
 
     public Location(){
 
     }
 
-    public Location(long locationId, String description, long zipcode) {
+    public Location(String description, int zipcode) {
+        this.description = description;
+        this.zipcode = zipcode;
+    }
+
+    public Location(long locationId, String description, int zipcode) {
         this.locationId = locationId;
         this.description = description;
         this.zipcode = zipcode;
@@ -32,11 +37,11 @@ public class Location {
         this.description = description;
     }
 
-    public long getZipcode() {
+    public int getZipcode() {
         return zipcode;
     }
 
-    public void setZipcode(long zipcode) {
+    public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
     }
 
