@@ -7,6 +7,7 @@ import com.techelevator.model.Location;
 import com.techelevator.model.Pet;
 import com.techelevator.model.PlayDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -48,19 +49,37 @@ public class PetController {
     }
 
     @GetMapping("/{id}")
-    public Pet getPetById(@PathVariable long petId){
+    public Pet getPetById(@PathVariable("id") long petId){
         return petDao.getPetById(petId);
+    }
+
+    @GetMapping("/createPlayDate")
+    public LocalDate getCurrentDate(){
+        return playDateDao.getCurrentDate();
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/createPlayDate")
-    public void createPlayDate(@RequestBody PlayDate playDate, Location location) throws ParseException {
-
-//        new SimpleDateFormat("MM/dd/yyyy").parse(playDate.getDate().toString()).compareTo(new Date());
-
+    public void createPlayDate(@RequestBody PlayDate playDate, Location location){
         locationDao.addLocation(location);
         playDateDao.createPlayDate(playDate);
     }
+
+    @GetMapping("/allPlayDates/")
+    public List<PlayDate> getAllPlayDates (){
+        return playDateDao.getAllPlayDates();
+    }
+
+    @GetMapping("/allPlayDates/{id}")
+    public List<PlayDate> getPlayDatesByUserid (@PathVariable("id") long userId){
+        return playDateDao.getPlayDatesByUserId(userId);
+    }
+
+    @GetMapping("/allPlayDates/{zipcode}")
+    public List<PlayDate> getPlayDatesByZip (@PathVariable long zipcode){
+        return playDateDao.getPlayDatesByZipcode(zipcode);
+    }
+
 
 
 

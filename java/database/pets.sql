@@ -1,9 +1,10 @@
-DROP TABLE IF EXISTS "user_pet"; 
-DROP TABLE IF EXISTS "play_date_statuses"; 
-DROP TABLE IF EXISTS "location"; 
-DROP TABLE IF EXISTS "requests";
-DROP TABLE IF EXISTS "play_dates";
-DROP TABLE IF EXISTS "pets";
+DROP TABLE IF EXISTS "request" CASCADE;
+DROP TABLE IF EXISTS "user_pet" CASCADE;
+DROP TABLE IF EXISTS "pets" CASCADE;
+DROP TABLE IF EXISTS "play_dates" CASCADE;
+DROP TABLE IF EXISTS "location" CASCADE;
+DROP TABLE IF EXISTS "play_date_statuses" CASCADE;
+
 
 
 CREATE TABLE "pets" (
@@ -46,7 +47,7 @@ CREATE TABLE "play_dates" (
   "host_pet_id" int,
   "mate_pet_id" int,
   "location_id" int,
-  "date" date,
+  "meeting_date" date,
   "start_time" time,
   "duration" int,
   "mate_description" varchar(100),
@@ -84,7 +85,10 @@ CREATE TABLE "request" (
       REFERENCES "pets"("pet_id")
 );
 
-
+INSERT INTO play_date_statuses (status) VALUES ('Available');
+INSERT INTO play_date_statuses (status) VALUES ('Pending');
+INSERT INTO play_date_statuses (status) VALUES ('Confirmed');
+INSERT INTO play_date_statuses (status) VALUES ('Cancelled');
 
  
 

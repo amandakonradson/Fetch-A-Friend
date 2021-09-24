@@ -9,7 +9,7 @@ public class PlayDate {
     private long hostPetId;
     private long matePetId;
     private long locationId;
-    private Date date;
+    private Date meetingDate;
     private Time startTime;
     private long duration;
     private String mateDescription;
@@ -20,12 +20,12 @@ public class PlayDate {
 
     }
 
-    public PlayDate(long playDateId, long hostPetId, long matePetId, long locationId, Date date, Time startTime, long duration, String mateDescription, String mateSize, long statusId) {
+    public PlayDate(long playDateId, long hostPetId, long matePetId, long locationId, Date meetingDate, Time startTime, long duration, String mateDescription, String mateSize, long statusId) {
         this.playDateId = playDateId;
         this.hostPetId = hostPetId;
         this.matePetId = matePetId;
         this.locationId = locationId;
-        this.date = date;
+        this.meetingDate = meetingDate;
         this.startTime = startTime;
         this.duration = duration;
         this.mateDescription = mateDescription;
@@ -65,12 +65,12 @@ public class PlayDate {
         this.locationId = locationId;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getMeetingDate() {
+        return meetingDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setMeetingDate(Date meetingDate) {
+        this.meetingDate = meetingDate;
     }
 
     public Time getStartTime() {
@@ -120,7 +120,7 @@ public class PlayDate {
                 ", hostPetId=" + hostPetId +
                 ", matePetId=" + matePetId +
                 ", locationId=" + locationId +
-                ", date=" + date +
+                ", meetingDate=" + meetingDate +
                 ", startTime=" + startTime +
                 ", duration=" + duration +
                 ", mateDescription='" + mateDescription + '\'' +

@@ -19,9 +19,9 @@
         required
       />
       <br />
-      <label for="date">Date:     </label>
-      <input class = 'form' id="datefield" type="date" v-model="playDate.date" min-date="today" required /> 
-      <br />
+      <label for="meetingDate">Meeting Date: </label>
+      <input class = 'form' type="date" v-model="playDate.meetingDate" v-bind:min="this.currentDate" required /> 
+       <br />
       <label   for="start-time">Start Time:     </label>
       <input class = 'form' type="time" min="06:00" max="20:00" step="600" v-model="playDate.startTime" required />
       <br />
@@ -38,53 +38,60 @@
       <label id="temperament" for="description">Preferred Playmate Temperament(s):     </label>
       <br>
       <input class = 'form' type=checkbox
-        name="high-energy"
+        value="high-energy"
         id="description"
         v-model="playDate.description"
-        required multiple/> <label class="checkbox" for="high-energy">High Energy: These dogs never tire and can chase a ball for hours!</label>
+        required /> <label class="checkbox" for="high-energy">High Energy: These dogs never tire and can chase a ball for hours!</label>
       <br>
       <input class = 'form' type=checkbox
-        name="timid"
+        value="timid"
         id="description"
         v-model="playDate.description"
-        required multiple/> <label class="checkbox" for="timid">Timid: These pups take a little longer to warm up to new company but once they feel comfortable they make great playmates!</label>
+        required /> <label class="checkbox" for="timid">Timid: These pups take a little longer to warm up to new company but once they feel comfortable they make great playmates!</label>
       <br>
       <input class = 'form' type=checkbox
-        name="friendly"
+        value="friendly"
         id="description"
         v-model="playDate.description"
-        required multiple/> <label class="checkbox" for="friendly">Friendly: These dogs love everyone they encounter and have never met a stranger!</label>
+        required /> <label class="checkbox" for="friendly">Friendly: These dogs love everyone they encounter and have never met a stranger!</label>
       <br>
       <input class = 'form' type=checkbox
-        name="protective"
+        value="protective"
         id="description"
         v-model="playDate.description"
-        required multiple/> <label class="checkbox" for="protective">Protective: These are the dogs devoted to their humans and may prefer to socialize from a distance!</label>
+        required /> <label class="checkbox" for="protective">Protective: These are the dogs devoted to their humans and may prefer to socialize from a distance!</label>
       <br> 
       <input class = 'form' type=checkbox
-        name="dominant"
+        value="dominant"
         id="description"
         v-model="playDate.description"
-        required multiple/> <label class="checkbox" for="dominant">Dominant: These are the leaders of the pack and like to be in charge!</label>
+        required /> <label class="checkbox" for="dominant">Dominant: These are the leaders of the pack and like to be in charge!</label>
       <br>  
       <input class = 'form' type=checkbox
-        name="curious"
+        value="curious"
         id="description"
         v-model="playDate.description"
-        required multiple/> <label class="checkbox" for="curious">Curious: These dogs will follow their noses wherever they lead!</label>
+        required /> <label class="checkbox" for="curious">Curious: These dogs will follow their noses wherever they lead!</label>
       <br>  
       <input class = 'form' type=checkbox
-        name="laid-back"
+        value="laid-back"
         id="description"
         v-model="playDate.description"
-        required multiple/> <label class="checkbox" for="laid-back">Laid Back: These pups are content to lounge around and soak in the sun!</label>
+        required /> <label class="checkbox" for="laid-back">Laid Back: These pups are content to lounge around and soak in the sun!</label>
       <br>  
       <input class = 'form' type=checkbox
-        name="submissive"
+        value="submissive"
         id="description"
         v-model="playDate.description"
-        required multiple/> <label class="checkbox" for="submissive">Submissive: These dogs are happy to let others take the lead. They're just along for the ride.</label>
+        required /> <label class="checkbox" for="submissive">Submissive: These dogs are happy to let others take the lead. They're just along for the ride.</label>
       <br />
+        <input class = 'form' type=checkbox
+        value="nopreference"
+        id="description"
+        v-model="playDate.description"
+        required /> <label class="checkbox" for="nopreference">No Preference</label>
+      <br />
+
       <label  for="mate-size">Preferred Playmate Size:     </label>
       <select class = 'form'
         name="mate-size"
@@ -124,6 +131,8 @@ export default {
   data() {
   
   return {
+
+      currentDate:"",
      
       dogsByUserId: [],
 
@@ -131,10 +140,10 @@ export default {
 
       playDate: {
         hostPetId: "",
-        date: "",
+        meetingDate: "",
         startTime: "",
         duration: "",
-        description: "",
+        description: [],
         mateSize: "",
       },
       location: {
@@ -147,7 +156,7 @@ export default {
     savePlayDate() {
       const newPlayDate = {
         hostPetId: this.playDate.hostPetId,
-        date: this.playDate.date,
+        meetingDate: this.playDate.meetingDate,
         startTime: this.playDate.startTime,
         duration: this.playDate.duration,
         description: this.playDate.description,
@@ -177,7 +186,14 @@ export default {
     }
   },
   created() {
+    //Current Date from Server
+    playDateService.getCurrentDate().then((response)=>{
+      this.currentDate=response.data;
+
+    })
     
+
+    //Logged in user's ID
     this.id = this.$store.state.user.id;
     console.log(this.id)
     
@@ -188,20 +204,6 @@ export default {
     .catch((err) => {
       console.error(err + " nothing returned");
     });
-
-  var today = new Date()
-  
-    var yyyy = today.getFullYear()
-    var mm = (today.getMonth()) +1
-    var dd = today.getDate()
-    if (mm < 10) {
-      mm = "0" + mm;
-    }
-    if (dd < 10) {
-      dd = "0" + dd;
-    }
-    today = yyyy + '-' + mm + '-' + dd;
-    document.getElementById("datefield").setAttribute("min", today)
     
   }
 };
