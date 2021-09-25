@@ -85,8 +85,7 @@
         v-model="playDate.description"
       />
       <label class="checkbox" for="timid"
-        >Timid: These pups take a little longer to warm up to new company but
-        once they feel comfortable they make great playmates!</label
+        >Timid: Once these pups feel comfortable, they make great playmates!</label
       >
       <br />
       <input
@@ -133,7 +132,7 @@
         v-model="playDate.description"
       />
       <label class="checkbox" for="curious"
-        >Curious: These dogs will follow their noses wherever they lead!</label
+        >Curious: These dogs are most interesting in exploring their surroundings!</label
       >
       <br />
       <input
@@ -156,8 +155,7 @@
         v-model="playDate.description"
       />
       <label class="checkbox" for="submissive"
-        >Submissive: These dogs are happy to let others take the lead. They're
-        just along for the ride.</label
+        >Submissive: These dogs are happy to let others take the lead!</label
       >
       <br />
       <input
@@ -338,26 +336,35 @@ export default {
 
 <style scoped>
 #body {
-  background-color: rgb(27, 76, 119);
+  background-color:  rgb(2, 59, 109);
   color: white;
-  height: 100vh;
+ 
 }
 #create-play-date {
   border: white 5px dotted;
   padding: 20px;
   font-size: 30px;
+  width: 800px;
+  margin-left: auto;
+  margin-right:auto;
+  background-color: rgb(2, 59, 109);
 }
 .form {
   margin-bottom: 20px;
 }
 #title {
-  font-size: 36px;
+  font-size: 40px;
   font-weight: bold;
+  text-decoration: underline;
 }
 .checkbox {
   font-size: 18px;
 }
 #temperament {
   margin-bottom: 10px;
+}
+.button-submit{
+  margin-right: 10px;
+   margin-bottom: 25px;
 }
 </style>

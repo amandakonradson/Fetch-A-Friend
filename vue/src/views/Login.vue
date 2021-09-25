@@ -82,6 +82,9 @@ export default {
   margin-top: 10px;
   margin-bottom: 10Px;
 }
+form{
+border: 10px, white, dotted;
+}
 button{
   margin-left: 10px;
 }
@@ -101,11 +104,9 @@ button{
 }
 #login {
     display: flex;
-    background-color: rgb(27, 76, 119);
+    background-color: rgb(2, 59, 109);
     color: white;
     height: 100vh;
-    border: 10px, white, dotted;
-    align-items: center;
     justify-content: center;
 
 }

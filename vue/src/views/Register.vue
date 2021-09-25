@@ -132,7 +132,7 @@ button{
     text-decoration: none; color: inherit;
 }
 #register {
-    background-color: rgb(27, 76, 119);
+    background-color:  rgb(2, 59, 109);
     color: white;
     height: 100vh;
 }
