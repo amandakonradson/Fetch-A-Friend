@@ -247,7 +247,7 @@ export default {
         meetingDate: this.playDate.meetingDate,
         startTime: this.playDate.startTime,
         duration: this.playDate.duration,
-        description: this.playDate.description,
+        mateDescription: this.playDate.description,
         mateSize: this.playDate.mateSize,
       };
 

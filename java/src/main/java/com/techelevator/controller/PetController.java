@@ -1,7 +1,9 @@
 package com.techelevator.controller;
 
+import com.techelevator.dao.AvailablePlayDateDao;
 import com.techelevator.dao.PetDao;
 import com.techelevator.dao.PlayDateDao;
+import com.techelevator.model.AvailablePlayDate;
 import com.techelevator.model.Pet;
 import com.techelevator.model.PlayDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class PetController {
     private PetDao petDao;
     @Autowired
     private PlayDateDao playDateDao;
+    @Autowired
+    private AvailablePlayDateDao availablePlayDateDao;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/addPuppy")
@@ -70,6 +74,11 @@ public class PetController {
     @GetMapping("/allPlayDates/{zipcode}")
     public List<PlayDate> getPlayDatesByZip (@PathVariable long zipcode){
         return playDateDao.getPlayDatesByZipcode(zipcode);
+    }
+
+    @GetMapping("/allPlayDates/available")
+    public List<AvailablePlayDate> getAvailablePlayDates() {
+        return availablePlayDateDao.getAvailablePlayDates();
     }
 
 

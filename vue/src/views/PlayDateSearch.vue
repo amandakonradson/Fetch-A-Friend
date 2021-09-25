@@ -1,13 +1,12 @@
 <template>
-  <search-play-dates/>
+ <search-play-dates/>
 </template>
 
 <script>
-import SearchPlayDates from '../components/SearchPlayDates.vue'
-export default {
-    components:
-    {SearchPlayDates}
+import SearchPlayDates from '../components/SearchPlayDates'
 
+export default {
+    components: {SearchPlayDates}
 }
 </script>
 

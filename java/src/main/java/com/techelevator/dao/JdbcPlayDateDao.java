@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,6 +19,9 @@ public class JdbcPlayDateDao implements PlayDateDao{
 
     private JdbcTemplate jdbcTemplate;
 
+    public JdbcPlayDateDao(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
     @Override
     public List<PlayDate> getAllPlayDates() {
         List<PlayDate> playDateList = new ArrayList<>();
@@ -59,11 +63,12 @@ public class JdbcPlayDateDao implements PlayDateDao{
 
     @Override
     public void createPlayDate(PlayDate playDate) {
-        String sql = "INSERT INTO play_dates (host_pet_id, mate_pet_id, location_street_address, location_city, location_zipcode, " +
-                "meeting_date, start_time, duration, mate_description, mate_size, status_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql, playDate.getHostPetId(), 0, playDate.getLocationStreetAddress(),
-                playDate.getLocationCity(), playDate.getLocationZipcode(), playDate.getMeetingDate(), "'" +
-                playDate.getStartTime() + "'", playDate.getDuration(), Arrays.toString(playDate.getMateDescription()), playDate.getMateSize(), 1);
+        String sql = "INSERT INTO play_dates (host_pet_id, location_street_address, location_city, location_zipcode, " +
+                "meeting_date, start_time, duration, mate_description, mate_size, status_id) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        System.out.println(playDate);
+        jdbcTemplate.update(sql, playDate.getHostPetId(), playDate.getLocationStreetAddress(),
+                playDate.getLocationCity(), playDate.getLocationZipcode(), playDate.getMeetingDate(),
+                playDate.getStartTime(), playDate.getDuration(), Arrays.toString(playDate.getMateDescription()), playDate.getMateSize(), 1);
     }
 
     @Override

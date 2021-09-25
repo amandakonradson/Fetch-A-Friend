@@ -1,5 +1,6 @@
 <template>
   <div>
+      <h1> Hello </h1>
       <table>
           <thead>
               <tr>
@@ -38,8 +39,8 @@
               </tr>
               <tr v-for="playDate in filteredList" v-bind:key="playDate.id">
                   <td> {{ playDate.locationStreetAddress }} <br/> {{ playDate.locationCity }} <br/> {{ playDate.locationZipcode }} </td>
-                  <td> {{ playDate.date }} </td>
-                  <td> {{ playDate.time }} {{ playDate.duration }} </td>
+                  <td> {{ playDate.meetingDate }} </td>
+                  <td> {{ playDate.startTime }} {{ playDate.duration }} </td>
                   <td> {{ playDate.breed }} </td>
                   <td> {{ playDate.size }} </td>
                   <td> {{ playDate.temperament }} </td>
@@ -65,57 +66,74 @@ export default {
                 temperament:'',
                 spayedNeutered:''
             },
-            playDates: {
-                availablePlaydates: [],
-                hostDog: [],
-            },
+            availablePlaydates: [], //pull playDates from backend and put in created
+               
         }
     },
     computed: {
         filteredList() {
-            let filteredPlayDates = this.playDates;
+            let filteredPlayDates = this.availablePlaydates;
            if (this.filter.location != "") {
                filteredPlayDates = filteredPlayDates.filter((playDate) => {
-                   return playDate.availablePlaydates.location.toLowerCase().includes(this.filter.location.toLowerCase());
+                   return playDate.location.toLowerCase().includes(this.filter.location.toLowerCase());
                });
            }
            if (this.filter.date != "") {
                filteredPlayDates = filteredPlayDates.filter((playDate) => {
-                   return playDate.availablePlaydates.date.toLowerCase().includes(this.filter.date.toLowerCase());
+                   return playDate.date.toLowerCase().includes(this.filter.date.toLowerCase());
                });
            }
            if (this.filter.time != "") {
                filteredPlayDates = filteredPlayDates.filter((playDate) => {
-                   return playDate.availablePlaydates.time.toLowerCase().includes(this.filter.time.toLowerCase());
+                   return playDate.time.toLowerCase().includes(this.filter.time.toLowerCase());
                });
            }
            if (this.filter.breed != "") {
                filteredPlayDates = filteredPlayDates.filter((playDate) => {
-                   return playDate.hostDog.breed.toLowerCase().includes(this.filter.breed.toLowerCase());
+                   return playDate.breed.toLowerCase().includes(this.filter.breed.toLowerCase());
                });
            }
            if (this.filter.size != "") {
                filteredPlayDates = filteredPlayDates.filter((playDate) => {
-                   return playDate.hostDog.size.toLowerCase().includes(this.filter.size.toLowerCase());
+                   return playDate.size.toLowerCase().includes(this.filter.size.toLowerCase());
                });
            }
            if (this.filter.temperament != "") {
                filteredPlayDates = filteredPlayDates.filter((playDate) => {
-                   return playDate.hostDog.temperament.toLowerCase().includes(this.filter.temperament.toLowerCase());
+                   return playDate.temperament.toLowerCase().includes(this.filter.temperament.toLowerCase());
                });
            }
            if (this.filter.spayedNeutered != "") {
                filteredPlayDates = filteredPlayDates.filter((playDate) => {
-                   return playDate.hostDog.spayedNeutered.toLowerCase().includes(this.filter.spayedNeutered.toLowerCase());
+                   return playDate.spayedNeutered.toLowerCase().includes(this.filter.spayedNeutered.toLowerCase());
                });
            }
            return filteredPlayDates;
         }
+    },
+    created() {
+        playDateService.getAvailablePlayDates()
+        .then((response) => {
+            this.availablePlaydates = response.data;
+
+        })
+        .catch((error) => {
+            if (error.response) {
+                window.alert("Missing Play Dates");
+            } else if (error.request) {
+                window.alert("Could not reach service");
+            }
+            
+        })
+
     }
 
 }
 </script>
 
 <style>
+h1 {
+    color: white;
+}
 
 </style>

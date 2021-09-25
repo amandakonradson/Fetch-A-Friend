@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import AddPet from '../views/AddPet.vue'
 import PlayDateView from '../views/PlayDateView.vue'
+import PlayDateSearch from '../views/PlayDateSearch.vue'
 
 
 Vue.use(Router)
@@ -72,6 +73,14 @@ const router = new Router({
         requiresAuth: true
       }
     },
+    {
+      path: "/play-date/available/",
+      name: "play-date-search",
+      component: PlayDateSearch,
+      meta: {
+        requiresAuth: true
+      }
+    }
   ]
 })
 
