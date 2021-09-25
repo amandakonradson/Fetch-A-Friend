@@ -1,28 +1,32 @@
 <template>
-  <div>
-      <h1> Hello </h1>
+  <div id="main">
+      <h1> Review available play dates below: </h1>
       <table>
           <thead>
               <tr>
                   <th>Location</th>
                   <th>Date</th>
                   <th>Time</th>
+                  <th>Ideal Playmate</th>
                   <th>Name and Breed</th>
                   <th>Size</th>
                   <th>Temperament</th>
-                  <th>Spayed/Neutered?</th>
+                  <th>Spayed/ <br> Neutered?</th>
               </tr>
           </thead>
           <tbody>
               <tr>
                   <td> 
-                    <input type="text" id="locationFilter" v-model="filter.location"/>
+                    <input type="text" id="locationFilter" v-model="filter.location" />
                   </td>
                   <td>
                       <input type="text" id="dateFilter" v-model="filter.date"/>                    
                   </td>
                   <td>
                       <input type="text" id="timeFilter" v-model="filter.time"/>
+                  </td>
+                  <td>
+                      <input type="text" id="mateDescFilter" v-model="filter.mateDescription"/>
                   </td>
                   <td>
                       <input type="text" id="breedFilter" v-model="filter.breed"/>
@@ -37,11 +41,12 @@
                       <input type="text" id="spayedNeuteredFilter" v-model="filter.spayedNeutered"/>
                   </td>
               </tr>
-              <tr v-for="playDate in filteredList" v-bind:key="playDate.id">
+              <tr id="playDateInfo" v-for="playDate in filteredList" v-bind:key="playDate.id">
                   <td> {{ playDate.locationStreetAddress }} <br/> {{ playDate.locationCity }} <br/> {{ playDate.locationZipcode }} </td>
                   <td> {{ playDate.meetingDate }} </td>
-                  <td> {{ playDate.startTime }} {{ playDate.duration }} </td>
-                  <td> {{ playDate.breed }} </td>
+                  <td> Start time:  {{ playDate.startTime }} <br> Probable play time: {{ playDate.duration }} min. </td>
+                  <td> Temperament: {{ playDate.mateDescription }} <br> Size: {{ playDate.mateSize }} </td>
+                  <td> {{ playDate.name }} <br> {{ playDate.breed }} </td>
                   <td> {{ playDate.size }} </td>
                   <td> {{ playDate.temperament }} </td>
                   <td> {{ playDate.spayedNeutered }} </td>
@@ -61,6 +66,7 @@ export default {
                 location:'',
                 date:'',
                 time:'',
+                mateDescription:'',
                 breed:'',
                 size:'',
                 temperament:'',
@@ -78,14 +84,20 @@ export default {
                    return playDate.location.toLowerCase().includes(this.filter.location.toLowerCase());
                });
            }
+
            if (this.filter.date != "") {
                filteredPlayDates = filteredPlayDates.filter((playDate) => {
-                   return playDate.date.toLowerCase().includes(this.filter.date.toLowerCase());
+                   return playDate.meetingDate.toLowerCase().includes(this.filter.date.toLowerCase());
                });
            }
            if (this.filter.time != "") {
                filteredPlayDates = filteredPlayDates.filter((playDate) => {
-                   return playDate.time.toLowerCase().includes(this.filter.time.toLowerCase());
+                   return playDate.startTime.toLowerCase().includes(this.filter.time.toLowerCase());
+               });
+           }
+           if (this.filter.mateDescription != "") {
+               filteredPlayDates = filteredPlayDates.filter((playDate) => {
+                   return playDate.mateDescription.toLowerCase().includes(this.filter.mateDescription.toLowerCase());
                });
            }
            if (this.filter.breed != "") {
@@ -115,7 +127,6 @@ export default {
         playDateService.getAvailablePlayDates()
         .then((response) => {
             this.availablePlaydates = response.data;
-
         })
         .catch((error) => {
             if (error.response) {
@@ -134,6 +145,33 @@ export default {
 <style>
 h1 {
     color: white;
+    margin-left: 20px;
+}
+#main {
+    background-color: rgb(2, 59, 109);
+}
+table {
+    border: white, 5px, solid;
+    width: 100%;
+}
+th {
+    text-align: left;
+    font-size: 28px;
+    font-weight: bold;
+}
+td {
+    font-size: 22px;
+}
+#playDateInfo {
+    margin-bottom: 30px;
+}
+td, th {
+    border: white, 5px, solid;
+    padding: 0.5rem;
+    text-align: center;
+}
+table, th, td {
+    border: 1px solid white;
 }
 
 </style>

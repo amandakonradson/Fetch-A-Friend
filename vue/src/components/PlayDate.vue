@@ -49,6 +49,7 @@
         min="06:00"
         max="20:00"
         step="600"
+
         v-model="playDate.startTime"
         required
       />
@@ -346,6 +347,7 @@ export default {
   font-size: 40px;
   font-weight: bold;
   text-decoration: underline;
+  text-align: center;
 }
 .checkbox {
   font-size: 18px;
