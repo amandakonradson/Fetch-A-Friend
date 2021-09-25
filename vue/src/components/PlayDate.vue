@@ -266,6 +266,7 @@ export default {
           }
         });
     },
+    
 
     //  checkBoxes(){
     //   form = document.querySelector('#sectionForm'),

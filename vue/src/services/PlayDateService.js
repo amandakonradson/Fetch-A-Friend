@@ -7,5 +7,7 @@ export default{
     getCurrentDate(){
         return axios.get('/pet/createPlayDate');
     },
-   
+    getAllPlayDates(){
+        return axios.get('/pet/allPlayDates/');
+    }
 }

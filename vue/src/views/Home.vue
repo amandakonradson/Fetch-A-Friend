@@ -2,7 +2,8 @@
   <div class="home">
     <aside>
       <router-link class="link" id="add-pet" v-bind:to="{name:'add-pet'}">Add a Pet </router-link> <br>     <!--&nbsp;|&nbsp; -->
-      <router-link class="link" id="create-playdate" v-bind:to="{name:'play-date-view'}">Create A Playdate</router-link>
+      <router-link class="link" id="create-playdate" v-bind:to="{name:'play-date-view'}">Create A Playdate</router-link> <br>
+      <router-link class="link" id="search-play-dates" v-bind:to="{name: 'play-date-search'}">Search Playdates</router-link>
     </aside>
   </div>
 </template>
