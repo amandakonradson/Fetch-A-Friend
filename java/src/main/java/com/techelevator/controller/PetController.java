@@ -1,22 +1,16 @@
 package com.techelevator.controller;
 
-import com.techelevator.dao.LocationDao;
 import com.techelevator.dao.PetDao;
 import com.techelevator.dao.PlayDateDao;
-import com.techelevator.model.Location;
 import com.techelevator.model.Pet;
 import com.techelevator.model.PlayDate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @PreAuthorize("isAuthenticated()")
@@ -29,8 +23,6 @@ public class PetController {
     private PetDao petDao;
     @Autowired
     private PlayDateDao playDateDao;
-    @Autowired
-    private LocationDao locationDao;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/addPuppy")
@@ -64,11 +56,6 @@ public class PetController {
         playDateDao.createPlayDate(playDate);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/createPlayDate/location")
-    public void createPlayDateLocation(@RequestBody Location location){
-        locationDao.addLocation(location.getDescription(), location.getZipcode());
-    }
 
     @GetMapping("/allPlayDates/")
     public List<PlayDate> getAllPlayDates (){
@@ -81,7 +68,7 @@ public class PetController {
     }
 
     @GetMapping("/allPlayDates/{zipcode}")
-    public List<PlayDate> getPlayDatesByZip (@PathVariable int zipcode){
+    public List<PlayDate> getPlayDatesByZip (@PathVariable long zipcode){
         return playDateDao.getPlayDatesByZipcode(zipcode);
     }
 

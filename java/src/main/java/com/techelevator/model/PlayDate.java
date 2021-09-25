@@ -2,6 +2,7 @@ package com.techelevator.model;
 
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.Date;
 
 public class PlayDate {
@@ -9,7 +10,9 @@ public class PlayDate {
     private long playDateId;
     private long hostPetId;
     private long matePetId;
-    private long locationId;
+    private String locationStreetAddress;
+    private String locationCity;
+    private long locationZipcode;
     private Date meetingDate;
     private LocalTime startTime;
     private long duration;
@@ -21,11 +24,13 @@ public class PlayDate {
 
     }
 
-    public PlayDate(long playDateId, long hostPetId, long matePetId, long locationId, Date meetingDate, LocalTime startTime, long duration, String[] mateDescription, String mateSize, long statusId) {
+    public PlayDate(long playDateId, long hostPetId, long matePetId, String locationStreetAddress, String locationCity, long locationZipcode, Date meetingDate, LocalTime startTime, long duration, String[] mateDescription, String mateSize, long statusId) {
         this.playDateId = playDateId;
         this.hostPetId = hostPetId;
         this.matePetId = matePetId;
-        this.locationId = locationId;
+        this.locationStreetAddress = locationStreetAddress;
+        this.locationCity = locationCity;
+        this.locationZipcode = locationZipcode;
         this.meetingDate = meetingDate;
         this.startTime = startTime;
         this.duration = duration;
@@ -58,12 +63,28 @@ public class PlayDate {
         this.matePetId = matePetId;
     }
 
-    public long getLocationId() {
-        return locationId;
+    public String getLocationStreetAddress() {
+        return locationStreetAddress;
     }
 
-    public void setLocationId(long locationId) {
-        this.locationId = locationId;
+    public void setLocationStreetAddress(String locationStreetAddress) {
+        this.locationStreetAddress = locationStreetAddress;
+    }
+
+    public String getLocationCity() {
+        return locationCity;
+    }
+
+    public void setLocationCity(String locationCity) {
+        this.locationCity = locationCity;
+    }
+
+    public long getLocationZipcode() {
+        return locationZipcode;
+    }
+
+    public void setLocationZipcode(long locationZipcode) {
+        this.locationZipcode = locationZipcode;
     }
 
     public Date getMeetingDate() {
@@ -120,13 +141,21 @@ public class PlayDate {
                 "playDateId=" + playDateId +
                 ", hostPetId=" + hostPetId +
                 ", matePetId=" + matePetId +
-                ", locationId=" + locationId +
+                ", locationStreetAddress='" + locationStreetAddress + '\'' +
+                ", locationCity='" + locationCity + '\'' +
+                ", locationZipcode=" + locationZipcode +
                 ", meetingDate=" + meetingDate +
                 ", startTime=" + startTime +
                 ", duration=" + duration +
-                ", mateDescription='" + mateDescription + '\'' +
+                ", mateDescription=" + Arrays.toString(mateDescription) +
                 ", mateSize='" + mateSize + '\'' +
                 ", statusId=" + statusId +
                 '}';
+    }
+
+
+    public String timeToString() {
+        return "'" + startTime + "'";
+
     }
 }

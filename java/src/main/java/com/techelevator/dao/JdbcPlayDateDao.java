@@ -7,22 +7,21 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
 public class JdbcPlayDateDao implements PlayDateDao{
-
-    @Autowired
-    private JdbcLocationDao jdbcLocationDao;
 
     private JdbcTemplate jdbcTemplate;
 
     @Override
     public List<PlayDate> getAllPlayDates() {
         List<PlayDate> playDateList = new ArrayList<>();
-        String sql = "SELECT play_date_id, host_pet_id, mate_pet_id, location_id, meeting_date, " +
+        String sql = "SELECT play_date_id, host_pet_id, mate_pet_id, location_street_address, location_city, location_zipcode, meeting_date, " +
                 "start_time, duration, mate_description, mate_size, status_id FROM play_dates";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()) {
@@ -34,7 +33,7 @@ public class JdbcPlayDateDao implements PlayDateDao{
     @Override
     public List<PlayDate> getPlayDatesByZipcode(long zipcode) {
             List<PlayDate> playDateList = new ArrayList<>();
-            String sql = "SELECT play_date_id, host_pet_id, mate_pet_id, location_id, meeting_date, " +
+            String sql = "SELECT play_date_id, host_pet_id, mate_pet_id, location_street_address, location_city, location_zipcode, meeting_date, " +
                     "start_time, duration, mate_description, mate_size, status_id FROM play_dates " +
                     "WHERE location_id IN (SELECT location_id FROM location WHERE zipcode = ?)";
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, zipcode);
@@ -48,7 +47,7 @@ public class JdbcPlayDateDao implements PlayDateDao{
     @Override
     public List<PlayDate> getPlayDatesByUserId(long userId) {
         List<PlayDate> playDateListByUserId= new ArrayList<>();
-        String sql= "SELECT play_date_id, host_pet_id, mate_pet_id, location_id, meeting_date, " +
+        String sql= "SELECT play_date_id, host_pet_id, mate_pet_id, location_street_address, location_city, location_zipcode, meeting_date, " +
                 "start_time, duration, mate_description, mate_size, status_id FROM play_dates " +
                 "WHERE host_pet_id IN (SELECT pet_id FROM user_pet WHERE user_id = ?)";
         SqlRowSet results= jdbcTemplate.queryForRowSet(sql,userId);
@@ -60,8 +59,11 @@ public class JdbcPlayDateDao implements PlayDateDao{
 
     @Override
     public void createPlayDate(PlayDate playDate) {
-        String sql = "INSERT INTO play_dates (host_pet_id, location_id, meeting_date, start_time, duration, mate_description, mate_size, status_id) VALUES((SELECT pet_id FROM pets WHERE pet_id = ?),(SELECT location_id FROM location WHERE description = ?),?,?,?,?,?,?)";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, playDate.getHostPetId(), playDate.getLocationId(), playDate.getMeetingDate(), playDate.getStartTime(), playDate.getDuration(), playDate.getMateDescription(), playDate.getMateSize(), 1);
+        String sql = "INSERT INTO play_dates (host_pet_id, mate_pet_id, location_street_address, location_city, location_zipcode, " +
+                "meeting_date, start_time, duration, mate_description, mate_size, status_id) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql, playDate.getHostPetId(), 0, playDate.getLocationStreetAddress(),
+                playDate.getLocationCity(), playDate.getLocationZipcode(), playDate.getMeetingDate(), "'" +
+                playDate.getStartTime() + "'", playDate.getDuration(), Arrays.toString(playDate.getMateDescription()), playDate.getMateSize(), 1);
     }
 
     @Override
@@ -74,7 +76,9 @@ public class JdbcPlayDateDao implements PlayDateDao{
         playDate.setPlayDateId(results.getLong("play_date_id"));
         playDate.setHostPetId(results.getLong("host_pet_id"));
         playDate.setMatePetId(results.getLong("mate_pet_id"));
-        playDate.setLocationId(results.getLong("location_id"));
+        playDate.setLocationStreetAddress(results.getString("location_street_address"));
+        playDate.setLocationCity(results.getString("location_city"));
+        playDate.setLocationZipcode(results.getLong("location_zipcode"));
         playDate.setMeetingDate(results.getDate("meeting_date"));
         playDate.setStartTime(results.getTime("time").toLocalTime());
         playDate.setDuration(results.getLong("duration"));

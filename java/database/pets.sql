@@ -35,18 +35,13 @@ CREATE TABLE "play_date_statuses" (
   PRIMARY KEY ("status_id")
 );
 
-CREATE TABLE "location" (
-  "location_id" serial,
-  "description" varchar (100),
-  "zipcode" int,
-  PRIMARY KEY ("location_id")
-);
-
 CREATE TABLE "play_dates" (
   "play_date_id" serial,
   "host_pet_id" int,
   "mate_pet_id" int,
-  "location_id" int,
+  "location_street_address" varchar (100),
+  "location_city" varchar (100),
+  "location_zipcode" int,
   "meeting_date" date,
   "start_time" time,
   "duration" int,
@@ -57,9 +52,6 @@ CREATE TABLE "play_dates" (
   CONSTRAINT "FK_play_dates.status_id"
     FOREIGN KEY ("status_id")
       REFERENCES "play_date_statuses"("status_id"),
-  CONSTRAINT "FK_play_dates.location_id"
-    FOREIGN KEY ("location_id")
-      REFERENCES "location"("location_id"),
   CONSTRAINT "FK_play_dates.mate_pet_id"
     FOREIGN KEY ("mate_pet_id")
       REFERENCES "pets"("pet_id"),

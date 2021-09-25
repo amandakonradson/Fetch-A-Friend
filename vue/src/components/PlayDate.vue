@@ -3,7 +3,7 @@
     <form id="create-play-date" v-on:submit.prevent="savePlayDate">
       <h1 id="title">Create Your Play Date:</h1>
       <label for="host-pet-id"
-        >Which Of Your Pets Is Looking For A Playmate: 
+        >Which Of Your Pets Is Looking For A Playmate:
       </label>
       <select class="form" v-model="playDate.hostPetId">
         <option
@@ -18,15 +18,18 @@
         </option>
       </select>
       <br />
-      <label for="location">Location Address: </label>
-      <input class="form" type="text" v-model="location.description" required />
+      <label for="locationAddress">Location Address: </label>
+      <input class="form" type="text" v-model="playDate.locationStreetAddress" required />
       <br />
-      <label for="location">Location Zip Code: </label>
+      <label for="locationCity">Location City: </label>
+      <input class="form" type="text" v-model="playDate.locationCity" required />
+      <br />
+      <label for="locationZipcode">Location Zip Code: </label>
       <input
         class="form"
         type="text"
         pattern="(?=.*\d).{5,}"
-        v-model="location.zipCode"
+        v-model="playDate.locationZipcode"
         required
       />
       <br />
@@ -85,7 +88,8 @@
         v-model="playDate.description"
       />
       <label class="checkbox" for="timid"
-        >Timid: Once these pups feel comfortable, they make great playmates!</label
+        >Timid: Once these pups feel comfortable, they make great
+        playmates!</label
       >
       <br />
       <input
@@ -132,7 +136,8 @@
         v-model="playDate.description"
       />
       <label class="checkbox" for="curious"
-        >Curious: These dogs are most interesting in exploring their surroundings!</label
+        >Curious: These dogs are most interesting in exploring their
+        surroundings!</label
       >
       <br />
       <input
@@ -221,15 +226,14 @@ export default {
 
       playDate: {
         hostPetId: "",
+        locationStreetAddress: "",
+        locationCity: "",
+        locationZipcode: "",
         meetingDate: "",
         startTime: "",
         duration: "",
         description: [],
         mateSize: "",
-      },
-      location: {
-        description: "",
-        zipCode: "",
       },
     };
   },
@@ -237,6 +241,9 @@ export default {
     savePlayDate() {
       const newPlayDate = {
         hostPetId: this.playDate.hostPetId,
+        locationStreetAddress: this.playDate.locationStreetAddress,
+        locationCity: this.playDate.locationCity,
+        locationZipcode: this.playDate.locationZipcode,
         meetingDate: this.playDate.meetingDate,
         startTime: this.playDate.startTime,
         duration: this.playDate.duration,
@@ -244,36 +251,19 @@ export default {
         mateSize: this.playDate.mateSize,
       };
 
-      const newLocation = {
-        description: this.location.description,
-        zipCode: this.location.zipCode,
-      };
-
       playDateService
-        .createPlayDateLocation(newLocation)
+        .createPlayDate(newPlayDate)
         .then((response) => {
           if (response.status === 201) {
-            playDateService.createPlayDate(newPlayDate)
-              .then((response) => {
-                if (response.status === 201) {
-                  window.alert("Play Date Added!"); //change to landing page once established
-                }
-              })
-              .catch((error) => {
-                if(error.response){
-                   window.alert("Invalid Playdate");
-                }
-               
-              });
+            window.alert("Play Date Added!"); //change to landing page once established
           }
         })
-        .catch((err) => {
-          if (err.response) {
-            window.alert("Invalid Location");
-          } else if (err.request) {
+        .catch((error) => {
+          if (error.response) {
+            window.alert("Invalid Playdate");
+          } else if (error.request) {
             window.alert("Could not reach service");
           }
-          console.log(newLocation.description, newLocation.zipCode);
         });
     },
 
@@ -336,9 +326,8 @@ export default {
 
 <style scoped>
 #body {
-  background-color:  rgb(2, 59, 109);
+  background-color: rgb(2, 59, 109);
   color: white;
- 
 }
 #create-play-date {
   border: white 5px dotted;
@@ -346,7 +335,7 @@ export default {
   font-size: 30px;
   width: 800px;
   margin-left: auto;
-  margin-right:auto;
+  margin-right: auto;
   background-color: rgb(2, 59, 109);
 }
 .form {
@@ -363,8 +352,8 @@ export default {
 #temperament {
   margin-bottom: 10px;
 }
-.button-submit{
+.button-submit {
   margin-right: 10px;
-   margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 </style>
