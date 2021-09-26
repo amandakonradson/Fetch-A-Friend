@@ -1,10 +1,18 @@
 <template>
   <div id="main">
-{{ playDate.locationStreetAddress }} {{ playDate.locationCity }} {{ playDate.locationZipcode }} {{ playDate.meetingDate }} {{ playDate.startTime }} {{ playDate.duration }}
-{{ playDate.mateDescription }} {{ playDate.mateSize }} {{ playDate.name }}  {{ playDate.breed }} {{ playDate.size }} {{ playDate.temperament }} {{ playDate.spayedNeutered }}
+      <div>
+          <h1>Play Date Details: </h1>
+          <h3>Location: </h3>
+          {{ playDate.locationStreetAddress }} <br> {{ playDate.locationCity }}, {{ playDate.locationZipcode }} <br> 
+          <h3>Date</h3>
+          {{ playDate.meetingDate }} Beginning at:  {{ playDate.startTime }} Anticipated Length: {{ playDate.duration }} minutes <br>
+          <h3>Host Information: </h3> Name: {{ playDate.name }} Breed: {{ playDate.breed }} Size: {{ playDate.size }} Temperament: {{ playDate.temperament }} Spayed/Neutered: {{ playDate.spayedNeutered }} <br>
+          {{ playDate.name }} plays well with dogs who are: <span v-for="description in playDate.mateDescription" v-bind:key="description.index">{{ playDate.mateDescription }}</span>
+      </div>
+ {{ playDate.mateSize }}     
 
 
-<div v-for="description in playDate.mateDescription" v-bind:key="description.index">
+<!--<div v-for="description in playDate.mateDescription" v-bind:key="description.index">-->
   </div>
 </template>
 
