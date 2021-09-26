@@ -4,18 +4,20 @@
       <table>
           <thead>
               <tr>
+                  <th>Pick This Play Date</th>
                   <th>Location</th>
                   <th>Date</th>
                   <th>Time</th>
                   <th>Ideal Playmate</th>
                   <th>Name and Breed</th>
-                  <th>Size</th>
+                  <th class = "size">Size</th>
                   <th>Temperament</th>
                   <th>Spayed/ <br> Neutered?</th>
               </tr>
           </thead>
           <tbody>
               <tr>
+                  <td></td>
                   <td> 
                     <input type="text" id="locationFilter" v-model="filter.location" />
                   </td>
@@ -31,7 +33,7 @@
                   <td>
                       <input type="text" id="breedFilter" v-model="filter.breed"/>
                   </td>
-                  <td>
+                  <td class="size">
                       <input type="text" id="sizeFilter" v-model="filter.size"/>
                   </td>
                   <td>
@@ -41,12 +43,14 @@
                       <input type="text" id="spayedNeuteredFilter" v-model="filter.spayedNeutered"/>
                   </td>
               </tr>
+              
               <tr id="playDateInfo" v-for="playDate in filteredList" v-bind:key="playDate.id">
+                  <td ><router-link class="link" id="pd-signup" v-bind:to="{name:'pd-signup', params:{id: playDate.playDateId}}" v-bind:key="playDate.playDateId"><play-date-signup v-bind:playdate="playdate"/>Join</router-link></td>
                   <td> {{ playDate.locationStreetAddress }} <br/> {{ playDate.locationCity }} <br/> {{ playDate.locationZipcode }} </td>
                   <td> {{ playDate.meetingDate }} </td>
                   <td> Start time:  {{ playDate.startTime }} <br> Probable play time: {{ playDate.duration }} min. </td>
-                  <td> Temperament: {{ playDate.mateDescription }} <br> Size: {{ playDate.mateSize }} </td>
-                  <td> {{ playDate.name }} <br> {{ playDate.breed }} </td>
+                  <td> Temperament:<div v-for="description in playDate.mateDescription" v-bind:key="description.index"> {{ description }}</div> <br> Size: {{ playDate.mateSize }} </td>
+                  <td> <b>{{ playDate.name }}</b> <br> {{ playDate.breed }} </td>
                   <td> {{ playDate.size }} </td>
                   <td> {{ playDate.temperament }} </td>
                   <td> {{ playDate.spayedNeutered }} </td>
@@ -142,7 +146,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 h1 {
     color: white;
     margin-left: 20px;
@@ -152,26 +156,38 @@ h1 {
 }
 table {
     border: white, 5px, solid;
-    width: 100%;
+    width: 100px;
+    margin-left: auto;
+    margin-right:auto;
 }
 th {
     text-align: left;
     font-size: 28px;
-    font-weight: bold;
+    font-weight: bold; 
 }
 td {
-    font-size: 22px;
+    font-size: 20px;
 }
 #playDateInfo {
     margin-bottom: 30px;
 }
 td, th {
     border: white, 5px, solid;
-    padding: 0.5rem;
     text-align: center;
 }
 table, th, td {
-    border: 1px solid white;
+    border: 2px dotted white; 
 }
+.link{
+    color: white;
+    text-decoration: none; color: inherit;
+    font-size: 24px;
+}
+
+@media only screen and (max-width:550px){
+    
+        
+    }
+
 
 </style>

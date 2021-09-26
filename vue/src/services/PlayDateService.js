@@ -13,5 +13,8 @@ export default{
     },
     getAvailablePlayDates() {
         return axios.get('/pet/allPlayDates/available');
+    },
+    getAvailablePlayDatesByPlayDateId(playDateId){
+        return axios.get(`pet/playDate/${playDateId}`);
     }
 }

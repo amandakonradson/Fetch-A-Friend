@@ -19,9 +19,10 @@
   .link {
     color: white;
     text-decoration: none; color: inherit;
-    font-size: 30px;
+    font-size: 24px;
+    font-weight: bold;
   }
   #logo-banner{
-    width: 100vw;
+   width: 100%;
   }
-</style> rgb(27, 76, 119);
+</style> 

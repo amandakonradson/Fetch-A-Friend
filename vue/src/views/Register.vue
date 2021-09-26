@@ -1,6 +1,8 @@
 <template>
   <div id="register" class="text-center">
+     <div class="form-outline">
     <form class="form-register" @submit.prevent="register">
+     
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
@@ -54,7 +56,9 @@
       Create Account
       </button>
       </div>
+      
     </form>
+    </div>
   </div>
 </template>
 
@@ -113,6 +117,13 @@ export default {
 .form-control{
   margin-top: 10px;
   margin-bottom: 10px;
+  font-size:30px;
+}
+.form-outline{
+  border: white 5px dotted;
+  margin-left: auto;
+  margin-right:auto;
+
 }
 form{
   font-size: 20px;

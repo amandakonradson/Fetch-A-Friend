@@ -81,6 +81,11 @@ public class PetController {
         return availablePlayDateDao.getAvailablePlayDates();
     }
 
+    @GetMapping("/playDate/{id}")
+    public AvailablePlayDate getAvailablePlayDateByPlayDateId(@PathVariable("id") long playDateId){
+        return availablePlayDateDao.getAvailablePlayDateByPlayDateId(playDateId);
+    }
+
 
 
 

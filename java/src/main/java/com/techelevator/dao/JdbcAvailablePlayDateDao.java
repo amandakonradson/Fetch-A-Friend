@@ -34,6 +34,21 @@ public class JdbcAvailablePlayDateDao implements AvailablePlayDateDao{
     }
 
     @Override
+    public AvailablePlayDate getAvailablePlayDateByPlayDateId(long playDateId) {
+        AvailablePlayDate availablePlayDate = new AvailablePlayDate();
+        String sql = "SELECT play_date_id, host_pet_id, location_street_address, location_city, " +
+                "location_zipcode, meeting_date, start_time, duration, mate_description, mate_size, " +
+                "status_id, name, breed, temperament, size, spayed_neutered FROM play_dates JOIN " +
+                "pets ON play_dates.host_pet_id = pets.pet_id WHERE play_date_id =?";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, playDateId);
+        if(results.next()){
+            availablePlayDate = mapToRowSet(results);
+        }
+        return availablePlayDate;
+    }
+
+    @Override
     public void updatePlaydate(long playDateId) {
 
     }
@@ -48,7 +63,9 @@ public class JdbcAvailablePlayDateDao implements AvailablePlayDateDao{
         availablePlayDate.setMeetingDate(results.getDate("meeting_date"));
         availablePlayDate.setStartTime(results.getTime("start_time").toLocalTime());
         availablePlayDate.setDuration(results.getLong("duration"));
-        availablePlayDate.setMateDescription(results.getString("mate_description").split(","));
+        String description = (results.getString("mate_description"));
+        description = description.substring(1,description.length()-1);
+        availablePlayDate.setMateDescription(description.split(","));
         availablePlayDate.setMateSize(results.getString("mate_size"));
         availablePlayDate.setStatusId(results.getLong("status_id"));
         availablePlayDate.setName(results.getString("name"));

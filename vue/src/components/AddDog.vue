@@ -46,20 +46,20 @@
 
         <label for="size">Approximate size: </label>
         <select id="dogSize" v-model="dog.size" required>
-          <option value="extraSmall" selected>
-            Extra Small (for example: Chihuahua, Maltese, Yorkshire Terrier)
+          <option value="extra small" selected>
+            Extra Small (ex. Chihuahua, Maltese, Yorkshire Terrier)
           </option>
           <option value="small" selected>
-            Small (for example: Beagle, French Bulldog, Boston Terrier)
+            Small (ex. Beagle, French Bulldog, Boston Terrier)
           </option>
           <option value="medium" selected>
-            Medium (for example: Border Collie, Corgi, Spaniel)
+            Medium (ex. Border Collie, Corgi, Spaniel)
           </option>
           <option value="large" selected>
-            Large (for example: Lab, Golden Retriever, Australian Shepherd)
+            Large (ex. Lab, Golden Retriever, Australian Shepherd)
           </option>
-          <option value="extraLarge" selected>
-            Extra Large (for example: Great Dane, St. Bernard, Newfoundland)
+          <option value="extra large" selected>
+            Extra Large (ex. Great Dane, Saint Bernard, Newfoundland)
           </option>
         </select>
         <br />
@@ -86,7 +86,7 @@
           v-model="dog.temperament"
           required
         >
-          <option value="highEnergy">
+          <option value="energetic">
             High Energy: These dogs never tire and can chase a ball for hours!
           </option>
           <option value="timid">
@@ -107,7 +107,7 @@
           <option value="curious">
             Curious: These dogs are most interested in exploring their surroundings!
           </option>
-          <option value="laidBack">
+          <option value="relaxed">
             Laid Back: These pups are content to lounge around and soak in the
             sun!
           </option>
@@ -121,9 +121,9 @@
         <!-- <input type="file" @change>
 <button @click ="onUpload">Upload</button> -->
         <input id="vaccination" type="checkbox" required />
-        <label for="vaccination"
-          >By checking this box, you certify that your pet is up to date on all
-          legally required vaccinations</label
+        <label for="vaccination" id="vaccine"
+          >By checking this box, you certify your pet is up to date on all
+          legally required vaccinations.</label
         >
 
         <br />
@@ -211,6 +211,7 @@ export default {
 #main {
   background-color: rgb(2, 59, 109);
   color: white;
+  padding-bottom: 50px;
   
   
 }
@@ -219,20 +220,30 @@ width: 700px;
 margin-right: auto;
   margin-left: auto;
   border: white 5px dotted;
+  
 
 }
 form {
   font-size: 24px;
   margin-left: 10px;
+  
 }
 h1{
     margin-left: 10px;
 }
 button {
   height: 30px;
+  font-size: 18px;
+  background-color: white;
+  color: rgb(2, 59, 109);
+  font-weight: bold;
+  border: 5px white solid
 }
 .button-submit{
     margin-right: 10px;
     margin-bottom: 25px;
+}
+#vaccine{
+  font-size: 18px;
 }
 </style>

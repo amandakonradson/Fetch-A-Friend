@@ -72,7 +72,7 @@
       <input
         class="form"
         type="checkbox"
-        value="high-energy"
+        value="energetic"
         id="description"
         v-model="playDate.description"
       />
@@ -144,8 +144,8 @@
       <input
         class="form"
         type="checkbox"
-        value="laid-back"
-        id="description"
+        value="relaxed"
+        id="laid-back"
         v-model="playDate.description"
       />
       <label class="checkbox" for="laid-back"
@@ -157,7 +157,7 @@
         class="form"
         type="checkbox"
         value="submissive"
-        id="description"
+        id="submissive"
         v-model="playDate.description"
       />
       <label class="checkbox" for="submissive"
@@ -167,11 +167,11 @@
       <input
         class="form"
         type="checkbox"
-        value="nopreference"
-        id="description"
+        value="no preference"
+        id="nopreference"
         v-model="playDate.description"
       />
-      <label class="checkbox" for="nopreference">No Preference</label>
+      <label class="checkbox" for="nopreference" >No Preference</label>
       <br />
 
       <label for="mate-size">Preferred Playmate Size: </label>
@@ -182,7 +182,7 @@
         v-model="playDate.mateSize"
         required
       >
-        <option value="extraSmall" selected>
+        <option value="extra small" selected>
           Extra Small (for example: Chihuahua, Maltese, Yorkshire Terrier)
         </option>
         <option value="small" selected>
@@ -194,10 +194,10 @@
         <option value="large" selected>
           Large (for example: Lab, Golden Retriever, Australian Shepherd)
         </option>
-        <option value="extraLarge" selected>
+        <option value="extra large" selected>
           Extra Large (for example: Great Dane, St. Bernard, Newfoundland)
         </option>
-        <option value="noPreference" selected>No Preference</option>
+        <option value="no preference" selected>No Preference</option>
       </select>
       <br />
       <br />
@@ -330,12 +330,13 @@ export default {
 #body {
   background-color: rgb(2, 59, 109);
   color: white;
+  padding-bottom:50px;
 }
 #create-play-date {
   border: white 5px dotted;
   padding: 20px;
   font-size: 30px;
-  width: 800px;
+  width: 750px;
   margin-left: auto;
   margin-right: auto;
   background-color: rgb(2, 59, 109);
@@ -358,5 +359,14 @@ export default {
 .button-submit {
   margin-right: 10px;
   margin-bottom: 25px;
+  
+}
+button{
+    height: 30px;
+  font-size: 18px;
+  background-color: white;
+  color: rgb(2, 59, 109);
+  font-weight: bold;
+  border: 5px white solid
 }
 </style>
