@@ -33,7 +33,7 @@
       <input
         type="password"
         id="password"
-        class="password"
+        class="form-password"
         placeholder="Password"
         v-model="user.password"
         required
@@ -42,7 +42,7 @@
       <input
         type="password"
         id="confirmPassword"
-        class="password"
+        class="form-password"
         placeholder="Confirm Password"
         v-model="user.confirmPassword"
         required
@@ -114,37 +114,64 @@ export default {
 </script>
 
 <style scoped>
-.form-control{
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size:30px;
-}
+
 .form-outline{
   border: white 5px dotted;
   margin-left: auto;
   margin-right:auto;
+  width: 600px;
+  padding-bottom: 20px;
 
 }
-form{
-  font-size: 20px;
+.form-control{
+  margin-bottom: 20px;
+  height: 25px;
+  font-size: 18px;
+}
+.form-password{
+  height: 25px;
+  font-size: 18px;
+
+}
+h1{
+  font-size: 36px;
+  margin-left: 10px;
 }
 button{
   margin-left: 20px;
+  height: 30px;
+  font-size: 18px;
+  background-color: white;
+  color: rgb(2, 59, 109);
+  font-weight: bold;
+  border: 5px white solid
 }
-#password-guide{
-  margin-bottom: 10px;
-}
-.password{
-  margin-top:10px;
+label{
+  font-size: 28px;
+  margin-left:10px;
   
 }
+#password{
+  margin-bottom: 5px;
+}
+p{
+  font-size:20px;
+}
+  
+#password-guide{
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
 #button {
     color: white;
     text-decoration: none; color: inherit;
+    font-size: 24px;
+    margin-left:10px;
 }
 #register {
     background-color:  rgb(2, 59, 109);
     color: white;
-    height: 100vh;
+    
 }
 </style>

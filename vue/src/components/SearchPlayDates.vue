@@ -15,7 +15,7 @@
             Spayed/ <br />
             Neutered?
           </th>
-          <th>Pick This Play Date</th>
+          <th>Pick This <br>Play Date</th>
         </tr>
       </thead>
       <tbody>
@@ -99,7 +99,7 @@
                 params: { id: playDate.playDateId },
               }"
               v-bind:key="playDate.playDateId"
-              ><play-date-signup v-bind:playdate="playdate" />Join</router-link
+              ><play-date-signup v-bind:playdate="playdate" />Click for <br>Details</router-link
             >
           </td>
         </tr>
@@ -139,7 +139,7 @@ export default {
       }
       if (this.filter.locationZipcode != "") {
         filteredPlayDates = filteredPlayDates.filter((playDate) => {
-          return playDate.locationZipcode.includes(this.filter.locationZipcode);
+          return playDate.locationZipcode.toString().includes(this.filter.locationZipcode);
         });
       }
       if (this.filter.date != "") {
@@ -241,6 +241,21 @@ td {
 
 input {
   max-width: 100%;
+}
+#sizeFilter{
+  width:100px;
+}
+#dateFilter{
+  width:125px;
+}
+#locationZipcodeFilter{
+  width: 100px;
+}
+#spayedNeuteredFilter{
+  width: 150px;
+}
+#pd-signup{
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 550px) {

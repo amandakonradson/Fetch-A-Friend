@@ -129,7 +129,8 @@
         <br />
         <br />
         <button class="button-submit">Submit</button>
-        <button class="button-cancel">Cancel</button>
+        <button class="button-cancel">
+        <router-link id="cancelBtn" :to="{ name: 'home' }">Cancel</router-link></button>
       </form>
     </div>
   </div>
@@ -193,6 +194,7 @@ export default {
         .then((response) => {
           if (response.status === 201) {
             window.alert("Bow-wow! Your dog has been added!");
+            this.$router.push('/');
           }
         })
         .catch((error) => {
@@ -232,12 +234,21 @@ h1{
     margin-left: 10px;
 }
 button {
-  height: 30px;
+  height: 40px;
   font-size: 18px;
   background-color: white;
   color: rgb(2, 59, 109);
   font-weight: bold;
   border: 5px white solid
+}
+#cancelBtn{
+   height: 30px;
+  font-size: 18px;
+  background-color: white;
+  color: rgb(2, 59, 109);
+  font-weight: bold;
+  border: 5px white solid;
+  text-decoration: none;
 }
 .button-submit{
     margin-right: 10px;

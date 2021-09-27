@@ -1,17 +1,18 @@
 <template>
   <div id="login" class="text-center">
+    <div id=form>
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
-        class="alert-alert-danger"
+        class="alert-alert"
         role="alert"
         v-if="invalidCredentials"
       >Login Failed: Invalid username and password!</div>
       <div
-        class="alert-alert-success"
+        class="alert-alert"
         role="alert"
         v-if="this.$route.query.registration"
-      >Thank you for registering, please sign in.</div>
+      >Thank you for registering, please sign in.</div><br>
       <div id="log-in">
       <label for="username" class="sr-only">Username   </label>
       <input
@@ -31,11 +32,12 @@
         placeholder="Password"
         v-model="user.password"
         required
-      /><br>
+      /><br><br>
       <router-link id="accountBtn" :to="{ name: 'register' }">Need an account?</router-link>
       <button id= "button" type="submit">Sign in</button>
       </div>
     </form>
+    </div>
   </div>
 </template>
 
@@ -82,22 +84,47 @@ export default {
   margin-top: 10px;
   margin-bottom: 10Px;
 }
-form{
-border: 10px, white, dotted;
+#form{
+    margin-left:auto;
+    margin-right:auto;
+    border: 5px dotted white;
+    width: 500px;
+    padding-bottom: 30px;
+    
 }
 button{
   margin-left: 10px;
+  height: 30px;
+  font-size: 18px;
+  background-color: white;
+  color: rgb(2, 59, 109);
+  font-weight: bold;
+  border: 5px white solid
+}
+h1{
+  font-size: 36px;
+  margin-left: 10px;
 }
 #log-in{
-  font-size:20px;
-  
+  font-size:28px;
+  margin-left:10px;
 }
-.alert-alert-success{
+.alert-alert{
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+input{
+  font-size:18px;
+  height:25px;
+}
+/* .alert-alert-success{
   font-size: 20px;
+  margin-left:20px;
 }
 .alert-alert-danger{
   font-size: 20px;
-}
+} */
 #accountBtn {
     color: white;
     text-decoration: none; color: inherit;
@@ -106,8 +133,7 @@ button{
     display: flex;
     background-color: rgb(2, 59, 109);
     color: white;
-    height: 100vh;
-    justify-content: center;
 
 }
+
 </style>

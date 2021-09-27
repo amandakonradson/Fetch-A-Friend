@@ -202,7 +202,8 @@
       <br />
       <br />
       <button class="button-submit">Submit</button>
-      <button class="button-cancel">Cancel</button>
+      <button class="button-cancel">
+        <router-link id="cancelButton" :to="{ name: 'home' }">Cancel</router-link></button>
     </form>
   </div>
 </template>
@@ -256,7 +257,8 @@ export default {
         .createPlayDate(newPlayDate)
         .then((response) => {
           if (response.status === 201) {
-            window.alert("Play Date Added!"); //change to landing page once established
+            window.alert("Play Date Added!"); 
+            this.$router.push('/');
           }
         })
         .catch((error) => {
@@ -267,42 +269,6 @@ export default {
           }
         });
     },
-    
-
-    //  checkBoxes(){
-    //   form = document.querySelector('#sectionForm'),
-    //   checkboxes = form.querySelectorAll('input[type=checkbox]'),
-    //   checkboxLength = checkboxes.length,
-    //   firstCheckbox = checkboxLength > 0 ? checkboxes[0] : null,
-
-    //    init();
-    //    isChecked();
-    //    checkValidity();
-    //    init();
-    //  },
-
-    //   init() {
-    //       if (firstCheckbox) {
-    //           for (let i = 0; i < checkboxLength; i++) {
-    //               checkboxes[i].addEventListener('change', checkValidity);
-    //           }
-
-    //           checkValidity();
-    //       }
-    //   },
-
-    //   isChecked() {
-    //       for (let i = 0; i < checkboxLength; i++) {
-    //           if (checkboxes[i].checked) return true;
-    //       }
-
-    //       return false;
-    //   },
-
-    //    checkValidity() {
-    //       const errorMessage = !isChecked() ? 'At least one checkbox must be selected.' : '';
-    //       firstCheckbox.setCustomValidity(errorMessage);
-    //   },
   },
   created() {
     //Current Date from Server
@@ -362,11 +328,20 @@ export default {
   
 }
 button{
-    height: 30px;
+    height: 40px;
   font-size: 18px;
   background-color: white;
   color: rgb(2, 59, 109);
   font-weight: bold;
   border: 5px white solid
+}
+#cancelButton{
+   height: 30px;
+  font-size: 18px;
+  background-color: white;
+  color: rgb(2, 59, 109);
+  font-weight: bold;
+  border: 5px white solid;
+  text-decoration: none;
 }
 </style>

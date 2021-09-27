@@ -24,11 +24,10 @@ export default {
     grid-template-columns:200px 1fr 1fr;
     grid-template-areas: 
     "aside main main"
-    "footer footer footer"
     ;
     background-color: rgb(2, 59, 109);
     color: white;
-    height: 100vh;
+  
     
     
   }
@@ -37,17 +36,12 @@ export default {
     color: white;
     border-right: white 5px dotted;
     
-    
   }
   main {
     grid-area: main;
   }
-  nav.sidebar {
-    grid-area: sidebar;
-  }
   footer {
     grid-area: footer;
-  
   }
   .link{
     color: white;
@@ -55,9 +49,6 @@ export default {
     font-size: 24px;
     margin-left: 10px;
     
-  }
-  #add-pet{
-    padding-bottom: 90px;
   }
   .action-link{
   margin-bottom:15px;

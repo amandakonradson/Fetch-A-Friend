@@ -6,6 +6,7 @@
       <router-link class="link" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout</router-link>
     </div>
     <router-view />
+    <img  id = "logo-banner" src="../images/FaFFooter.png" alt="logo">
   </div>
 </template>
 
@@ -13,7 +14,7 @@
   #app {
   background-color: rgb(2, 59, 109);
   color: white; 
-  height: 100vh;
+
   
   }
   .link {
