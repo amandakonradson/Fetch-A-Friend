@@ -34,6 +34,7 @@ public class JdbcPlayDateDao implements PlayDateDao{
         return playDateList;
     }
 
+    //9.27 currently not using delete or reuse later
     @Override
     public List<PlayDate> getPlayDatesByZipcode(long zipcode) {
             List<PlayDate> playDateList = new ArrayList<>();
@@ -47,7 +48,7 @@ public class JdbcPlayDateDao implements PlayDateDao{
             return playDateList;
     }
 
-    //potential null pointer exception mate_pet_id
+    //play dates where the user is the host
     @Override
     public List<PlayDate> getPlayDatesByUserId(long userId) {
         List<PlayDate> playDateListByUserId= new ArrayList<>();

@@ -28,9 +28,8 @@
       </div>
       <br />
       <h3>Request to Join:</h3>
-      <label>
-        Which of Your Pets Will Be Attending:
-      </label>
+      <form v-on:submit.prevent="sendRequest" >
+      <label> Which of Your Pets Will Be Attending: </label>
       <select class="form" v-model="playDate.matePetId">
         <option
           v-for="dog in dogsByUserId"
@@ -38,11 +37,19 @@
           v-bind:hostPetId="hostPetId"
           v-bind:value="dog.petId"
           required
-          selected>{{dog.name}}</option>
-        ></select>
-      <br /><br><button class="button-submit">Submit</button>
+          selected
+        >
+          {{ dog.name }}
+        </option>
+        >
+      </select>
+      <br /><br /><button class="button-submit" >Submit</button>
       <button class="button-cancel">
-        <router-link id="cancelBtn" to="/play-date/available/">Cancel</router-link></button>
+        <router-link id="cancelBtn" to="/play-date/available/"
+          >Cancel</router-link
+        >
+      </button>
+      </form>
     </div>
 
     <!--<div v-for="description in playDate.mateDescription" v-bind:key="description.index">-->
@@ -51,7 +58,7 @@
 
 <script>
 import playDateService from "@/services/PlayDateService";
-import petService from "@/services/PetService"
+import petService from "@/services/PetService";
 export default {
   data() {
     return {
@@ -60,6 +67,30 @@ export default {
       id: -1,
       dogsByUserId: [],
     };
+  },
+  methods: {
+    sendRequest() {
+      const newRequest = {
+        playDateId: this.playDateId,
+        mateId: this.playDate.matePetId,
+      };
+      
+      playDateService
+        .createRequest(newRequest)
+        .then((response) => {
+          if (response.status === 201) {
+            window.alert("Bow-wow! Your request has been sent!");
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => {
+          if (error.response) {
+            window.alert("Bad Request");
+          } else if (error.request) {
+            window.alert("Could not reach service");
+          }
+        });
+    },
   },
   created() {
     this.playDateId = this.$route.params.id;
@@ -119,21 +150,21 @@ h3 {
   font-size: 24px;
   margin-left: 20px;
 }
-label{
-    font-size: 24px;
+label {
+  font-size: 24px;
   margin-left: 20px;
 }
-button{
-    height: 40px;
+button {
+  height: 40px;
   font-size: 18px;
   background-color: white;
   color: rgb(2, 59, 109);
   font-weight: bold;
   border: 5px white solid;
-  margin-left:20px;
+  margin-left: 20px;
 }
-#cancelBtn{
-   height: 30px;
+#cancelBtn {
+  height: 30px;
   font-size: 18px;
   background-color: white;
   color: rgb(2, 59, 109);
@@ -141,8 +172,7 @@ button{
   border: 5px white solid;
   text-decoration: none;
 }
-option{
-    font-size: 18px;
-    
+option {
+  font-size: 18px;
 }
 </style>

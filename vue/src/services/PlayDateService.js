@@ -2,7 +2,6 @@ import axios from 'axios'
 
 export default{ 
     createPlayDate(playDate) {
-        console.log(playDate);
         return axios.post('/pet/createPlayDate', playDate);
     },
     getCurrentDate(){
@@ -16,5 +15,11 @@ export default{
     },
     getAvailablePlayDatesByPlayDateId(playDateId){
         return axios.get(`pet/playDate/${playDateId}`);
+    },
+    createRequest(request) {
+        return axios.post(`/pet/request`, request);
+    },
+    getMyRequestsToApprove(id){
+        return axios.get(`/myRequest/${id}`)
     }
 }

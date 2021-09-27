@@ -9,12 +9,15 @@
       <div class = "action-link">
       <router-link class="link" id="search-play-dates" v-bind:to="{name: 'play-date-search'}">Search Playdates</router-link></div>
     </aside>
+      <approvals />
   </div>
 </template>
 
 <script>
+import Approvals from './Approvals';
 export default {
-  name: "home"
+  name: "home",
+  components: { Approvals },
 };
 </script>
 

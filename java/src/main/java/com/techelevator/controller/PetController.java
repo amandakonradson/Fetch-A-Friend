@@ -3,9 +3,11 @@ package com.techelevator.controller;
 import com.techelevator.dao.AvailablePlayDateDao;
 import com.techelevator.dao.PetDao;
 import com.techelevator.dao.PlayDateDao;
+import com.techelevator.dao.RequestDao;
 import com.techelevator.model.AvailablePlayDate;
 import com.techelevator.model.Pet;
 import com.techelevator.model.PlayDate;
+import com.techelevator.model.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -27,6 +29,8 @@ public class PetController {
     private PlayDateDao playDateDao;
     @Autowired
     private AvailablePlayDateDao availablePlayDateDao;
+    @Autowired
+    private RequestDao requestDao;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/addPuppy")
@@ -85,6 +89,29 @@ public class PetController {
     public AvailablePlayDate getAvailablePlayDateByPlayDateId(@PathVariable("id") long playDateId){
         return availablePlayDateDao.getAvailablePlayDateByPlayDateId(playDateId);
     }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/request")
+    public void createRequest(@RequestBody Request request){
+        requestDao.createRequest(request);
+    }
+
+    @GetMapping("/myRequest/{id}")
+    public List<Request> getRequestsByUserId(@PathVariable("id") long userId){
+        return requestDao.getAllRequestsByUserId(userId);
+    }
+
+    @GetMapping("/request/{id}")
+    public List<Request> getRequestsByMateId(@PathVariable("id") long matePetId){
+        return requestDao.getAllRequestsByMateId(matePetId);
+    }
+
+    @PutMapping("/request/")
+    public void updateRequest(@RequestBody Request request){
+        requestDao.updateRequest(request);
+    }
+
+
 
 
 
