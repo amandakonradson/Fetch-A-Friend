@@ -81,6 +81,7 @@ INSERT INTO play_date_statuses (status) VALUES ('Available');
 INSERT INTO play_date_statuses (status) VALUES ('Pending');
 INSERT INTO play_date_statuses (status) VALUES ('Confirmed');
 INSERT INTO play_date_statuses (status) VALUES ('Cancelled');
+INSERT INTO play_date_statuses (status) VALUES ('Declined');
 
  
 

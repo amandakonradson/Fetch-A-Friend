@@ -77,6 +77,12 @@ public class JdbcPlayDateDao implements PlayDateDao{
         return LocalDate.now();
     }
 
+    @Override
+    public void updatePlayDate(long playDateId, long matePetId) {
+        String sql = "UPDATE play_dates SET status_id = 3, mate_pet_id = ? WHERE play_date_id = ?";
+        jdbcTemplate.update(sql, matePetId, playDateId);
+    }
+
     private PlayDate mapToRowSet(SqlRowSet results) {
         PlayDate playDate = new PlayDate();
         playDate.setPlayDateId(results.getLong("play_date_id"));

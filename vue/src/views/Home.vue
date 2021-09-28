@@ -9,15 +9,15 @@
       <div class = "action-link">
       <router-link class="link" id="search-play-dates" v-bind:to="{name: 'play-date-search'}">Search Playdates</router-link></div>
     </aside>
-      <approvals />
+      <your-requests-to-approve />
   </div>
 </template>
 
 <script>
-import Approvals from './Approvals';
+import YourRequestsToApprove from '../components/YourRequestsToApprove.vue'
 export default {
   name: "home",
-  components: { Approvals },
+  components: { YourRequestsToApprove },
 };
 </script>
 

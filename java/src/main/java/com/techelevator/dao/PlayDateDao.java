@@ -14,6 +14,7 @@ public interface PlayDateDao {
     List<PlayDate> getPlayDatesByUserId(long userId);
     void createPlayDate(PlayDate playDate);
     LocalDate getCurrentDate();
+    void updatePlayDate(long playDateId, long matePetId);
 
 
 

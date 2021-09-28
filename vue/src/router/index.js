@@ -9,7 +9,7 @@ import AddPet from '../views/AddPet.vue'
 import PlayDateView from '../views/PlayDateView.vue'
 import PlayDateSearch from '../views/PlayDateSearch.vue'
 import PDSignup from '../views/PDSignup.vue'
-import Approvals from '../views/Approvals'
+
 
 
 Vue.use(Router)
@@ -30,7 +30,7 @@ const router = new Router({
     {
       path: '/',
       name: 'home',
-      component: Home, Approvals,
+      component: Home, 
       meta: {
         requiresAuth: true
       }

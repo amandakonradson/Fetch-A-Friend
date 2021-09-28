@@ -20,6 +20,9 @@ export default{
         return axios.post(`/pet/request`, request);
     },
     getMyRequestsToApprove(id){
-        return axios.get(`/myRequest/${id}`)
+        return axios.get(`/pet/myRequest/${id}`)
+    },
+    updateRequest(playDateId, mateId) {
+        return axios.put('/pet/request/', playDateId, mateId)
     }
 }

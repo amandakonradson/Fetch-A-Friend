@@ -106,9 +106,11 @@ public class PetController {
         return requestDao.getAllRequestsByMateId(matePetId);
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping("/request/")
-    public void updateRequest(@RequestBody Request request){
-        requestDao.updateRequest(request);
+    public void updateRequest(long playDateId, long mateId){
+        playDateDao.updatePlayDate(playDateId, mateId);
+        requestDao.updateRequest(playDateId, mateId);
     }
 
 

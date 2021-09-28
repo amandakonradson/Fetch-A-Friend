@@ -9,7 +9,7 @@ public interface RequestDao {
     void createRequest(Request request);
     List<Request> getAllRequestsByUserId(long userId);
     List<Request> getAllRequestsByMateId(long matePetId);
-    void updateRequest(Request request);
+    void updateRequest(long playDateId, long matePateId);
 
 
 
