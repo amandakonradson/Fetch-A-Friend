@@ -107,8 +107,8 @@ public class PetController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/request/")
-    public void updateRequest(long playDateId, long mateId){
+    @PutMapping("/request/{playDateId}/{mateId}")
+    public void updateRequest(@PathVariable long playDateId, @PathVariable long mateId) {
         playDateDao.updatePlayDate(playDateId, mateId);
         requestDao.updateRequest(playDateId, mateId);
     }

@@ -1,12 +1,12 @@
 <template>
   <div id="main">
       <h1>Your Requests to Approve:</h1>
-      <form v-on:submit.prevent="updateRequest">
       <div id="request-tile" v-for="request in requests" 
-      v-bind:key="request.requestId"
+      v-bind:key="request.index"
       v-bind:request="request"
       v-bind:value="request"
        >
+      <form v-on:submit.prevent="approvePlayDate(request.mateId, request.playDateId)">
         <h3>Playdate Details:</h3>
         Date:  {{request.playdate.meetingDate}} <br>
         Start Time: {{request.playdate.startTime}} <br>
@@ -22,8 +22,8 @@
         Temperament: {{request.mateTemperament}} <br>
 
       <button class="button-submit">Pick this Pup!</button>
-      </div>
      </form>
+      </div>
 
   </div>
 
@@ -50,22 +50,20 @@ export default {
 
     },
     methods: {
-      approvePlayDate() {
+      approvePlayDate(idMate, idPlayDate) {
         
-        const idMate= this.request.mateId; 
-        const idPlayDate= this.request.playDateId;
-          
+      
         
         playDateService.updateRequest(idPlayDate, idMate)
         .then((response) => {
           if(response.status >= 200 && response.status < 300) {
             window.alert("Your playdate is conFURRmed!")
-            this.$router.push("/");
+            this.$router.go();
           }
         })
         .catch((error) => {
           if (error.response) {
-            window.alert("Bad Request");
+            window.alert("Bad Dog!");
           } else if (error.request) {
             window.alert("Could not reach service");
           }

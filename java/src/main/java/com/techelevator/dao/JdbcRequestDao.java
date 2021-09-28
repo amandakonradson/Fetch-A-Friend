@@ -66,9 +66,12 @@ public class JdbcRequestDao implements RequestDao {
 
     @Override
     public void updateRequest(long playDateId, long mateId) {
-        String sql = "UPDATE request SET status_id = 3, mate_pet_id = ? " +
+        String sql = "UPDATE request SET status_id = 3, mate_id = ? " +
                 "WHERE play_date_id = ?";
         jdbcTemplate.update(sql, mateId, playDateId);
+
+        String sql2 = "UPDATE request SET status_id = 5 WHERE play_date_id = ? and mate_id != ?";
+        jdbcTemplate.update(sql, playDateId, mateId);
 
     }
 

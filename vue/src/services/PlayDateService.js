@@ -23,6 +23,6 @@ export default{
         return axios.get(`/pet/myRequest/${id}`)
     },
     updateRequest(playDateId, mateId) {
-        return axios.put('/pet/request/', playDateId, mateId)
+        return axios.put(`/pet/request/${playDateId}/${mateId}`)
     }
 }
