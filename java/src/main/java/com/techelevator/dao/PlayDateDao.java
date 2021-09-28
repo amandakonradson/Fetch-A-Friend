@@ -15,7 +15,8 @@ public interface PlayDateDao {
     void createPlayDate(PlayDate playDate);
     LocalDate getCurrentDate();
     void updatePlayDate(long playDateId, long matePetId);
-
+    List<PlayDate> getConfirmedPlayDates(long userId);
+    List<PlayDate> getPlayDatesPendingHostApproval(long userId);
 
 
 

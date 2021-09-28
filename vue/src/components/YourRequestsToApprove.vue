@@ -74,7 +74,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #request-tile {
   border: 3px white dotted;
 }

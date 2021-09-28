@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 
+import com.techelevator.model.Pet;
 import com.techelevator.model.PlayDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -84,7 +85,67 @@ public class JdbcPlayDateDao implements PlayDateDao{
 
     }
 
+    @Override
+    public List<PlayDate> getConfirmedPlayDates(long userId) {
+        List<PlayDate> playDateList = new ArrayList<>();
+        String sql= "SELECT play_date_id, host_pet_id, mate_pet_id, location_street_address, location_city, location_zipcode, meeting_date, " +
+                "start_time, duration, mate_description, mate_size, status_id FROM play_dates " +
+                "WHERE host_pet_id IN (SELECT pet_id FROM user_pet WHERE user_id = ?) " +
+                "AND status_id = 3 " +
+                "OR mate_pet_id IN (SELECT pet_id FROM user_pet WHERE user_id = ?) " +
+                "AND status_id = 3 " +
+                "ORDER BY meeting_date ASC";
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, userId);
+        while (results.next()) {
+            playDateList.add(mapToRowSet(results));
+        }
+        return playDateList;
+
+
+    }
+
+    @Override
+    public List<PlayDate> getPlayDatesPendingHostApproval(long userId) {
+        List<PlayDate> pendingPlayDatesList = new ArrayList<>();
+        String sql= "SELECT play_dates.play_date_id, host_pet_id, mate_pet_id, location_street_address, location_city, location_zipcode, meeting_date, " +
+                "start_time, duration, mate_description, mate_size, play_dates.status_id FROM play_dates " +
+                "JOIN request ON play_dates.play_date_id= request.play_date_id " +
+                "JOIN pets ON request.mate_id= pets.pet_id " +
+                "JOIN user_pet ON pets.pet_id= user_pet.pet_id WHERE user_id = ? " +
+                "AND request.status_id = 2 " +
+                "ORDER BY meeting_date ASC";
+
+
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
+
+        while(results.next()) {
+            pendingPlayDatesList.add(mapToRowSet(results));
+        }
+
+        return pendingPlayDatesList;
+    }
+
+
     private PlayDate mapToRowSet(SqlRowSet results) {
+        PlayDate playDate = new PlayDate();
+        playDate.setPlayDateId(results.getLong("play_date_id"));
+        playDate.setHostPetId(results.getLong("host_pet_id"));
+        playDate.setMatePetId(results.getLong("mate_pet_id"));
+        playDate.setLocationStreetAddress(results.getString("location_street_address"));
+        playDate.setLocationCity(results.getString("location_city"));
+        playDate.setLocationZipcode(results.getLong("location_zipcode"));
+        playDate.setMeetingDate(results.getDate("meeting_date"));
+        playDate.setStartTime(results.getTime("start_time").toLocalTime());
+        playDate.setDuration(results.getLong("duration"));
+        playDate.setMateDescription(results.getString("mate_description").split(","));
+        playDate.setMateSize(results.getString("mate_size"));
+        playDate.setStatusId(results.getLong("status_id"));
+
+        return playDate;
+    }
+
+    private PlayDate mapToConfirmed(SqlRowSet results) {
         PlayDate playDate = new PlayDate();
         playDate.setPlayDateId(results.getLong("play_date_id"));
         playDate.setHostPetId(results.getLong("host_pet_id"));
@@ -99,6 +160,9 @@ public class JdbcPlayDateDao implements PlayDateDao{
         playDate.setMateSize(results.getString("mate_size"));
         playDate.setStatusId(results.getLong("status_id"));
 
+
         return playDate;
     }
+
+
 }

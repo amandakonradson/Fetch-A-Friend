@@ -24,5 +24,11 @@ export default{
     },
     updateRequest(playDateId, mateId) {
         return axios.put(`/pet/request/${playDateId}/${mateId}`)
+    },
+    getAllConfirmedPlayDates(userId) {
+        return axios.get(`/pet/playDates/${userId}`)
+    },
+    getPendingPlayDates(userId) {
+        return axios.get(`pet/playDatesPending/${userId}`)
     }
 }

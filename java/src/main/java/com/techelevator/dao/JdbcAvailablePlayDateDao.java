@@ -1,11 +1,13 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.AvailablePlayDate;
+import com.techelevator.model.PlayDate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -48,10 +50,16 @@ public class JdbcAvailablePlayDateDao implements AvailablePlayDateDao{
         return availablePlayDate;
     }
 
-    @Override
-    public void updatePlaydate(long playDateId) {
-
-    }
+    //Not using for the pending play dates as we need mate_pet_id
+//    @Override
+//    public List<PlayDate> getPlayDatesPendingHostApproval(long userId) {
+//        List<AvailablePlayDate> pendingPlayDatesList = new ArrayList<>();
+//        String sql = "SELECT play_date_id, host_pet_id, location_street_address, location_city, " +
+//                "location_zipcode, meeting_date, start_time, duration, mate_description, mate_size, " +
+//                "status_id, name, breed, temperament, size, spayed_neutered FROM play_dates JOIN " +
+//                "pets ON play_dates.host_pet_id = pets.pet_id WHERE status_id = 2 OR status_id = 2 ORDER BY meeting_date DESC";
+//        return null;
+//    }
 
     private AvailablePlayDate mapToRowSet(SqlRowSet results) {
         AvailablePlayDate availablePlayDate = new AvailablePlayDate();

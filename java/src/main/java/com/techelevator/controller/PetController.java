@@ -113,6 +113,16 @@ public class PetController {
         requestDao.updateRequest(playDateId, mateId);
     }
 
+    @GetMapping("/playDates/{userId}")
+    public List<PlayDate> getConfirmedPlayDates(@PathVariable long userId) {
+        return playDateDao.getConfirmedPlayDates(userId);
+    }
+
+    @GetMapping("/playDatesPending/{userId}")
+    public List<PlayDate> getPlayDatesPendingHostApproval(@PathVariable long userId) {
+        return playDateDao.getPlayDatesPendingHostApproval(userId);
+    }
+
 
 
 

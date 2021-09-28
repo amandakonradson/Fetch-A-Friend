@@ -19,6 +19,8 @@ public class PlayDate {
     private String[] mateDescription;
     private String mateSize;
     private long statusId;
+    private String userPetName;
+
 
     public PlayDate(){
 
@@ -37,6 +39,14 @@ public class PlayDate {
         this.mateDescription = mateDescription;
         this.mateSize = mateSize;
         this.statusId = statusId;
+    }
+
+    public String getUserPetName() {
+        return userPetName;
+    }
+
+    public void setUserPetName(String userPetName) {
+        this.userPetName = userPetName;
     }
 
     public long getPlayDateId() {

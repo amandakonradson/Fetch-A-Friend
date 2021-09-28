@@ -10,14 +10,20 @@
       <router-link class="link" id="search-play-dates" v-bind:to="{name: 'play-date-search'}">Search Playdates</router-link></div>
     </aside>
       <your-requests-to-approve />
+      <your-confirmed-play-dates />
+      <your-pending-play-dates />
+      <your-pets />
   </div>
 </template>
 
 <script>
 import YourRequestsToApprove from '../components/YourRequestsToApprove.vue'
+import YourConfirmedPlayDates from '../components/YourConfirmedPlayDates.vue'
+import YourPendingPlayDates from '../components/YourPendingPlayDates.vue'
+import YourPets from '../components/YourPets.vue'
 export default {
   name: "home",
-  components: { YourRequestsToApprove },
+  components: { YourRequestsToApprove, YourConfirmedPlayDates, YourPendingPlayDates, YourPets },
 };
 </script>
 

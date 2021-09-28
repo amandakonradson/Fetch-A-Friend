@@ -9,6 +9,6 @@ public interface AvailablePlayDateDao {
 
     List<AvailablePlayDate> getAvailablePlayDates();
     AvailablePlayDate getAvailablePlayDateByPlayDateId(long playDateId);
-    void updatePlaydate(long playDateId);
+
 
 }
