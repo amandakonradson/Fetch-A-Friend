@@ -3,7 +3,7 @@
     <form id="create-play-date" v-on:submit.prevent="savePlayDate">
       <h1 id="title">Create Your Play Date:</h1>
       <label for="host-pet-id"
-        >Which Of Your Pets Is Looking For A Playmate:
+        >Which Of Your Pets <br> Is Looking For A Playmate:
       </label>
       <select class="form" v-model="playDate.hostPetId">
         <option
@@ -65,10 +65,36 @@
         required
       />
       <br />
+      <label for="mate-size">Preferred Playmate Size: </label>
+      <select
+        class="form"
+        name="mate-size"
+        id="mate-size"
+        v-model="playDate.mateSize"
+        required
+      >
+        <option value="extra small" selected>
+          Extra Small (for example: Chihuahua, Maltese, Yorkshire Terrier)
+        </option>
+        <option value="small" selected>
+          Small (for example: Beagle, French Bulldog, Boston Terrier)
+        </option>
+        <option value="medium" selected>
+          Medium (for example: Border Collie, Corgi, Spaniel)
+        </option>
+        <option value="large" selected>
+          Large (for example: Lab, Golden Retriever, Australian Shepherd)
+        </option>
+        <option value="extra large" selected>
+          Extra Large (for example: Great Dane, St. Bernard, Newfoundland)
+        </option>
+        <option value="no preference" selected>No Preference</option>
+      </select>
       <label id="temperament" for="description"
         >Preferred Playmate Temperament(s):
       </label>
       <br />
+       <div id="temperament-list">
       <input
         class="form"
         type="checkbox"
@@ -76,7 +102,7 @@
         id="description"
         v-model="playDate.description"
       />
-      <label class="checkbox" for="high-energy"
+      <label class="checkbox" for="energetic"
         >High Energy: These dogs never tire and can chase a ball for
         hours!</label
       >
@@ -113,7 +139,7 @@
         v-model="playDate.description"
       />
       <label class="checkbox" for="protective"
-        >Protective: These are the dogs devoted to their humans and may prefer
+        >Protective: These human devoted pups may prefer
         to socialize from a distance!</label
       >
       <br />
@@ -148,7 +174,7 @@
         id="laid-back"
         v-model="playDate.description"
       />
-      <label class="checkbox" for="laid-back"
+      <label class="checkbox" for="relaxed"
         >Laid Back: These pups are content to lounge around and soak in the
         sun!</label
       >
@@ -171,34 +197,10 @@
         id="nopreference"
         v-model="playDate.description"
       />
-      <label class="checkbox" for="nopreference" >No Preference</label>
+      <label class="checkbox" for="no preference" >No Preference</label>
       <br />
-
-      <label for="mate-size">Preferred Playmate Size: </label>
-      <select
-        class="form"
-        name="mate-size"
-        id="mate-size"
-        v-model="playDate.mateSize"
-        required
-      >
-        <option value="extra small" selected>
-          Extra Small (for example: Chihuahua, Maltese, Yorkshire Terrier)
-        </option>
-        <option value="small" selected>
-          Small (for example: Beagle, French Bulldog, Boston Terrier)
-        </option>
-        <option value="medium" selected>
-          Medium (for example: Border Collie, Corgi, Spaniel)
-        </option>
-        <option value="large" selected>
-          Large (for example: Lab, Golden Retriever, Australian Shepherd)
-        </option>
-        <option value="extra large" selected>
-          Extra Large (for example: Great Dane, St. Bernard, Newfoundland)
-        </option>
-        <option value="no preference" selected>No Preference</option>
-      </select>
+</div>
+      
       <br />
       <br />
       <button class="button-submit">Submit</button>
@@ -302,23 +304,24 @@ export default {
   border: white 5px dotted;
   padding: 20px;
   font-size: 30px;
-  width: 750px;
+  width:700px;
   margin-left: auto;
   margin-right: auto;
   background-color: rgb(2, 59, 109);
+  
 }
 .form {
   margin-bottom: 20px;
+  
 }
+
 #title {
   font-size: 40px;
   font-weight: bold;
   text-decoration: underline;
   text-align: center;
 }
-.checkbox {
-  font-size: 18px;
-}
+
 #temperament {
   margin-bottom: 10px;
 }
@@ -326,6 +329,10 @@ export default {
   margin-right: 10px;
   margin-bottom: 25px;
   
+}
+label{
+  display: inline-block;
+  width: 400px;
 }
 button{
     height: 40px;
@@ -344,4 +351,22 @@ button{
   border: 5px white solid;
   text-decoration: none;
 }
+input, select{
+  font-size:26px;
+  width: 400px;
+}
+#temperament-list{
+  margin-left: -200px;
+
+  
+}
+.checkbox {
+  font-size: 20px;
+  display: inline;
+  margin-left:-185px;
+  
+  
+}
+
+
 </style>

@@ -1,12 +1,16 @@
 <template>
   <div id="main">
-    <h1>Review available play dates below:</h1>
+    <h1>Available Playdates:</h1>
     <table>
       <thead>
         <tr>
-          <th>Ideal Playmate</th>
+          <th class= "heading" colspan="5">Playdate Details</th>
+          <th class="heading" colspan="3">Host Dog Info</th>
+          <th class="heading"></th>
+        <tr class="column-title">
+          <th>Ideal<br> Playmate</th>
           <th>City</th>
-          <th>Zip Code</th>
+          <th>Zip <br>Code</th>
           <th>Date</th>
           <th>Time</th>
           <th class="size">Size</th>
@@ -20,7 +24,7 @@
       </thead>
       <tbody>
         <tr>
-          <td></td>
+          <td id="ideal-playmate"></td>
           <td>
             <input
               type="text"
@@ -58,7 +62,7 @@
               v-model="filter.spayedNeutered"
             />
           </td>
-          <td></td>
+          <td id="pick-play-date"></td>
         </tr>
 
         <tr
@@ -67,7 +71,7 @@
           v-bind:key="playDate.id"
         >
           <td>
-            Temperament:
+            <b>Temperament:</b>
             <div
               v-for="description in playDate.mateDescription"
               v-bind:key="description.index"
@@ -75,7 +79,7 @@
               {{ description }}
             </div>
             <br />
-            Size: {{ playDate.mateSize }}
+            <b>Size: </b><br>{{ playDate.mateSize }}
           </td>
           <td>
             {{ playDate.locationStreetAddress }} <br />
@@ -85,7 +89,7 @@
           <td>{{ playDate.meetingDate }}</td>
           <td>
             Start time: {{ playDate.startTime }} <br />
-            Probable play time: {{ playDate.duration }} min.
+            Playtime: {{ playDate.duration }} min.
           </td>
           <td>{{ playDate.size }}</td>
           <td>{{ playDate.temperament }}</td>
@@ -206,7 +210,6 @@ h1 {
   background-color: rgb(2, 59, 109);
 }
 table {
-  border: white, 5px, solid;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -214,8 +217,16 @@ table {
 th {
   text-align: left;
   font-size: 28px;
-  font-weight: bold;
+  
 }
+.heading{
+ 
+  font-size: 40px;
+}
+th{
+  background-color: rgb(129, 221, 247);
+}
+
 td {
   font-size: 20px;
 }
@@ -224,13 +235,21 @@ td {
 }
 td,
 th {
-  border: white, 5px, solid;
   text-align: center;
+  color:rgb(2, 59, 109);
+}
+tr:nth-child(even){
+background-color: aliceblue
+}
+tr:nth-child(odd){
+background-color: rgb(129, 221, 247)
 }
 table,
 th,
 td {
-  border: 2px dotted white;
+  border: 3px solid  rgb(2, 59, 109);
+  border-collapse: collapse;
+  
 }
 .link {
   color: white;
@@ -239,9 +258,7 @@ td {
   font-size: 24px;
 }
 
-input {
-  max-width: 100%;
-}
+
 #sizeFilter{
   width:100px;
 }
@@ -249,13 +266,26 @@ input {
   width:125px;
 }
 #locationZipcodeFilter{
-  width: 100px;
+  width: 90px;
 }
 #spayedNeuteredFilter{
   width: 150px;
 }
 #pd-signup{
   font-weight: bold;
+}
+#timeFilter{
+  width:175px;
+  
+}
+#pick-play-date{
+  width: 135px;
+}
+#temperamentFilter{
+  width: 180px;
+}
+#ideal-playmate{
+  width: 140px;
 }
 
 @media only screen and (max-width: 550px) {
