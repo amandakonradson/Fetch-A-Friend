@@ -91,9 +91,9 @@ public class JdbcPlayDateDao implements PlayDateDao{
         String sql= "SELECT play_date_id, host_pet_id, mate_pet_id, location_street_address, location_city, location_zipcode, meeting_date, " +
                 "start_time, duration, mate_description, mate_size, status_id FROM play_dates " +
                 "WHERE host_pet_id IN (SELECT pet_id FROM user_pet WHERE user_id = ?) " +
-                "AND status_id = 3 " +
+                "AND status_id = 3 AND meeting_date >= CURRENT_DATE " +
                 "OR mate_pet_id IN (SELECT pet_id FROM user_pet WHERE user_id = ?) " +
-                "AND status_id = 3 " +
+                "AND status_id = 3 AND meeting_date >= CURRENT_DATE " +
                 "ORDER BY meeting_date ASC";
 
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, userId);
