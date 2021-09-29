@@ -77,6 +77,10 @@ public class JdbcPetDao implements PetDao {
     @Override
     public void removePet(long petId) {
 
+        String sql6 = "DELETE FROM request " +
+                "WHERE mate_id = ? AND status_id != 5 OR mate_id = ? AND status_id != 4";
+        jdbcTemplate.update(sql6, petId, petId);
+
         String sql3 = "UPDATE play_dates SET status_id = 4, host_pet_id = null "+
                 "WHERE host_pet_id = ? " +
                 "AND status_id != 5 AND meeting_date >= CURRENT_DATE ";

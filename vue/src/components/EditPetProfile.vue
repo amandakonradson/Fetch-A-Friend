@@ -214,14 +214,14 @@ export default {
             })
             .catch((error) => {
               if (error.response) {
-                this.errorMsg =
+                window.alert(
                   "Error removing puppy. Response received was '" +
                   error.response.statusText +
-                  "'.";
+                  "'.");
               } else if (error.request) {
-                this.errorMsg = "Server could not be reached.";
+                window.alert("Server could not be reached.");
               } else {
-                this.errorMsg = "Request could not be created.";
+                window.alert("Request could not be created.");
               }
             });
         

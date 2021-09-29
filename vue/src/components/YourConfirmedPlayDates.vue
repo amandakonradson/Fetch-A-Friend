@@ -70,6 +70,6 @@ h1{
     font-size: 26px;
 }
 #address{
-    margin-left: 100px;
+    margin-left: 125px;
 }
 </style>
