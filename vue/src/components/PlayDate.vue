@@ -65,6 +65,7 @@
         required
       />
       <br />
+      
       <label for="mate-size">Preferred Playmate Size: </label>
       <select
         class="form"
@@ -308,6 +309,9 @@ export default {
   margin-left: auto;
   margin-right: auto;
   background-color: rgb(2, 59, 109);
+  background-image: url('C:/Users/Student/Workspace/java-final-capstone-team1/vue/images/PawPrints.png');
+  border: 10px rgb(25, 149, 180) dotted;
+  color:rgb(2, 59, 109);
   
 }
 .form {
@@ -342,6 +346,7 @@ button{
   font-weight: bold;
   border: 5px white solid;
   font-family: 'Alegreya Sans', sans-serif;
+  border: 3px solid rgb(2, 59, 109);
 }
 #cancelButton{
    height: 30px;
@@ -358,6 +363,10 @@ input, select{
   width: 400px;
   font-family: 'Alegreya Sans', sans-serif;
   color: rgb(2, 59, 109);
+  border: 3px solid rgb(2, 59, 109);
+}
+input{
+  width: 390px;
 }
 #temperament-list{
   margin-left: -200px;

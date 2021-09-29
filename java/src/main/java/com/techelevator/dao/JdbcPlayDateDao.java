@@ -102,7 +102,6 @@ public class JdbcPlayDateDao implements PlayDateDao{
         }
         return playDateList;
 
-
     }
 
     @Override
@@ -135,7 +134,7 @@ public class JdbcPlayDateDao implements PlayDateDao{
         playDate.setLocationStreetAddress(results.getString("location_street_address"));
         playDate.setLocationCity(results.getString("location_city"));
         playDate.setLocationZipcode(results.getLong("location_zipcode"));
-        playDate.setMeetingDate(results.getDate("meeting_date"));
+        playDate.setMeetingDate(results.getDate("meeting_date").toLocalDate());
         playDate.setStartTime(results.getTime("start_time").toLocalTime());
         playDate.setDuration(results.getLong("duration"));
         playDate.setMateDescription(results.getString("mate_description").split(","));
@@ -153,7 +152,7 @@ public class JdbcPlayDateDao implements PlayDateDao{
         playDate.setLocationStreetAddress(results.getString("location_street_address"));
         playDate.setLocationCity(results.getString("location_city"));
         playDate.setLocationZipcode(results.getLong("location_zipcode"));
-        playDate.setMeetingDate(results.getDate("meeting_date"));
+        playDate.setMeetingDate(results.getDate("meeting_date").toLocalDate());
         playDate.setStartTime(results.getTime("time").toLocalTime());
         playDate.setDuration(results.getLong("duration"));
         playDate.setMateDescription(results.getString("mate_description").split(","));

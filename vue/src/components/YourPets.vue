@@ -54,5 +54,8 @@ export default {
   flex-direction:column;
   margin-left: 20px;
 }
+h1{
+  font-size:42px;
+}
 
 </style>

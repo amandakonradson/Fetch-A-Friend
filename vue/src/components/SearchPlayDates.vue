@@ -222,6 +222,11 @@ th {
   color:white;
   
 }
+input{
+  font-family: 'Alegreya Sans', sans-serif;
+  color:  rgb(2, 59, 109);
+  font-size:18px;
+}
 .heading{
  
   font-size: 40px;

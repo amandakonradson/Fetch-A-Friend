@@ -214,32 +214,42 @@ export default {
   padding-bottom: 50px;
 }
 #form{
-width: 700px;
+width: 725px;
 margin-right: auto;
   margin-left: auto;
   border: white 5px dotted;
+  background-image: url('C:/Users/Student/Workspace/java-final-capstone-team1/vue/images/PawPrints.png');
+  border: 10px rgb(25, 149, 180) dotted;
+  color:rgb(2, 59, 109);
   
 }
 form {
   font-size: 24px;
-  margin-left: 10px; 
+  margin-left: 20px; 
 
 }
-/* label{
+label{
   display: inline-block;
-  width: 400px;
+  width: 200px;
   
-} */
+} 
 h1{
     margin-left: 10px;
 }
 input{
   font-size: 18px;
-  width: 300px;
+  width: 290px;
+  border: 3px solid rgb(2, 59, 109);
+  font-family: 'Alegreya Sans', sans-serif;
+  color:rgb(2, 59, 109);
+  
 }
 select{
   font-size:20px;
   width: 300px;
+  border: 3px solid rgb(2, 59, 109);
+  font-family: 'Alegreya Sans', sans-serif;
+  color:rgb(2, 59, 109);
 }
 button {
   height: 40px;
@@ -247,7 +257,9 @@ button {
   background-color: white;
   color: rgb(2, 59, 109);
   font-weight: bold;
-  border: 5px white solid
+  border: 5px white solid;
+  border: 3px solid rgb(2, 59, 109);
+  font-family: 'Alegreya Sans', sans-serif;
 }
 #cancelBtn{
    height: 30px;
@@ -267,10 +279,12 @@ button {
   margin-left: -135px;
   text-align: justify;
   width: 270px;
+  display: inline;
   
 }
 #vaccination{
  margin-left: -140px;
+ display: inline;
 }
 
 </style>

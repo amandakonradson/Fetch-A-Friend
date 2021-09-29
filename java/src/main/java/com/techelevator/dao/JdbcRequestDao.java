@@ -100,7 +100,7 @@ public class JdbcRequestDao implements RequestDao {
 
     private PlayDate mapRowToPlayDate(SqlRowSet results){
         PlayDate date = new PlayDate();
-        date.setMeetingDate(results.getDate("meeting_date"));
+        date.setMeetingDate(results.getDate("meeting_date").toLocalDate());
         date.setStartTime(results.getTime("start_time").toLocalTime());
         date.setDuration(results.getLong("duration"));
         date.setLocationStreetAddress(results.getString("location_street_address"));

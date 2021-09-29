@@ -7,10 +7,10 @@
       v-bind:value="playDate"
       >
           <h3>Playdate Details:</h3>
-        <b>Date: </b> {{playDate.meetingDate}} <br>
-        <b>Start Time: </b> {{playDate.startTime}} <br>
-       <b> Play Time:</b> {{playDate.duration}} minutes <br>
-       <b> Location:</b> {{playDate.locationStreetAddress}}
+        <b>Date: </b><div class="data"> {{playDate.meetingDate}}</div> <br>
+        <b>Start Time: </b> <div class="data">{{playDate.startTime}}</div> <br>
+       <b> Play Time:</b> <div class="data">{{playDate.duration}} minutes</div> <br>
+       <b> Location:</b><div class="data"> {{playDate.locationStreetAddress}}</div>
         <br>
       </div>
   </div>
@@ -44,7 +44,7 @@ export default {
 <style scoped>
 #pending-tile {
     border: 5px white dotted;
-  font-size: 20px;
+  font-size: 30px;
   padding-left:20px;
   padding-bottom: 20px;
    line-height: 30px;
@@ -58,7 +58,12 @@ export default {
   margin-left: 20px;
 }
 h1{
-  font-size:36px;
+  font-size:42px;
+}
+.data{
+  font-size: 26px;
+  display:inline;
+  margin-left: 10px;
 }
 
 </style>

@@ -89,7 +89,7 @@ export default {
     margin-right:auto;
     border: 10px white dotted;
     color: white;
-    width: 400px;
+    width: 500px;
     padding-bottom: 30px;
     
     
@@ -101,7 +101,8 @@ button{
   background-color: white;
   color: rgb(2, 59, 109);
   font-weight: bold;
-  border: 3px rgb(2, 59, 109) solid
+  border: 3px rgb(2, 59, 109) solid;
+  font-family: 'Alegreya Sans', sans-serif;
 }
 h1{
   font-size: 36px;
@@ -120,6 +121,8 @@ h1{
 input{
   font-size:18px;
   height:25px;
+  font-family: 'Alegreya Sans', sans-serif;
+  color:rgb(2, 59, 109);
 }
 /* .alert-alert-success{
   font-size: 20px;

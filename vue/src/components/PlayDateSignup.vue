@@ -186,6 +186,8 @@ select{
   font-size: 20px;
   font-family: 'Alegreya Sans', sans-serif;
   color:rgb(2, 59, 109);
+  width: 175px;
+  border: rgb(2, 59, 109) 3px solid;
 }
 
 </style>

@@ -8,18 +8,18 @@
        >
       <form id="info" v-on:submit.prevent="approvePlayDate(request.mateId, request.playDateId)">
         <h3>Playdate Details:</h3>
-        <b>Date: </b> {{request.playdate.meetingDate}} <br>
-        <b>Start Time:</b> {{request.playdate.startTime}} <br>
-        <b>Play Time: </b>{{request.playdate.duration}} minutes <br>
-        <b>Location: </b>{{request.playdate.locationStreetAddress}}
+        <b>Date: </b><div class="data"> {{request.playdate.meetingDate}}</div> <br>
+        <b>Start Time:</b><div class="data"> {{request.playdate.startTime}} </div> <br>
+        <b>Play Time: </b><div class="data">{{request.playdate.duration}} minutes</div>  <br>
+        <b>Location: </b><div class="data">{{request.playdate.locationStreetAddress}}</div> 
         <br>
         <h3>Potential Playmate:</h3>
-        <b>Name: </b> {{request.mateName}} <br>
-        <b>Breed: </b>{{request.mateBreed}} <br>
-        <b>Size:</b> {{request.mateSize}} <br>
-        <b>Year of Birth:</b> {{request.mateBirthYear}} <br>
-        <b>Spayed/Neutered?</b> {{request.mateSpayedNeutered}} <br>
-        <b>Temperament: </b>{{request.mateTemperament}} <br>
+        <b>Name: </b> <div class="data">{{request.mateName}} </div> <br>
+        <b>Breed: </b><div class="data">{{request.mateBreed}}</div>  <br>
+        <b>Size:</b> <div class="data">{{request.mateSize}} </div> <br>
+        <b>Year of Birth:</b> <div class="data">{{request.mateBirthYear}} </div> <br>
+        <b>Spayed/Neutered?</b> <div class="data">{{request.mateSpayedNeutered}} </div> <br>
+        <b>Temperament: </b><div class="data">{{request.mateTemperament}} </div> <br>
 
       <button class="button-submit">Pick this Pup!</button>
      </form>
@@ -77,15 +77,16 @@ export default {
 <style scoped>
 #request-tile {
   border: 5px white dotted;
-  font-size: 20px;
+  font-size: 30px;
   padding-left:20px;
   padding-bottom: 20px;
   background-color:  rgb(25, 149, 180);
   margin: 5px;
   width: 400px;
+ 
 }
 h3{
-  font-size: 28px;
+  font-size: 34px;
 }
 #main{
   display: flex;
@@ -106,6 +107,11 @@ button {
   font-family: 'Alegreya Sans', sans-serif;
 }
 h1{
-  font-size:36px;
+  font-size:42px;
+}
+.data{
+  font-size: 26px;
+  display:inline;
+  margin-left: 10px;
 }
 </style>

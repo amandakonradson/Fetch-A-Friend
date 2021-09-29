@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Date;
@@ -13,7 +14,7 @@ public class PlayDate {
     private String locationStreetAddress;
     private String locationCity;
     private long locationZipcode;
-    private Date meetingDate;
+    private LocalDate meetingDate;
     private LocalTime startTime;
     private long duration;
     private String[] mateDescription;
@@ -26,7 +27,7 @@ public class PlayDate {
 
     }
 
-    public PlayDate(long playDateId, long hostPetId, long matePetId, String locationStreetAddress, String locationCity, long locationZipcode, Date meetingDate, LocalTime startTime, long duration, String[] mateDescription, String mateSize, long statusId) {
+    public PlayDate(long playDateId, long hostPetId, long matePetId, String locationStreetAddress, String locationCity, long locationZipcode, LocalDate meetingDate, LocalTime startTime, long duration, String[] mateDescription, String mateSize, long statusId, String userPetName) {
         this.playDateId = playDateId;
         this.hostPetId = hostPetId;
         this.matePetId = matePetId;
@@ -39,6 +40,7 @@ public class PlayDate {
         this.mateDescription = mateDescription;
         this.mateSize = mateSize;
         this.statusId = statusId;
+        this.userPetName = userPetName;
     }
 
     public String getUserPetName() {
@@ -97,11 +99,11 @@ public class PlayDate {
         this.locationZipcode = locationZipcode;
     }
 
-    public Date getMeetingDate() {
+    public LocalDate getMeetingDate() {
         return meetingDate;
     }
 
-    public void setMeetingDate(Date meetingDate) {
+    public void setMeetingDate(LocalDate meetingDate) {
         this.meetingDate = meetingDate;
     }
 

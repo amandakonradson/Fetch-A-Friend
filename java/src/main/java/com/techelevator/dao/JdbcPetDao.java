@@ -76,9 +76,28 @@ public class JdbcPetDao implements PetDao {
 
     @Override
     public void removePet(long petId) {
+
+        String sql3 = "UPDATE play_dates SET status_id = 4, host_pet_id = null "+
+                "WHERE host_pet_id = ? " +
+                "AND status_id != 5 AND meeting_date >= CURRENT_DATE ";
+        jdbcTemplate.update(sql3,petId);
+
+        String sql4= "UPDATE play_dates SET status_id = 4, mate_pet_id = null  "+
+                "WHERE mate_pet_id = ? " +
+                "AND status_id != 5 AND meeting_date >= CURRENT_DATE ";
+        jdbcTemplate.update(sql4,petId);
+
+        String sql5= "DELETE from request WHERE mate_id = ?";
+        jdbcTemplate.update(sql5,petId);
+
+        String sqlString= "DELETE FROM user_pet WHERE pet_id =?";
+        jdbcTemplate.update(sqlString,petId);
+
         String sql= "DELETE FROM pets WHERE pet_id =?";
         jdbcTemplate.update(sql,petId);
     }
+
+
 
     private Pet mapRowtoPet(SqlRowSet results){
         Pet pet = new Pet();
