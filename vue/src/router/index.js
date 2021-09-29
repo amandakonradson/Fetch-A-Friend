@@ -9,7 +9,7 @@ import AddPet from '../views/AddPet.vue'
 import PlayDateView from '../views/PlayDateView.vue'
 import PlayDateSearch from '../views/PlayDateSearch.vue'
 import PDSignup from '../views/PDSignup.vue'
-
+import EditPetProfileView from '../views/EditPetProfileView.vue'
 
 
 Vue.use(Router)
@@ -91,14 +91,14 @@ const router = new Router({
         requiresAuth: true
       }
     },
-    // {
-    //   path: "/approvals",
-    //   name: "approvals",
-    //   component: Approvals,
-    //   meta: {
-    //     requiresAuth: true
-    //   }
-    // }
+    {
+      path: "/petProfile",
+      name: "pet-profile",
+      component: EditPetProfileView,
+      meta: {
+        requiresAuth: true
+      }
+    }
   ]
 })
 

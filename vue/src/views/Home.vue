@@ -8,6 +8,8 @@
       <router-link class="link" id="create-playdate" v-bind:to="{name:'play-date-view'}">Create A Playdate</router-link><br></div> 
       <div class = "action-link">
       <router-link class="link" id="search-play-dates" v-bind:to="{name: 'play-date-search'}">Search Playdates</router-link></div>
+      <div class = "action-link">
+      <router-link class="link" id="pet-profile" v-bind:to="{name:'pet-profile'}">Edit Pet Profile </router-link> <br> </div>
     </aside>
     <div id="requests">
       <your-requests-to-approve /> </div>

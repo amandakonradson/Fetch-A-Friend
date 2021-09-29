@@ -123,6 +123,18 @@ public class PetController {
         return playDateDao.getPlayDatesPendingHostApproval(userId);
     }
 
+    @PutMapping("/pupdate")
+    @ResponseStatus(HttpStatus.OK)
+    public void updatePet(@RequestBody Pet pet){
+        petDao.updatePet(pet);
+    }
+
+    @DeleteMapping("/pupdate/{petId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void removePet(@PathVariable long petId){
+        petDao.removePet(petId);
+    }
+
 
 
 

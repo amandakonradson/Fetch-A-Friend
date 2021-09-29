@@ -113,7 +113,7 @@ public class JdbcPlayDateDao implements PlayDateDao{
                 "JOIN request ON play_dates.play_date_id= request.play_date_id " +
                 "JOIN pets ON request.mate_id= pets.pet_id " +
                 "JOIN user_pet ON pets.pet_id= user_pet.pet_id WHERE user_id = ? " +
-                "AND request.status_id = 2 " +
+                "AND request.status_id = 2 AND meeting_date >= CURRENT_DATE " +
                 "ORDER BY meeting_date ASC";
 
 
