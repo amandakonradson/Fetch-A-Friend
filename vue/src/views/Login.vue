@@ -24,7 +24,7 @@
         required
         autofocus
       /><br>
-      <label for="password" class="sr-only">Password   </label>
+      <label for="password" class="sr-only">Password </label>
       <input
         type="password"
         id="password"
@@ -87,11 +87,11 @@ export default {
 #form{
     margin-left:auto;
     margin-right:auto;
-    border: 10px rgb(25, 149, 180) dotted;
-    color:  rgb(2, 59, 109);
-    width: 500px;
+    border: 10px white dotted;
+    color: white;
+    width: 400px;
     padding-bottom: 30px;
-    background-image: url('C:/Users/Student/Workspace/java-final-capstone-team1/vue/images/PawPrints.png');
+    
     
 }
 button{

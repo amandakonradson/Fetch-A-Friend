@@ -336,24 +336,28 @@ label{
 }
 button{
     height: 40px;
-  font-size: 18px;
+  font-size: 20px;
   background-color: white;
   color: rgb(2, 59, 109);
   font-weight: bold;
-  border: 5px white solid
+  border: 5px white solid;
+  font-family: 'Alegreya Sans', sans-serif;
 }
 #cancelButton{
    height: 30px;
-  font-size: 18px;
+  font-size: 20px;
   background-color: white;
   color: rgb(2, 59, 109);
   font-weight: bold;
   border: 5px white solid;
   text-decoration: none;
+  
 }
 input, select{
   font-size:26px;
   width: 400px;
+  font-family: 'Alegreya Sans', sans-serif;
+  color: rgb(2, 59, 109);
 }
 #temperament-list{
   margin-left: -200px;

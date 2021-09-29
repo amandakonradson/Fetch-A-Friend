@@ -51,7 +51,7 @@ export default {
   padding-left:20px;
   padding-bottom: 20px;
    line-height: 30px;
-   background-color: rgb(63, 182, 212);
+   background-color: rgb(25, 149, 180);
      margin: 5px;
      width: 400px;
 }

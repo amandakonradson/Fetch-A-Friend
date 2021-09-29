@@ -7,7 +7,7 @@
         {{ playDate.locationStreetAddress }} <br />
         {{ playDate.locationCity }}, {{ playDate.locationZipcode }} <br />
       </div>
-      <h3>Date</h3>
+      <h3>Date:</h3>
       <div class="info" id="date">
         {{ playDate.meetingDate }} Beginning at: {{ playDate.startTime }}
         <br />Anticipated Length: {{ playDate.duration }} minutes <br />
@@ -167,6 +167,7 @@ button {
   font-weight: bold;
   border: 3px  rgb(2, 59, 109) solid;
   margin-left: 20px;
+  font-family: 'Alegreya Sans', sans-serif;
 }
 #cancelBtn {
   height: 30px;
@@ -176,12 +177,15 @@ button {
   font-weight: bold;
   border: 5px white solid;
   text-decoration: none;
+  font-family: 'Alegreya Sans', sans-serif;
 }
 option {
   font-size: 18px;
 }
 select{
   font-size: 20px;
+  font-family: 'Alegreya Sans', sans-serif;
+  color:rgb(2, 59, 109);
 }
 
 </style>

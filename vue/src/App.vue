@@ -11,17 +11,20 @@
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@900&display=swap');
+
   #app {
   background-color: rgb(2, 59, 109);
   color: white; 
+  font-family: 'Alegreya Sans', sans-serif;
 
-  
   }
   .link {
     color: white;
     text-decoration: none; color: inherit;
     font-size: 24px;
     font-weight: bold;
+    
   }
   #logo-banner{
    width: 100%;

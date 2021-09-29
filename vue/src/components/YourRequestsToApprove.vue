@@ -103,6 +103,7 @@ button {
   font-weight: bold;
   border: 5px white solid;
   margin-top:20px;
+  font-family: 'Alegreya Sans', sans-serif;
 }
 h1{
   font-size:36px;
