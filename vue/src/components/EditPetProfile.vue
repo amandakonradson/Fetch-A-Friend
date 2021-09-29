@@ -2,22 +2,22 @@
   <div>
     <form v-on:submit.prevent="sendRequest">
       <label> Which of Your Pets Would You Like to Edit: </label>
-      <select class="form" v-model="dog.petId">
+      <select class="form" v-model="selectedDogId" v-on:change='returnSelectedDog'>
         <option
-          v-for="dog in dogsByUserId"
-          v-bind:key="dog.petId"
-          v-bind:petId="petId"
-          v-bind:value="dog.petId"
+          v-for="doggo in dogsByUserId"
+          v-bind:key="doggo.petId"
+      
+          v-bind:value="doggo.petId"
           required
           selected
         >
-          {{ dog.name }}
+          {{ doggo.name }}
         </option>
         >
         </select>
         <br>
         <label for="name">Name: </label>
-        <input type="text" id="name" v-model="dog.name" required />
+        <input type="text" id="name" v-bind:name="dog.name" v-model="dog.name" required />
         <br />
         <br />
 
@@ -157,9 +157,23 @@ export default {
         size: "",
         spayedNeutered: "",
         temperament: "",
+        petId : -1
       },
       id: -1,
+      selectedDogId: -1
     };
+  },
+  methods: {
+    returnSelectedDog(){
+
+      for (let i=0; i<this.dogsByUserId.length; i++) {
+
+        if (this.dogsByUserId[i].petId == this.selectedDogId) {
+          this.dog = this.dogsByUserId[i];
+          break;
+        }
+      }
+    }
   },
   created() {
     this.id = this.$store.state.user.id;
