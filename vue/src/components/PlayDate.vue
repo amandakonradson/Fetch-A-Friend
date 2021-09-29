@@ -1,7 +1,7 @@
 <template>
   <div id="body">
     <form id="create-play-date" v-on:submit.prevent="savePlayDate">
-      <h1 id="title">Create Your Play Date:</h1>
+      <h1 id="title">Create Your Playdate:</h1>
       <label for="host-pet-id"
         >Which Of Your Pets <br> Is Looking For A Playmate:
       </label>

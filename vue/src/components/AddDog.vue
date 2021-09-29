@@ -78,7 +78,7 @@
         <br />
 
         <label for="temperament"
-          >Temperament? (select the most applicable option):
+          >Temperament:
         </label>
         <select
           name="temperaments"
@@ -87,17 +87,16 @@
           required
         >
           <option value="energetic">
-            High Energy: These dogs never tire and can chase a ball for hours!
+            High Energy: These dogs can chase a ball for hours!
           </option>
           <option value="timid">
             Timid: Once these pups feel comfortable, they make great playmates!
           </option>
           <option value="friendly">
-            Friendly: These dogs love everyone they encounter and have never met
-            a stranger!
+            Friendly: These dogs love everyone they encounter!!
           </option>
           <option value="protective">
-            Protective: These are the dogs devoted to their humans and may
+            Protective: These human devoted pups and may
             prefer to socialize from a distance!
           </option>
           <option value="dominant">
@@ -113,7 +112,6 @@
           </option>
           <option value="submissive">
             Submissive: These dogs are happy to let others take the lead!
-            
           </option>
         </select>
         <br />
@@ -214,8 +212,6 @@ export default {
   background-color: rgb(2, 59, 109);
   color: white;
   padding-bottom: 50px;
-  
-  
 }
 #form{
 width: 700px;
@@ -223,15 +219,27 @@ margin-right: auto;
   margin-left: auto;
   border: white 5px dotted;
   
-
 }
 form {
   font-size: 24px;
-  margin-left: 10px;
-  
+  margin-left: 10px; 
+
 }
+/* label{
+  display: inline-block;
+  width: 400px;
+  
+} */
 h1{
     margin-left: 10px;
+}
+input{
+  font-size: 18px;
+  width: 300px;
+}
+select{
+  font-size:20px;
+  width: 300px;
 }
 button {
   height: 40px;
@@ -256,5 +264,13 @@ button {
 }
 #vaccine{
   font-size: 18px;
+  margin-left: -135px;
+  text-align: justify;
+  width: 270px;
+  
 }
+#vaccination{
+ margin-left: -140px;
+}
+
 </style>

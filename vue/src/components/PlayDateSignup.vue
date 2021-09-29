@@ -1,7 +1,7 @@
 <template>
   <div id="main">
     <div id="play-date-details">
-      <h1>Play Date Details:</h1>
+      <h1>Playdate Details:</h1>
       <h3>Location:</h3>
       <div class="info" id="address">
         {{ playDate.locationStreetAddress }} <br />
@@ -18,7 +18,7 @@
         Breed: {{ playDate.breed }}<br />
         Size: {{ playDate.size }} <br />Temperament: {{ playDate.temperament }}
         <br />Spayed/Neutered: {{ playDate.spayedNeutered }} <br /><br />
-        {{ playDate.name }} plays well with dogs who are:
+        {{ playDate.name }} plays well with dogs who are
         <span
           v-for="description in playDate.mateDescription"
           v-bind:key="description.index"
@@ -128,19 +128,23 @@ export default {
 <style scoped>
 #main {
   background-color: rgb(2, 59, 109);
-  color: white;
+  color:  rgb(2, 59, 109);
   padding-bottom: 50px;
+  font-weight:bold;
 }
 #play-date-details {
   margin-left: auto;
   margin-right: auto;
   width: 600px;
-  border: 5px white dotted;
+  border: 10px rgb(25, 149, 180) dotted;
   padding-bottom: 20px;
+  background-image: url('C:/Users/Student/Workspace/java-final-capstone-team1/vue/images/PawPrints.png');
+  
 }
 h1 {
   font-size: 48px;
   margin-left: 20px;
+  color: rgb(2, 59, 109);
 }
 h3 {
   font-size: 32px;
@@ -151,6 +155,7 @@ h3 {
   margin-left: 20px;
 }
 label {
+ 
   font-size: 24px;
   margin-left: 20px;
 }
@@ -160,7 +165,7 @@ button {
   background-color: white;
   color: rgb(2, 59, 109);
   font-weight: bold;
-  border: 5px white solid;
+  border: 3px  rgb(2, 59, 109) solid;
   margin-left: 20px;
 }
 #cancelBtn {
@@ -175,4 +180,8 @@ button {
 option {
   font-size: 18px;
 }
+select{
+  font-size: 20px;
+}
+
 </style>

@@ -1,13 +1,12 @@
 <template>
   <div id="main">
-      <h1>Your Pets: </h1>
+      <h1>Your Pet DeTAILS: </h1>
       <div id="pet-tile" v-for="pet in pets" 
       v-bind:key="pet.index"
       v-bind:pet="pet"
       v-bind:value="pet"
        >
-       <h3>Pet DeTAILS: </h3> 
-        Name: {{pet.name}}        
+        <b>Name: </b> {{pet.name}}        
       </div>
 
   </div>
@@ -38,7 +37,22 @@ export default {
 
 <style scoped>
 #pet-tile {
-  border: 3px white dotted;
+      border: 5px white dotted;
+  font-size: 36px;
+  padding-left:20px;
+  padding-bottom: 20px;
+  padding-top:20px;
+  line-height: 30px;
+  width: 300px;
+  background-color:  rgb(25, 149, 180);
+    margin: 5px;
+  
+  
+}
+#main{
+  display: flex;
+  flex-direction:column;
+  margin-left: 20px;
 }
 
 </style>

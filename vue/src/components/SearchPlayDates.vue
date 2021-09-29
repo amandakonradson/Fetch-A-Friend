@@ -19,7 +19,7 @@
             Spayed/ <br />
             Neutered?
           </th>
-          <th>Pick This <br>Play Date</th>
+          <th>Pick This <br>Playdate</th>
         </tr>
       </thead>
       <tbody>
@@ -205,6 +205,7 @@ export default {
 h1 {
   color: white;
   margin-left: 20px;
+  font-size: 50px;
 }
 #main {
   background-color: rgb(2, 59, 109);
@@ -215,16 +216,16 @@ table {
   margin-right: auto;
 }
 th {
-  text-align: left;
+  
   font-size: 28px;
+  background-color:  rgb(25, 149, 180);
+  color:white;
   
 }
 .heading{
  
   font-size: 40px;
-}
-th{
-  background-color: rgb(129, 221, 247);
+  color:white;
 }
 
 td {
@@ -236,13 +237,13 @@ td {
 td,
 th {
   text-align: center;
-  color:rgb(2, 59, 109);
+  
 }
 tr:nth-child(even){
-background-color: aliceblue
+background-color: rgb(63, 182, 212)
 }
 tr:nth-child(odd){
-background-color: rgb(129, 221, 247)
+background-color:  rgb(25, 149, 180)
 }
 table,
 th,

@@ -87,9 +87,11 @@ export default {
 #form{
     margin-left:auto;
     margin-right:auto;
-    border: 5px dotted white;
+    border: 10px rgb(25, 149, 180) dotted;
+    color:  rgb(2, 59, 109);
     width: 500px;
     padding-bottom: 30px;
+    background-image: url('C:/Users/Student/Workspace/java-final-capstone-team1/vue/images/PawPrints.png');
     
 }
 button{
@@ -99,7 +101,7 @@ button{
   background-color: white;
   color: rgb(2, 59, 109);
   font-weight: bold;
-  border: 5px white solid
+  border: 3px rgb(2, 59, 109) solid
 }
 h1{
   font-size: 36px;
@@ -108,6 +110,7 @@ h1{
 #log-in{
   font-size:28px;
   margin-left:10px;
+  font-weight: bold;
 }
 .alert-alert{
   font-size: 24px;

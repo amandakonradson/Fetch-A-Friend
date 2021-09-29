@@ -9,10 +9,12 @@
       <div class = "action-link">
       <router-link class="link" id="search-play-dates" v-bind:to="{name: 'play-date-search'}">Search Playdates</router-link></div>
     </aside>
-      <your-requests-to-approve />
-      <your-confirmed-play-dates />
-      <your-pending-play-dates />
-      <your-pets />
+    <div id="requests">
+      <your-requests-to-approve /> </div>
+      <div id="confirmed">
+      <your-confirmed-play-dates /></div>
+      <div id="waiting"><your-pending-play-dates /></div>
+      <div id= "pets"><your-pets /></div>
   </div>
 </template>
 
@@ -32,31 +34,38 @@ export default {
     display: grid;
     grid-template-columns:200px 1fr 1fr;
     grid-template-areas: 
-    "aside main main"
+    "aside pets confirmed"
+    "aside requests waiting"
+    
     ;
     background-color: rgb(2, 59, 109);
-    color: white;
-  
-    
-    
+    color: white; 
   }
   aside {
     grid-area: aside;
     color: white;
     border-right: white 5px dotted;
+  }
+  #requests{
+    grid-area: requests;
     
   }
-  main {
-    grid-area: main;
+  #confirmed{
+    grid-area: confirmed;
   }
-  footer {
-    grid-area: footer;
+  #waiting{
+    grid-area: waiting;
   }
+  #pets{
+    grid-area: pets;
+  }
+ 
   .link{
     color: white;
     text-decoration: none; color: inherit;
     font-size: 24px;
     margin-left: 10px;
+    grid-area: footer;
     
   }
   .action-link{

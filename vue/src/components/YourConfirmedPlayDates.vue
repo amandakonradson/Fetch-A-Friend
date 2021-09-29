@@ -1,15 +1,15 @@
 <template>
-  <div>
-      <h1>Upcoming Play Dates: </h1>
-      <div ID="upcoming-tile" v-for="playDate in playDates"
+  <div id="main">
+      <h1>Upcoming Playdates: </h1>
+      <div id="upcoming-tile" v-for="playDate in playDates"
       v-bind:key="playDate.index"
       v-bind:playDate="playDate"
       v-bind:value="playDate">
        <h3>Playdate Details:</h3>
-        Date:  {{playDate.meetingDate}} <br>
-        Start Time: {{playDate.startTime}} <br>
-        Play Time: {{playDate.duration}} minutes <br>
-        Location: {{playDate.locationStreetAddress}}
+        <b>Date: </b> {{playDate.meetingDate}} <br>
+        <b>Start Time: </b> {{playDate.startTime}} <br>
+        <b>Play Time:</b>  {{playDate.duration}} minutes <br>
+        <b>Location: </b> {{playDate.locationStreetAddress}}<br>
         {{playDate.locationCity}}, {{playDate.locationZipcode}}
         <br>
       </div>
@@ -46,7 +46,21 @@ export default {
 
 <style scoped>
 #upcoming-tile {
-    border: 3px white dotted;
+    border: 5px white dotted;
+  font-size: 20px;
+  padding-left:20px;
+  padding-bottom: 20px;
+   line-height: 30px;
+   background-color: rgb(63, 182, 212);
+     margin: 5px;
+     width: 400px;
 }
-
+#main{
+  display: flex;
+  flex-direction:column;
+  margin-left: 20px;
+}
+h1{
+  font-size:36px;
+}
 </style>

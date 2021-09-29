@@ -6,20 +6,20 @@
       v-bind:request="request"
       v-bind:value="request"
        >
-      <form v-on:submit.prevent="approvePlayDate(request.mateId, request.playDateId)">
+      <form id="info" v-on:submit.prevent="approvePlayDate(request.mateId, request.playDateId)">
         <h3>Playdate Details:</h3>
-        Date:  {{request.playdate.meetingDate}} <br>
-        Start Time: {{request.playdate.startTime}} <br>
-        Play Time: {{request.playdate.duration}} minutes <br>
-        Location: {{request.playdate.locationStreetAddress}}
+        <b>Date: </b> {{request.playdate.meetingDate}} <br>
+        <b>Start Time:</b> {{request.playdate.startTime}} <br>
+        <b>Play Time: </b>{{request.playdate.duration}} minutes <br>
+        <b>Location: </b>{{request.playdate.locationStreetAddress}}
         <br>
         <h3>Potential Playmate:</h3>
-        Name: {{request.mateName}} <br>
-        Breed: {{request.mateBreed}} <br>
-        Size: {{request.mateSize}} <br>
-        Year of Birth: {{request.mateBirthYear}} <br>
-        Spayed/Neutered? {{request.mateSpayedNeutered}} <br>
-        Temperament: {{request.mateTemperament}} <br>
+        <b>Name: </b> {{request.mateName}} <br>
+        <b>Breed: </b>{{request.mateBreed}} <br>
+        <b>Size:</b> {{request.mateSize}} <br>
+        <b>Year of Birth:</b> {{request.mateBirthYear}} <br>
+        <b>Spayed/Neutered?</b> {{request.mateSpayedNeutered}} <br>
+        <b>Temperament: </b>{{request.mateTemperament}} <br>
 
       <button class="button-submit">Pick this Pup!</button>
      </form>
@@ -76,7 +76,35 @@ export default {
 
 <style scoped>
 #request-tile {
-  border: 3px white dotted;
+  border: 5px white dotted;
+  font-size: 20px;
+  padding-left:20px;
+  padding-bottom: 20px;
+  background-color:  rgb(25, 149, 180);
+  margin: 5px;
+  width: 400px;
 }
-
+h3{
+  font-size: 28px;
+}
+#main{
+  display: flex;
+  flex-direction:column;
+  margin-left: 20px;
+}
+#info{
+  line-height: 30px;
+}
+button {
+  height: 30px;
+  font-size: 18px;
+  background-color: white;
+  color: rgb(2, 59, 109);
+  font-weight: bold;
+  border: 5px white solid;
+  margin-top:20px;
+}
+h1{
+  font-size:36px;
+}
 </style>
