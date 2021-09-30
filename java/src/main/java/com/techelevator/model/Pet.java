@@ -10,10 +10,11 @@ public class Pet {
     private String temperament;
     private String size;
     private String spayedNeutered;
+    private String image;
 
     public Pet() {}
 
-    public Pet(long petId, String name, String breed, int birthYear, String gender, String temperament, String size, String spayedNeutered) {
+    public Pet(long petId, String name, String breed, int birthYear, String gender, String temperament, String size, String spayedNeutered, String image) {
         this.petId = petId;
         this.name = name;
         this.breed = breed;
@@ -22,6 +23,7 @@ public class Pet {
         this.temperament = temperament;
         this.size = size;
         this.spayedNeutered = spayedNeutered;
+        this.image = image;
     }
 
     public long getPetId() {
@@ -88,6 +90,14 @@ public class Pet {
         this.spayedNeutered = spayedNeutered;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "Pet{" +
@@ -99,6 +109,7 @@ public class Pet {
                 ", temperament='" + temperament + '\'' +
                 ", size='" + size + '\'' +
                 ", spayedNeutered='" + spayedNeutered + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

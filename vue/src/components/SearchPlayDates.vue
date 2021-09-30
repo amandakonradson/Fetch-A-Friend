@@ -86,9 +86,9 @@
             {{ playDate.locationCity }}
           </td>
           <td>{{ playDate.locationZipcode }}</td>
-          <td>{{ playDate.meetingDate }}</td>
+          <td>{{ changeDateFormat(playDate.meetingDate)}}</td>
           <td>
-            Start time: {{ playDate.startTime }} <br />
+            Start time: {{ playDate.startTime}} <br />
             Playtime: {{ playDate.duration }} min.
           </td>
           <td>{{ playDate.size }}</td>
@@ -114,6 +114,7 @@
 
 <script>
 import playDateService from "@/services/PlayDateService";
+import moment from 'moment';
 
 export default {
   data() {
@@ -128,10 +129,12 @@ export default {
         temperament: "",
         spayedNeutered: "",
       },
+      id: -1,
       availablePlaydates: [], //pull playDates from backend and put in created
     };
   },
   computed: {
+    
     filteredList() {
       let filteredPlayDates = this.availablePlaydates;
       if (this.filter.locationCity != "") {
@@ -184,9 +187,25 @@ export default {
       return filteredPlayDates;
     },
   },
+  methods:{ 
+changeDateFormat(insertDate){
+ let myArr= insertDate.split('-');
+ return myArr[1]+"-"+myArr[2]+"-"+myArr[0];
+},
+ moment: function () { //time format code for current time only
+    return moment();
+  }
+  },
+   filters: {
+    moment: function (date) { //time format code for current time only
+      return moment(date).format('L');
+    }
+  },
   created() {
+
+    this.id = this.$store.state.user.id; 
     playDateService
-      .getAvailablePlayDates()
+      .getAvailablePlayDates(this.id)
       .then((response) => {
         this.availablePlaydates = response.data;
       })

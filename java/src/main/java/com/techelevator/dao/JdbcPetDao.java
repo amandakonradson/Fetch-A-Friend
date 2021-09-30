@@ -25,8 +25,8 @@ public class JdbcPetDao implements PetDao {
 
     @Override
     public void createPet(Pet pet, Principal principal) {
-        String sql= "INSERT INTO pets (name, breed, birth_year, gender, temperament, size, spayed_neutered) VALUES (?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql,pet.getName(),pet.getBreed(),pet.getBirthYear(),pet.getGender(),pet.getTemperament(), pet.getSize(), pet.getSpayedNeutered());
+        String sql= "INSERT INTO pets (name, breed, birth_year, gender, temperament, size, spayed_neutered, image) VALUES (?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql,pet.getName(),pet.getBreed(),pet.getBirthYear(),pet.getGender(),pet.getTemperament(), pet.getSize(), pet.getSpayedNeutered(),pet.getImage());
 
         String sql2= "INSERT INTO user_pet (pet_id, user_id) VALUES ((SELECT pet_id FROM pets WHERE name = ?)," +
                 " (SELECT user_id FROM users WHERE username = ?))";
@@ -36,7 +36,7 @@ public class JdbcPetDao implements PetDao {
     @Override
     public List<Pet> getAllPets() {
         List<Pet> petList = new ArrayList<>();
-        String sql= "SELECT name, breed, birth_year, gender, temperament, size, spayed_neutered FROM pets ";
+        String sql= "SELECT name, breed, birth_year, gender, temperament, size, spayed_neutered, image FROM pets ";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
         while (results.next()){
             petList.add(mapRowtoPet(results));
@@ -47,7 +47,7 @@ public class JdbcPetDao implements PetDao {
     @Override
     public List<Pet> getPetsByUserId(long userId) {
         List<Pet> petsByUserId = new ArrayList<>();
-        String sql= "SELECT pet_id, name, breed, birth_year, gender, temperament, size, spayed_neutered FROM pets WHERE pet_id IN (SELECT pet_id FROM user_pet WHERE user_id= ?) ";
+        String sql= "SELECT pet_id, name, breed, birth_year, gender, temperament, size, spayed_neutered, image FROM pets WHERE pet_id IN (SELECT pet_id FROM user_pet WHERE user_id= ?) ";
         SqlRowSet results= jdbcTemplate.queryForRowSet(sql,userId);
         while (results.next()){
             petsByUserId.add(mapRowtoPet(results));
@@ -59,7 +59,7 @@ public class JdbcPetDao implements PetDao {
     @Override
     public Pet getPetById(long petId) {
         Pet petById = new Pet();
-        String sql= "SELECT name, breed, birth_year, gender, temperament, size, spayed_neutered FROM pets WHERE pet_id = ? ";
+        String sql= "SELECT name, breed, birth_year, gender, temperament, size, spayed_neutered, image FROM pets WHERE pet_id = ? ";
         SqlRowSet result= jdbcTemplate.queryForRowSet(sql,petId);
         if (result.next()){
             petById=mapRowtoPet(result);
@@ -113,6 +113,7 @@ public class JdbcPetDao implements PetDao {
         pet.setTemperament(results.getString("temperament"));
         pet.setSize(results.getString("size"));
         pet.setSpayedNeutered(results.getString("spayed_neutered"));
+        pet.setImage(results.getString("image"));
 
         return pet;
     }

@@ -10,8 +10,8 @@ export default{
     getAllPlayDates(){
         return axios.get('/pet/allPlayDates/');
     },
-    getAvailablePlayDates() {
-        return axios.get('/pet/allPlayDates/available');
+    getAvailablePlayDates(id) {
+        return axios.get(`/pet/allPlayDates/available/${id}`);
     },
     getAvailablePlayDatesByPlayDateId(playDateId){
         return axios.get(`pet/playDate/${playDateId}`);

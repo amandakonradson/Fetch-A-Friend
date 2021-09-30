@@ -13,6 +13,7 @@
     "axios": "^0.21.1",
     "cloudinary-vue": "^1.2.3",
     "core-js": "^3.9.1",
+    "moment": "^2.29.1",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
     "vue2-datepicker": "^3.10.2",

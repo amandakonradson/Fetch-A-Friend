@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.lang.reflect.Array;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 @Component
@@ -20,14 +21,15 @@ public class JdbcAvailablePlayDateDao implements AvailablePlayDateDao{
 
 
     @Override
-    public List<AvailablePlayDate> getAvailablePlayDates() {
+    public List<AvailablePlayDate> getAvailablePlayDates(long userId) {
         List<AvailablePlayDate> availablePlayDateList = new ArrayList<>();
         String sql = "SELECT play_date_id, host_pet_id, location_street_address, location_city, " +
                 "location_zipcode, meeting_date, start_time, duration, mate_description, mate_size, " +
                 "status_id, name, breed, temperament, size, spayed_neutered FROM play_dates JOIN " +
-                "pets ON play_dates.host_pet_id = pets.pet_id WHERE status_id = 1 OR status_id = 2 ORDER BY meeting_date DESC";
+                "pets ON play_dates.host_pet_id = pets.pet_id JOIN user_pet ON play_dates.host_pet_id= user_pet.pet_id " +
+                "WHERE status_id = 1 AND user_id!=? OR status_id = 2 AND user_id!=? ORDER BY meeting_date DESC";
 
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId, userId);
         while (results.next()) {
             availablePlayDateList.add(mapToRowSet(results));
         }

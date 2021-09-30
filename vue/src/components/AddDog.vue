@@ -136,6 +136,7 @@
 
 <script>
 import petService from "@/services/PetService";
+import pupPicService from "@/services/PupPicService";
 
 export default {
   data() {
@@ -149,7 +150,9 @@ export default {
         size: "",
         spayedNeutered: "",
         temperament: "",
+        image: "",
       },
+      pupImage: "",
     };
   },
   //created(){
@@ -176,8 +179,14 @@ export default {
     //     //     }
     //     // })
     //     // }
-
+  //
     saveDog() {
+         pupPicService
+        .list()
+        .then((newImage) => {
+          this.pupImage = newImage.data;
+          console.log(this.pupImage);
+
       const newDog = {
         name: this.dog.name,
         breed: this.dog.breed,
@@ -186,7 +195,9 @@ export default {
         size: this.dog.size,
         spayedNeutered: this.dog.spayedNeutered,
         temperament: this.dog.temperament,
-      };
+        image: this.pupImage.message
+      }
+
       petService
         .createPet(newDog)
         .then((response) => {
@@ -202,9 +213,11 @@ export default {
             window.alert("Could not reach service");
           }
         });
-    },
-  },
-};
+  
+  })
+  }
+  }
+}
 </script>
 
 <style scoped>

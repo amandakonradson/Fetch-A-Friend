@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS "location" CASCADE;
 DROP TABLE IF EXISTS "play_date_statuses" CASCADE;
 
 
-
 CREATE TABLE "pets" (
   "pet_id" serial,
   "name" varchar(50),
@@ -16,6 +15,7 @@ CREATE TABLE "pets" (
   "temperament" varchar(1000),
   "size" varchar(100),
   "spayed_neutered" varchar(5),
+  "image" varchar(100),
   PRIMARY KEY ("pet_id")
 );
 

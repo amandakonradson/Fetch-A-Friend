@@ -75,14 +75,9 @@ public class PetController {
         return playDateDao.getPlayDatesByUserId(userId);
     }
 
-    @GetMapping("/allPlayDates/{zipcode}")
-    public List<PlayDate> getPlayDatesByZip (@PathVariable long zipcode){
-        return playDateDao.getPlayDatesByZipcode(zipcode);
-    }
-
-    @GetMapping("/allPlayDates/available")
-    public List<AvailablePlayDate> getAvailablePlayDates() {
-        return availablePlayDateDao.getAvailablePlayDates();
+    @GetMapping("/allPlayDates/available/{userId}")
+    public List<AvailablePlayDate> getAvailablePlayDates(@PathVariable long userId) {
+        return availablePlayDateDao.getAvailablePlayDates(userId);
     }
 
     @GetMapping("/playDate/{id}")

@@ -6,7 +6,8 @@
       v-bind:pet="pet"
       v-bind:value="pet"
        >
-        <b>Name: </b> {{pet.name}}        
+        <b>Name: </b> {{pet.name}}   
+        <img v-bind:src="pet.image" alt="random doggo" width="200" /> <!-- dog image code-->
       </div>
 
   </div>

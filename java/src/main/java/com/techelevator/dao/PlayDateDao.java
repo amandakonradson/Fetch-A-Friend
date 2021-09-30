@@ -10,7 +10,6 @@ import java.util.List;
 public interface PlayDateDao {
 
     List<PlayDate> getAllPlayDates();
-    List<PlayDate> getPlayDatesByZipcode(long zipcode);
     List<PlayDate> getPlayDatesByUserId(long userId);
     void createPlayDate(PlayDate playDate);
     LocalDate getCurrentDate();

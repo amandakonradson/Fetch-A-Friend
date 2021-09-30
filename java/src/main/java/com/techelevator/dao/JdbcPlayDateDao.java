@@ -35,20 +35,6 @@ public class JdbcPlayDateDao implements PlayDateDao{
         return playDateList;
     }
 
-    //9.27 currently not using delete or reuse later
-    @Override
-    public List<PlayDate> getPlayDatesByZipcode(long zipcode) {
-            List<PlayDate> playDateList = new ArrayList<>();
-            String sql = "SELECT play_date_id, host_pet_id, mate_pet_id, location_street_address, location_city, location_zipcode, meeting_date, " +
-                    "start_time, duration, mate_description, mate_size, status_id FROM play_dates " +
-                    "WHERE location_id IN (SELECT location_id FROM location WHERE zipcode = ?)";
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, zipcode);
-            while (results.next()) {
-                playDateList.add(mapToRowSet(results));
-            }
-            return playDateList;
-    }
-
     //play dates where the user is the host
     @Override
     public List<PlayDate> getPlayDatesByUserId(long userId) {
