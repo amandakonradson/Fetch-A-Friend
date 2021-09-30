@@ -23,7 +23,7 @@
         <span
           v-for="description in playDate.mateDescription"
           v-bind:key="description.index"
-          >{{ description }}</span
+          >{{ description }} </span
         >
         and are {{ playDate.mateSize }} in size.
       </div>
@@ -83,8 +83,8 @@ export default {
             } else {
                 return timeArr[0]-12+":"+timeArr[1]+" PM"
             }
-        }
-  },
+        },
+  
     sendRequest() {
       const newRequest = {
         playDateId: this.playDateId,
@@ -106,6 +106,7 @@ export default {
             window.alert("Could not reach service");
           }
         });
+  }
   },
   created() {
     this.playDateId = this.$route.params.id;
@@ -136,7 +137,8 @@ export default {
       .catch((err) => {
         console.error(err + " nothing returned");
       });
-  },
+  }
+  
 };
 </script>
 

@@ -57,8 +57,9 @@ export default {
             } else {
                 return timeArr[0]-12+":"+timeArr[1]+" PM"
             }
-        }
-  },
+        },
+    
+  
     cancelPlayDate(playDateId) {
       if (
         confirm(
@@ -90,6 +91,7 @@ export default {
       }
     },
 
+}
 }
 
 </script>
@@ -126,5 +128,15 @@ h1{
 }
 #address{
     margin-left: 125px;
+}
+button {
+  height: 40px;
+  font-size: 18px;
+  background-color: white;
+  color: rgb(2, 59, 109);
+  font-weight: bold;
+  border: 5px white solid;
+  border: 3px solid rgb(2, 59, 109);
+  font-family: 'Alegreya Sans', sans-serif;
 }
 </style>

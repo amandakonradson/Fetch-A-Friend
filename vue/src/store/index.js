@@ -137,11 +137,8 @@ export default new Vuex.Store({
 'https://images.dog.ceo/breeds/pekinese/n02086079_3774.jpg', 
 'https://images.dog.ceo/breeds/mix/Noah01.jpg',
 'https://images.dog.ceo/breeds/terrier-norwich/n02094258_3598.jpg',
-
 'https://images.dog.ceo/breeds/bullterrier-staffordshire/n02093256_3812.jpg',
-
 'https://images.dog.ceo/breeds/springer-english/n02102040_4738.jpg',
-
 'https://images.dog.ceo/breeds/terrier-irish/n02093991_4626.jpg',
 'https://images.dog.ceo/breeds/collie-border/n02106166_2685.jpg',
 'https://images.dog.ceo/breeds/leonberg/n02111129_77.jpg',

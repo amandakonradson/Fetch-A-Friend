@@ -181,7 +181,7 @@ export default {
     //     // }
   //
     saveDog() {
-      let pupImage = this.$store.state.photos[Math.floor(Math.random() * 19)]
+      let pupImage = this.$store.state.photos[Math.floor(Math.random() * 18)]
   
       const newDog = {
         name: this.dog.name,
