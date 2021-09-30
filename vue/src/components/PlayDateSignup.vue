@@ -9,8 +9,9 @@
       </div>
       <h3>Date:</h3>
       <div class="info" id="date">
-        {{ playDate.meetingDate }} Beginning at: {{ playDate.startTime }}
-        <br />Anticipated Length: {{ playDate.duration }} minutes <br />
+        {{ changeDateFormat(playDate.meetingDate) }} Beginning at:
+        {{ changeTimeFormat(playDate.startTime) }} <br />Anticipated Length:
+        {{ playDate.duration }} minutes <br />
       </div>
       <h3>Host Information:</h3>
       <div class="info" id="host">
@@ -28,27 +29,27 @@
       </div>
       <br />
       <h3>Request to Join:</h3>
-      <form v-on:submit.prevent="sendRequest" >
-      <label> Which of Your Pets Will Be Attending: </label>
-      <select class="form" v-model="playDate.matePetId">
-        <option
-          v-for="dog in dogsByUserId"
-          v-bind:key="dog.petId"
-          v-bind:hostPetId="hostPetId"
-          v-bind:value="dog.petId"
-          required
-          selected
-        >
-          {{ dog.name }}
-        </option>
-        >
-      </select>
-      <br /><br /><button class="button-submit" >Submit</button>
-      <button class="button-cancel">
-        <router-link id="cancelBtn" to="/play-date/available/"
-          >Cancel</router-link
-        >
-      </button>
+      <form v-on:submit.prevent="sendRequest">
+        <label> Which of Your Pets Will Be Attending: </label>
+        <select class="form" v-model="playDate.matePetId">
+          <option
+            v-for="dog in dogsByUserId"
+            v-bind:key="dog.petId"
+            v-bind:hostPetId="hostPetId"
+            v-bind:value="dog.petId"
+            required
+            selected
+          >
+            {{ dog.name }}
+          </option>
+          >
+        </select>
+        <br /><br /><button class="button-submit">Submit</button>
+        <button class="button-cancel">
+          <router-link id="cancelBtn" to="/play-date/available/"
+            >Cancel</router-link
+          >
+        </button>
       </form>
     </div>
 
@@ -69,6 +70,21 @@ export default {
     };
   },
   methods: {
+    changeDateFormat(insertDate){
+ let myArr= insertDate.split('-');
+ return myArr[1]+"-"+myArr[2]+"-"+myArr[0];
+},
+    changeTimeFormat(givenTime){
+            let timeArr= givenTime.split(":");
+            if (timeArr[0]<12){
+                return timeArr[0]+":"+timeArr[1]+" AM";
+            } else if(timeArr[0]==12) {
+                return timeArr[0]+":"+timeArr[1]+" PM"
+            } else {
+                return timeArr[0]-12+":"+timeArr[1]+" PM"
+            }
+        }
+  },
     sendRequest() {
       const newRequest = {
         playDateId: this.playDateId,
@@ -90,7 +106,6 @@ export default {
             window.alert("Could not reach service");
           }
         });
-    },
   },
   created() {
     this.playDateId = this.$route.params.id;
@@ -128,9 +143,9 @@ export default {
 <style scoped>
 #main {
   background-color: rgb(2, 59, 109);
-  color:  rgb(2, 59, 109);
+  color: rgb(2, 59, 109);
   padding-bottom: 50px;
-  font-weight:bold;
+  font-weight: bold;
 }
 #play-date-details {
   margin-left: auto;
@@ -139,7 +154,6 @@ export default {
   border: 10px rgb(25, 149, 180) dotted;
   padding-bottom: 20px;
   background-image: url("../../images/PawPrints.png");
-  
 }
 h1 {
   font-size: 48px;
@@ -155,7 +169,6 @@ h3 {
   margin-left: 20px;
 }
 label {
- 
   font-size: 24px;
   margin-left: 20px;
 }
@@ -165,9 +178,9 @@ button {
   background-color: white;
   color: rgb(2, 59, 109);
   font-weight: bold;
-  border: 3px  rgb(2, 59, 109) solid;
+  border: 3px rgb(2, 59, 109) solid;
   margin-left: 20px;
-  font-family: 'Alegreya Sans', sans-serif;
+  font-family: "Alegreya Sans", sans-serif;
 }
 #cancelBtn {
   height: 30px;
@@ -177,17 +190,16 @@ button {
   font-weight: bold;
   border: 5px white solid;
   text-decoration: none;
-  font-family: 'Alegreya Sans', sans-serif;
+  font-family: "Alegreya Sans", sans-serif;
 }
 option {
   font-size: 18px;
 }
-select{
+select {
   font-size: 20px;
-  font-family: 'Alegreya Sans', sans-serif;
-  color:rgb(2, 59, 109);
+  font-family: "Alegreya Sans", sans-serif;
+  color: rgb(2, 59, 109);
   width: 175px;
   border: rgb(2, 59, 109) 3px solid;
 }
-
 </style>

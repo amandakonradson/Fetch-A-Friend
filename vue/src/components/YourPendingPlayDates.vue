@@ -8,7 +8,7 @@
       v-bind:value="playDate"
       >
         <b>Date: </b><div class="data"> {{changeDateFormat(playDate.meetingDate)}}</div> <br>
-        <b>Start Time: </b> <div class="data">{{playDate.startTime}}</div> <br>
+        <b>Start Time: </b> <div class="data">{{changeTimeFormat(playDate.startTime)}}</div> <br>
        <b> Play Time:</b> <div class="data">{{playDate.duration}} minutes</div> <br>
        <b> Location:</b><div class="data"> {{playDate.locationStreetAddress}}</div>
         <br>
@@ -37,6 +37,16 @@ export default {
 
     },
       methods:{
+        changeTimeFormat(givenTime){
+            let timeArr= givenTime.split(":");
+            if (timeArr[0]<12){
+                return timeArr[0]+":"+timeArr[1]+" AM";
+            } else if(timeArr[0]==12) {
+                return timeArr[0]+":"+timeArr[1]+" PM"
+            } else {
+                return timeArr[0]-12+":"+timeArr[1]+" PM"
+            }
+        },
         changeDateFormat(insertDate){
  let myArr= insertDate.split('-');
  return myArr[1]+"-"+myArr[2]+"-"+myArr[0];

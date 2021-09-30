@@ -88,7 +88,7 @@
           <td>{{ playDate.locationZipcode }}</td>
           <td>{{ changeDateFormat(playDate.meetingDate)}}</td>
           <td>
-            Start time: {{ playDate.startTime}} <br />
+            Start time: {{ changeTimeFormat(playDate.startTime)}} <br />
             Playtime: {{ playDate.duration }} min.
           </td>
           <td>{{ playDate.size }}</td>
@@ -114,7 +114,6 @@
 
 <script>
 import playDateService from "@/services/PlayDateService";
-import moment from 'moment';
 
 export default {
   data() {
@@ -192,14 +191,16 @@ changeDateFormat(insertDate){
  let myArr= insertDate.split('-');
  return myArr[1]+"-"+myArr[2]+"-"+myArr[0];
 },
- moment: function () { //time format code for current time only
-    return moment();
-  }
-  },
-   filters: {
-    moment: function (date) { //time format code for current time only
-      return moment(date).format('L');
-    }
+changeTimeFormat(givenTime){
+            let timeArr= givenTime.split(":");
+            if (timeArr[0]<12){
+                return timeArr[0]+":"+timeArr[1]+" AM";
+            } else if(timeArr[0]==12) {
+                return timeArr[0]+":"+timeArr[1]+" PM"
+            } else {
+                return timeArr[0]-12+":"+timeArr[1]+" PM"
+            }
+        }
   },
   created() {
 
