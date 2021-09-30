@@ -136,7 +136,7 @@
 
 <script>
 import petService from "@/services/PetService";
-import pupPicService from "@/services/PupPicService";
+//import pupPicService from "@/services/PupPicService";
 
 export default {
   data() {
@@ -152,7 +152,7 @@ export default {
         temperament: "",
         image: "",
       },
-      pupImage: "",
+     
     };
   },
   //created(){
@@ -181,12 +181,8 @@ export default {
     //     // }
   //
     saveDog() {
-         pupPicService
-        .list()
-        .then((newImage) => {
-          this.pupImage = newImage.data;
-          console.log(this.pupImage);
-
+      let pupImage = this.$store.state.photos[Math.floor(Math.random() * 19)]
+  
       const newDog = {
         name: this.dog.name,
         breed: this.dog.breed,
@@ -195,7 +191,7 @@ export default {
         size: this.dog.size,
         spayedNeutered: this.dog.spayedNeutered,
         temperament: this.dog.temperament,
-        image: this.pupImage.message
+        image: pupImage //this will now be random dog photo from within assets folder
       }
 
       petService
@@ -214,10 +210,10 @@ export default {
           }
         });
   
-  })
   }
   }
-}
+  }
+
 </script>
 
 <style scoped>

@@ -18,13 +18,13 @@ VALUES ('Gerry','Labradoodle','2010','Male','energetic','large','yes','https://i
 
 --create relationships of users with pets
 INSERT INTO user_pet(user_id, pet_id)
-VALUES (5,1),(23,2),(5,3),(23,4),(23,5);
+VALUES (13,1),(16,2),(13,3),(16,4),(16,5);
 
 INSERT INTO play_dates (host_pet_id, location_street_address, location_city, location_zipcode, 
 meeting_date, start_time, duration, mate_description, mate_size, status_id) 
-VALUES('6','1 Richmond Hwy','Alexandria','22306','2021-10-04','9:30:00','30','[friendly,curious]','small',1),
-('7','2 Washington Street','Alexandria','22301','2021-10-05','10:30:00','30','[timid,submissive]','medium',1),
-('8','3 Duke St','Alexandria','22301','2021-10-06','11:00:00','30','[dominant]','small',1),
-('9','4 Jefferson Dr','Springfield','22153','2021-10-07','12:30:00','30','[friendly,curious]','small',1),
-('10','5 Lincoln Lane','Arlington','20301','2021-10-08','13:00:00','30','[relaxed,submissive]','large',1);
+VALUES('1','1 Richmond Hwy','Alexandria','22306','2021-10-04','9:30:00','30','[friendly,curious]','small',1),
+('2','2 Washington Street','Alexandria','22301','2021-10-05','10:30:00','30','[timid,submissive]','medium',1),
+('3','3 Duke St','Alexandria','22301','2021-10-06','11:00:00','30','[dominant]','small',1),
+('4','4 Jefferson Dr','Springfield','22153','2021-10-07','12:30:00','30','[friendly,curious]','small',1),
+('5','5 Lincoln Lane','Arlington','20301','2021-10-08','13:00:00','30','[relaxed,submissive]','large',1);
 

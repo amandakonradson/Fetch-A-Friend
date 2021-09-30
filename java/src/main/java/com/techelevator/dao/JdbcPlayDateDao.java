@@ -111,6 +111,12 @@ public class JdbcPlayDateDao implements PlayDateDao{
         return pendingPlayDatesList;
     }
 
+    @Override
+    public void cancelPlayDate(long playDateId) {
+        String sql = "UPDATE play_dates SET status_id = 4 WHERE play_date_id = ?";
+        jdbcTemplate.update(sql, playDateId);
+    }
+
 
     private PlayDate mapToRowSet(SqlRowSet results) {
         PlayDate playDate = new PlayDate();

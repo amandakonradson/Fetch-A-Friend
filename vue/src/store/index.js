@@ -129,7 +129,31 @@ export default new Vuex.Store({
     'Wirehaired Pointing Griffon',
     'Yorkshire Terrier',
     'Other'
-  ]
+  ], 
+  photos: [
+    'https://images.dog.ceo/breeds/setter-gordon/n02101006_2907.jpg',
+    'https://images.dog.ceo/breeds/labrador/n02099712_5263.jpg',
+'https://images.dog.ceo/breeds/pug/n02110958_4043.jpg',
+'https://images.dog.ceo/breeds/pekinese/n02086079_3774.jpg', 
+'https://images.dog.ceo/breeds/mix/Noah01.jpg',
+'https://images.dog.ceo/breeds/terrier-norwich/n02094258_3598.jpg',
+
+'https://images.dog.ceo/breeds/bullterrier-staffordshire/n02093256_3812.jpg',
+
+'https://images.dog.ceo/breeds/springer-english/n02102040_4738.jpg',
+
+'https://images.dog.ceo/breeds/terrier-irish/n02093991_4626.jpg',
+'https://images.dog.ceo/breeds/collie-border/n02106166_2685.jpg',
+'https://images.dog.ceo/breeds/leonberg/n02111129_77.jpg',
+'https://images.dog.ceo/breeds/sheepdog-english/n02105641_9319.jpg',
+'https://images.dog.ceo/breeds/chihuahua/n02085620_952.jpg',
+'https://images.dog.ceo/breeds/spaniel-cocker/n02102318_3415.jpg',
+'https://images.dog.ceo/breeds/sheepdog-shetland/n02105855_3434.jpg',
+'https://images.dog.ceo/breeds/brabancon/n02112706_37.jpg',
+'https://images.dog.ceo/breeds/papillon/n02086910_4999.jpg',
+'https://images.dog.ceo/breeds/pinscher-miniature/n02107312_2478.jpg'
+
+]
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {

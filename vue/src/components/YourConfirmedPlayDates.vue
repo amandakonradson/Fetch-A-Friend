@@ -10,7 +10,9 @@
         <b>Start Time: </b> <div class="data">{{playDate.startTime}} </div><br>
         <b>Play Time:</b> <div class="data"> {{playDate.duration}} minutes </div><br>
         <b>Location: </b> <div class="data">{{playDate.locationStreetAddress}}<br>
-       <div id = address> {{playDate.locationCity}}, {{playDate.locationZipcode}} </div> </div></div>
+        
+       <div id = address> {{playDate.locationCity}}, {{playDate.locationZipcode}} </div> </div>
+        <button id="cancelButton" v-on:click.prevent="cancelPlayDate(playDate.playDateId)">Cancel</button></div>
         <br>
       </div>
   </div>
@@ -22,7 +24,8 @@ export default {
     data() {
         return{
             id: -1,
-            playDates: []
+            playDates: [],
+           
         }; 
     },
     created() {
@@ -44,7 +47,37 @@ export default {
         changeDateFormat(insertDate){
  let myArr= insertDate.split('-');
  return myArr[1]+"-"+myArr[2]+"-"+myArr[0];
-    }
+    },
+    cancelPlayDate(playDateId) {
+      if (
+        confirm(
+          "Are you PAWSitive you want to cancel this playdate? This action cannot be undone."
+        )
+      ) {
+         // let playDateId = this.playDate.playDateId;
+          playDateService
+            .cancelPlayDate(playDateId)
+            .then((response) => {
+              if (response.status >= 200 && response.status < 300) {
+                window.alert("This playdate was cancelled");
+                this.$router.go();
+              }
+            })
+            .catch((error) => {
+              if (error.response) {
+                window.alert(
+                  "Error cancelling playdate. Response received was '" +
+                  error.response.statusText +
+                  "'.");
+              } else if (error.request) {
+                window.alert("Server could not be reached.");
+              } else {
+                window.alert("Request could not be created.");
+              }
+            });
+        
+      }
+    },
 
 }
 }

@@ -30,5 +30,8 @@ export default{
     },
     getPendingPlayDates(userId) {
         return axios.get(`pet/playDatesPending/${userId}`)
+    },
+    cancelPlayDate(playDateId) {
+        return axios.put(`/pet/playDates/cancel/${playDateId}`);
     }
 }

@@ -130,6 +130,12 @@ public class PetController {
         petDao.removePet(petId);
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/playDates/cancel/{playDateId}")
+    public void cancelPlayDate(@PathVariable long playDateId) {
+        playDateDao.cancelPlayDate(playDateId);
+    }
+
 
 
 

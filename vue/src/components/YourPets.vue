@@ -9,7 +9,8 @@
        >
         {{pet.name}}   
        
-       <div id="image"> <img id= "image-link" v-bind:src="pet.image" alt="random doggo" width="200" /> </div></div>
+       <div id="image"> <img id= "image-link" v-bind:src="pet.image"
+  width="200"/> </div></div>
       </div>
 
   </div>
