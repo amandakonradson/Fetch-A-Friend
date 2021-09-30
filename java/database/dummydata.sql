@@ -18,7 +18,7 @@ VALUES ('Gerry','Labradoodle','2010','Male','energetic','large','yes','https://i
 
 --create relationships of users with pets
 INSERT INTO user_pet(user_id, pet_id)
-VALUES (20,6),(21,7),(22,8),(23,9),(24,10);
+VALUES (5,1),(23,2),(5,3),(23,4),(23,5);
 
 INSERT INTO play_dates (host_pet_id, location_street_address, location_city, location_zipcode, 
 meeting_date, start_time, duration, mate_description, mate_size, status_id) 

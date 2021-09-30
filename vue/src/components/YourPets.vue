@@ -1,13 +1,15 @@
 <template>
   <div id="main">
-      <h1>Your Pet DeTAILS: </h1>
+      <h1 id="title">Your Pet DeTAILS: </h1>
+      <div id="tile">
       <div id="pet-tile" v-for="pet in pets" 
       v-bind:key="pet.index"
       v-bind:pet="pet"
       v-bind:value="pet"
        >
-        <b>Name: </b> {{pet.name}}   
-        <img v-bind:src="pet.image" alt="random doggo" width="200" /> <!-- dog image code-->
+        {{pet.name}}   
+       
+       <div id="image"> <img id= "image-link" v-bind:src="pet.image" alt="random doggo" width="200" /> </div></div>
       </div>
 
   </div>
@@ -38,23 +40,36 @@ export default {
 
 <style scoped>
 #pet-tile {
-      border: 5px white dotted;
+  border: 5px white dotted;
   font-size: 36px;
   padding-left:20px;
   padding-bottom: 20px;
   padding-top:20px;
   line-height: 30px;
-  width: 300px;
+  width: 250px;
   background-color:  rgb(25, 149, 180);
     margin: 5px;
-  
-  
+    
+    
+
 }
-#main{
+
+#main{ 
   display: flex;
   flex-direction:column;
   margin-left: 20px;
 }
+#tile{
+  display:flex;
+  flex-wrap:wrap;
+  
+}
+#image{
+  margin-top: 10px;
+  
+
+}
+
 h1{
   font-size:42px;
 }

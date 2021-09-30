@@ -277,7 +277,7 @@ form {
   padding-top: 20px;
   padding-left: 20px;
   padding-bottom: 20px;
-  background-image: url("C:/Users/Student/Workspace/java-final-capstone-team1/vue/images/PawPrints.png");
+  background-image: url("../../images/PawPrints.png");
   border: 10px rgb(25, 149, 180) dotted;
   color: rgb(2, 59, 109);
 }

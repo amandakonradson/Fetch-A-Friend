@@ -1,16 +1,16 @@
 <template>
   <div id="main">
       <h1>Upcoming Playdates: </h1>
+      <div id = "tile">
       <div id="upcoming-tile" v-for="playDate in playDates"
       v-bind:key="playDate.index"
       v-bind:playDate="playDate"
       v-bind:value="playDate">
-       <h3>Playdate Details:</h3>
-        <b>Date: </b><div class="data"> {{playDate.meetingDate}} </div><br>
+        <b>Date: </b><div class="data"> {{changeDateFormat(playDate.meetingDate)}} </div><br>
         <b>Start Time: </b> <div class="data">{{playDate.startTime}} </div><br>
         <b>Play Time:</b> <div class="data"> {{playDate.duration}} minutes </div><br>
         <b>Location: </b> <div class="data">{{playDate.locationStreetAddress}}<br>
-       <div id = address> {{playDate.locationCity}}, {{playDate.locationZipcode}} </div> </div>
+       <div id = address> {{playDate.locationCity}}, {{playDate.locationZipcode}} </div> </div></div>
         <br>
       </div>
   </div>
@@ -39,8 +39,14 @@ export default {
                 window.alert("Could not reach service");
             }
         });
+    }, 
+    methods:{
+        changeDateFormat(insertDate){
+ let myArr= insertDate.split('-');
+ return myArr[1]+"-"+myArr[2]+"-"+myArr[0];
     }
 
+}
 }
 </script>
 
@@ -50,16 +56,21 @@ export default {
   font-size: 30px;
   padding-left:20px;
   padding-bottom: 20px;
-   line-height: 30px;
+  padding-top: 40px;
+     line-height: 30px;
    background-color: rgb(25, 149, 180);
      margin: 5px;
-     width: 400px;
+     width: 350px;
+     
 }
 #main{
   display: flex;
   flex-direction:column;
   margin-left: 20px;
-  
+}
+#tile{
+    display:flex;
+    flex-wrap: wrap;
 }
 h1{
   font-size:42px;

@@ -10,6 +10,7 @@
       <router-link class="link" id="search-play-dates" v-bind:to="{name: 'play-date-search'}">Search Playdates</router-link></div>
       <div class = "action-link">
       <router-link class="link" id="pet-profile" v-bind:to="{name:'pet-profile'}">Edit Pet Profile </router-link> <br> </div>
+     
     </aside>
     <div id="requests">
       <your-requests-to-approve /> </div>
@@ -17,6 +18,8 @@
       <your-confirmed-play-dates /></div>
       <div id="waiting"><your-pending-play-dates /></div>
       <div id= "pets"><your-pets /></div>
+      <div id="featured"><featured-pets/></div>
+      
   </div>
 </template>
 
@@ -25,18 +28,20 @@ import YourRequestsToApprove from '../components/YourRequestsToApprove.vue'
 import YourConfirmedPlayDates from '../components/YourConfirmedPlayDates.vue'
 import YourPendingPlayDates from '../components/YourPendingPlayDates.vue'
 import YourPets from '../components/YourPets.vue'
+import FeaturedPets from '../components/FeaturedPets.vue'
 export default {
   name: "home",
-  components: { YourRequestsToApprove, YourConfirmedPlayDates, YourPendingPlayDates, YourPets },
+  components: { YourRequestsToApprove, YourConfirmedPlayDates, YourPendingPlayDates, YourPets, FeaturedPets },
 };
 </script>
 
 <style scoped>
   .home {
     display: grid;
-    grid-template-columns:200px 1fr 1fr;
+    grid-template-columns: 300px 1fr 1fr;
     grid-template-areas: 
-    "aside pets confirmed"
+    "aside pets featured"
+    "aside confirmed confirmed"
     "aside requests waiting"
     
     ;
@@ -52,6 +57,10 @@ export default {
     grid-area: requests;
     
   }
+  #featured{
+    grid-area: featured;
+  }
+  
   #confirmed{
     grid-area: confirmed;
   }
@@ -65,8 +74,8 @@ export default {
   .link{
     color: white;
     text-decoration: none; color: inherit;
-    font-size: 24px;
-    margin-left: 10px;
+    font-size: 32px;
+    margin-left: 20px;
     grid-area: footer;
     
   }

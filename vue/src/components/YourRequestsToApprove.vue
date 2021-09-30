@@ -1,14 +1,14 @@
 <template>
   <div id="main">
       <h1>Your Requests to Approve:</h1>
+      <div id="tile">
       <div id="request-tile" v-for="request in requests" 
       v-bind:key="request.index"
       v-bind:request="request"
       v-bind:value="request"
        >
       <form id="info" v-on:submit.prevent="approvePlayDate(request.mateId, request.playDateId)">
-        <h3>Playdate Details:</h3>
-        <b>Date: </b><div class="data"> {{request.playdate.meetingDate}}</div> <br>
+        <b>Date: </b><div class="data"> {{changeDateFormat(request.playdate.meetingDate)}}</div> <br>
         <b>Start Time:</b><div class="data"> {{request.playdate.startTime}} </div> <br>
         <b>Play Time: </b><div class="data">{{request.playdate.duration}} minutes</div>  <br>
         <b>Location: </b><div class="data">{{request.playdate.locationStreetAddress}}</div> 
@@ -22,7 +22,7 @@
         <b>Temperament: </b><div class="data">{{request.mateTemperament}} </div> <br>
 
       <button class="button-submit">Pick this Pup!</button>
-     </form>
+     </form></div>
       </div>
 
   </div>
@@ -51,9 +51,7 @@ export default {
     },
     methods: {
       approvePlayDate(idMate, idPlayDate) {
-        
       
-        
         playDateService.updateRequest(idPlayDate, idMate)
         .then((response) => {
           if(response.status >= 200 && response.status < 300) {
@@ -69,6 +67,12 @@ export default {
           }
         });
       },
+       
+        changeDateFormat(insertDate){
+ let myArr= insertDate.split('-');
+ return myArr[1]+"-"+myArr[2]+"-"+myArr[0];
+    }
+
     }
 
 }
@@ -82,8 +86,12 @@ export default {
   padding-bottom: 20px;
   background-color:  rgb(25, 149, 180);
   margin: 5px;
-  width: 400px;
+  width: 300px;
  
+}
+#tile{
+  display:flex;
+  flex-wrap: wrap;
 }
 h3{
   font-size: 34px;
@@ -95,6 +103,7 @@ h3{
 }
 #info{
   line-height: 30px;
+  padding-top: 30px;
 }
 button {
   height: 30px;

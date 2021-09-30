@@ -1,18 +1,18 @@
 <template>
   <div id="main">
       <h1>Playdates Awaiting Host Approval: </h1>
+      <div id="tile">
       <div id="pending-tile" v-for="playDate in playDates" 
       v-bind:key="playDate.index"
       v-bind:playDate="playDate"
       v-bind:value="playDate"
       >
-          <h3>Playdate Details:</h3>
-        <b>Date: </b><div class="data"> {{playDate.meetingDate}}</div> <br>
+        <b>Date: </b><div class="data"> {{changeDateFormat(playDate.meetingDate)}}</div> <br>
         <b>Start Time: </b> <div class="data">{{playDate.startTime}}</div> <br>
        <b> Play Time:</b> <div class="data">{{playDate.duration}} minutes</div> <br>
        <b> Location:</b><div class="data"> {{playDate.locationStreetAddress}}</div>
         <br>
-      </div>
+      </div></div>
   </div>
 </template>
 
@@ -36,6 +36,13 @@ export default {
       });
 
     },
+      methods:{
+        changeDateFormat(insertDate){
+ let myArr= insertDate.split('-');
+ return myArr[1]+"-"+myArr[2]+"-"+myArr[0];
+    }
+
+}
     }
 
 
@@ -50,12 +57,17 @@ export default {
    line-height: 30px;
    background-color:rgb(25, 149, 180);
      margin: 5px;
-     width: 400px;
+     width: 300px;
+     padding-top: 30px;
 }
 #main{
   display: flex;
   flex-direction:column;
   margin-left: 20px;
+}
+#tile{
+  display: flex;
+  flex-wrap: wrap;
 }
 h1{
   font-size:42px;
