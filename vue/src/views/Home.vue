@@ -2,6 +2,8 @@
   <div class="home">
     <aside>
       <br><br>
+      <div id="name">{{ this.$store.state.user.username }} </div>
+      <br>
       <div class = "action-link">
       <router-link class="link" id="add-pet" v-bind:to="{name:'add-pet'}">Add a Pet </router-link> <br> </div>    <!--&nbsp;|&nbsp; -->
       <div class = "action-link">
@@ -9,7 +11,7 @@
       <div class = "action-link">
       <router-link class="link" id="search-play-dates" v-bind:to="{name: 'play-date-search'}">Search Playdates</router-link></div>
       <div class = "action-link">
-      <router-link class="link" id="pet-profile" v-bind:to="{name:'pet-profile'}">Edit Pet Profile </router-link> <br> </div>
+      <router-link class="link" id="pet-profile" v-bind:to="{name:'pet-profile'}">Edit Pet Profile</router-link> <br> </div>
      
     </aside>
     <div id="requests">
@@ -81,6 +83,11 @@ export default {
   }
   .action-link{
   margin-bottom:15px;
+  }
+  #name {
+    font-size: 32px;
+    margin-left: 20px;
+    color: #a6dcef
   }
 
 </style>

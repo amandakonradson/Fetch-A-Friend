@@ -93,7 +93,7 @@
             Timid: Once these pups feel comfortable, they make great playmates!
           </option>
           <option value="friendly">
-            Friendly: These dogs love everyone they encounter!!
+            Friendly: These dogs love everyone they encounter!
           </option>
           <option value="protective">
             Protective: These human devoted pups and may
