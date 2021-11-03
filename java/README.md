@@ -1,4 +1,4 @@
-# Capstone Starter Project
+# Fetch-A-Friend Capstone Project
 
 ## Database
 
